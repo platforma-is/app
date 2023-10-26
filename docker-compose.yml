@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16
+    restart: always
+    container_name: pgdb
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - pgdb:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+volumes:
+  pgdb:
