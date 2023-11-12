@@ -21,3 +21,7 @@ npm run dev
 ```
 npx prisma studio
 ```
+
+# Deploy
+
+https://dev.to/markusmp/step-by-step-guide-deploying-a-nextjs-app-on-a-vps-4iaj
