@@ -1,6 +1,9 @@
 .header {
-  height: rem(56px);
+  /* height: rem(56px); */
   margin-bottom: rem(24px);
+  background-color: var(--color-platforma-0);
+  margin: rem(12px);
+  border-radius: rem(8px);
 }
 
 .inner {
@@ -33,7 +36,7 @@
 }
 
 .logo {
-  width: 130px;
+  width: 200px;
   height: auto;
   cursor: pointer;
 }

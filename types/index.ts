@@ -1,7 +1,7 @@
 export type IResponse = {
   id: string;
   formId: string;
-  data: Record<string, Record<string, unknown>>;
+  data: Record<string, string>;
   createdAt: Date;
   updatedAt: Date;
 };
