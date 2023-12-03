@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 // core styles are required for all packages
+import "@/pages/core.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
@@ -18,7 +19,22 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 const theme = createTheme({
-  /** Put your mantine theme override here */
+  colors: {
+    platforma: [
+      "#F7F5FF",
+      "#D3CCFF",
+      "#B9ADFF",
+      "#9F90FF",
+      "#8C7AFF",
+      "#7D69FF",
+      "#7661FF",
+      "#6850FF",
+      "#5E44FA",
+      "#5033FF",
+    ],
+  },
+  primaryColor: "platforma",
+  fontFamily: "PP Pangarm Sans Rounded, sans-serif"
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -38,42 +54,6 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </DatesProvider>
       </SessionProvider>
-
-      <style jsx global>{`
-        html {
-          box-sizing: border-box;
-        }
-
-        *,
-        *:before,
-        *:after {
-          box-sizing: inherit;
-        }
-
-        body {
-          margin: 0;
-          padding: 0;
-          font-size: 16px;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-            "Segoe UI Symbol";
-          background-color: #f2f2f3;
-        }
-
-        input,
-        textarea {
-          font-size: 16px;
-        }
-
-        button {
-          cursor: pointer;
-        }
-
-        a {
-          color: var(--mantine-primary-color-filled);
-          text-decoration: none;
-        }
-      `}</style>
     </MantineProvider>
   );
 };

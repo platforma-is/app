@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
+import { IconFilePlus } from "@tabler/icons-react";
 import Image from "next/image";
 import {
   Group,
@@ -12,7 +13,7 @@ import {
   Menu,
 } from "@mantine/core";
 import classes from "@/components/HeaderMenu.module.css";
-import logo from "@/public/logo.svg";
+import logo from "@/public/assets/icons/logo.svg";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -41,9 +42,10 @@ const Header: React.FC = () => {
           component="a"
           href="/create"
           size="xs"
+          leftSection={<IconFilePlus size="16" />}
           // onClick={(event) => event.preventDefault()}
         >
-          New form
+          Создать форму
         </Button>
 
         {session.user?.image && (
@@ -71,7 +73,7 @@ const Header: React.FC = () => {
 export default function HeaderMenu() {
   return (
     <header className={classes.header}>
-      <Container size="md">
+      <Container size="xl" px="md" py="sm">
         <div className={classes.inner}>
           <Link href="/" legacyBehavior>
             <Image src={logo} alt="platforma.is" className={classes.logo} />
