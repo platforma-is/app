@@ -7,7 +7,7 @@ import {IForm} from "@/utils/types";
 import {deleteFormApi} from "@/data/form";
 import Router from "next/router";
 
-type MenuForm = {
+type MenuFormProps = {
     form: IForm,
     publicLink: string
 }
@@ -17,7 +17,7 @@ async function deleteForm(id: string): Promise<void> {
     await Router.push("/");
 }
 
-export const MenuForm: FC<MenuForm> = (props) => {
+export const MenuForm: FC<MenuFormProps> = (props) => {
 
     const {form, publicLink} = props;
 

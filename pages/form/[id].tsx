@@ -8,6 +8,7 @@ import {IconClipboardList, IconNorthStar, IconSettings2} from "@tabler/icons-rea
 import {ResponsesLayout} from "@/components/Forms/responses/ResponsesLayout";
 import {IntegrationLayout} from "@/components/Forms/integration/IntegrationLayout";
 import {MenuForm} from "@/components/Forms/Menu/MenuForm";
+import FormTitle from "@/components/Forms/Menu/FormTitle";
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
     const form = await prisma.form.findUnique({
@@ -62,7 +63,7 @@ const Post: React.FC<{
     return (
         <Layout>
             <Card radius="md" p="xl" mb="md">
-                <MenuForm publicLink={publicLink} form={form}/>
+                <FormTitle publicLink={publicLink} form={form}/>
                 <Tabs value={activeTab} onChange={setActiveTab}>
                     <Tabs.List>
                         {tabs.map((it, idx) =>

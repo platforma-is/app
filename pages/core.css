@@ -1,5 +1,8 @@
 :root {
   --color-bg-white: rgba(255, 255, 255, 1);
+  --color-gray-0: rgba(248, 249, 250, 1);
+  --color-dark-2: rgba(144, 146, 150, 1);
+  --color-dark-8: rgba(20, 21, 23, 1);
   --color-platforma-0: rgba(247, 245, 255, 1);
   --color-platforma-6: rgba(118, 97, 255, 1);
   --color-platforma-9: rgba(80, 51, 255, 1);
