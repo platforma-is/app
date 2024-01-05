@@ -6,8 +6,11 @@ Install dependencies and initialize database:
 
 ```
 npm install
-docker-compose up -d # start database
-npx prisma migrate dev --name init # init database
+
+# [optional] only for local db: docker-compose up -d
+
+# init database
+npx prisma migrate dev --name init
 ```
 
 Start the server:
