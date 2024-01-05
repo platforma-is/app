@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
+import { useSession } from "next-auth/react";
 import { Container } from "@mantine/core";
 import Header from "@/components/Header";
-import { useSession } from "next-auth/react";
 
 type Props = {
   children: ReactNode;

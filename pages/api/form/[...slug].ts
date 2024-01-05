@@ -5,7 +5,7 @@ import { options } from "../auth/[...nextauth]";
 
 export default async function handle(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   try {
     const { slug } = req.query;

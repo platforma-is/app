@@ -7,9 +7,10 @@ import Router from "next/router";
 import prisma from "@/lib/prisma";
 import { Card, Group, Text } from "@mantine/core";
 import classes from "@/components/Forms.module.css";
-import { IForm } from "@/utils/types";
+import { IForm } from "types";
 import { deleteFormApi } from "@/data/form";
 import { IconDots, IconTrash } from "@tabler/icons-react";
+import Link from "next/link";
 
 async function deleteForm(id: string): Promise<void> {
   await deleteFormApi(id);
@@ -113,7 +114,7 @@ const Index: React.FC<Props> = ({ forms }) => {
             Forms
           </Text>
           <Text fz="lg" fw={500}>
-            No forms yet. <a href="/create">Create</a>
+            No forms yet. <Link href="/create">Create</Link>
           </Text>
         </Card>
       </Layout>

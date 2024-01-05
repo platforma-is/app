@@ -21,11 +21,11 @@ import {
   rem,
   Code,
 } from "@mantine/core";
-import { IForm } from "@/utils/types";
+import { IForm, IResponse } from "types";
 import { IconDots, IconTrash } from "@tabler/icons-react";
 import { deleteFormApi } from "@/data/form";
 import { deleteResponseApi } from "@/data/response";
-import { ActiveToggleForm } from "@/components/Forms/ActiveToggleForm";
+import { ActiveToggleForm } from "features/Forms/ActiveToggleForm";
 
 async function deleteForm(id: string): Promise<void> {
   await deleteFormApi(id);
@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 };
 
 const Post: React.FC<{
-  responses: any[];
+  responses: IResponse[];
   form: IForm;
 }> = ({ responses, form }) => {
   if (!form) return null;
@@ -93,7 +93,7 @@ const Post: React.FC<{
               Object.keys(response?.data).map((key) => (
                 <ListItem key={key}>
                   <Text>
-                    {key}: {response?.data[key]}
+                    {key}: {String(response?.data[key])}
                   </Text>
                 </ListItem>
               ))}
