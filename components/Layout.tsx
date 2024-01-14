@@ -12,28 +12,34 @@ const Layout: React.FC<Props> = (props) => {
 
   if (status === "loading") {
     return (
-      <Container pb="xl" pt="md">
+      <Container size="xl">
         <Header />
-        <Container size="md">Authenticating ...</Container>
+        <Container pb="xl" pt="md">
+          <Container size="md">Authenticating ...</Container>
+        </Container>
       </Container>
     );
   }
 
   if (!session) {
     return (
-      <Container pb="xl" pt="md">
+      <Container size="xl">
         <Header />
-        <Container size="md">
-          You need to be logged in to view this page.
+        <Container pb="xl" pt="md">
+          <Container size="md">
+            You need to be logged in to view this page.
+          </Container>
         </Container>
       </Container>
     );
   }
 
   return (
-    <Container pb="xl" pt="md">
+    <Container size="xl">
       <Header />
-      <Container size="md">{props.children}</Container>
+      <Container pb="xl" pt="md">
+        <Container size="md">{props.children}</Container>
+      </Container>
     </Container>
   );
 };
