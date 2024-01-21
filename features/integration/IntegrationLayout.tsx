@@ -1,16 +1,7 @@
 import React, { FC } from "react";
-import {
-  Button,
-  Card,
-  Code,
-  Stack,
-  Text,
-  TextInput,
-  rem,
-  Container,
-} from "@mantine/core";
+import { Button, Card, Code, Text, rem, Container } from "@mantine/core";
 import StageBlock from "../Menu/StageBlock";
-import { IconStar, IconStarHalfFilled } from "@tabler/icons-react";
+import { IconStar } from "@tabler/icons-react";
 
 type IntegrationLayoutProps = {
   publicLink: string;
@@ -80,22 +71,12 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
         stage={3}
         title="Форма готова!"
         description="Как только кто-то заполнит форму на сайте, ответы сразу появятся в общей таблице"
-        content={<Button type="button" leftSection={<IconStar size={16} />}>Посмотреть ответы</Button>}
+        content={
+          <Button type="button" leftSection={<IconStar size={16} />}>
+            Посмотреть ответы
+          </Button>
+        }
       />
-
-    {/* //   <form
-    //     method="POST"
-    //     action={publicLink}
-    //     // encType="multipart/form-data"
-    //   >
-    //     <Stack gap="xl">
-    //       <Stack>
-    //         <TextInput name="name" label="Name" placeholder="Name" required />
-    //         <TextInput name="text" label="Text" placeholder="Text" required />
-    //       </Stack>
-    //       <Button type="submit">Submit</Button>
-    //     </Stack>
-    //   </form> */}
     </Card>
   );
 };

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../lib/prisma";
+import prisma from "lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { options } from "../auth/[...nextauth]";
 
@@ -8,7 +8,7 @@ import { options } from "../auth/[...nextauth]";
 // Optional fields in body: content
 export default async function handle(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { title } = req.body;
 

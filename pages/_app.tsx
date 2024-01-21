@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import dayjs from "dayjs";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
@@ -54,6 +55,42 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </DatesProvider>
       </SessionProvider>
+
+      <style jsx global>{`
+        html {
+          box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+          box-sizing: inherit;
+        }
+
+        body {
+          margin: 0;
+          padding: 0;
+          font-size: 16px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+            "Segoe UI Symbol";
+          background-color: #f2f2f3;
+        }
+
+        input,
+        textarea {
+          font-size: 16px;
+        }
+
+        button {
+          cursor: pointer;
+        }
+
+        a {
+          color: var(--mantine-primary-color-filled);
+          text-decoration: none;
+        }
+      `}</style>
     </MantineProvider>
   );
 };

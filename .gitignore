@@ -2,6 +2,8 @@ node_modules/
 .next/
 .env
 
+.vscode/
+
 modules.xml
 vcs.xml
 app.iml
