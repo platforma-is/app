@@ -1,6 +1,6 @@
+import { useCallback, useState } from "react";
 import { activeFormApi, unactiveFormApi } from "@/data/form";
 import { Switch } from "@mantine/core";
-import { useCallback, useState } from "react";
 
 async function activeForm(id: string): Promise<void> {
   await activeFormApi(id);
@@ -27,7 +27,7 @@ export function ActiveToggleForm({
       setChecked(true);
       activeForm(formId);
     }
-  }, [formId]);
+  }, [active, formId]);
 
   return (
     <Switch
