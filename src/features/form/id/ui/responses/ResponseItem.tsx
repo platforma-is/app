@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { deleteResponseApi } from "@/data/response";
 import Router from "next/router";
 import "dayjs/locale/ru";
-import { IResponse } from "types";
+import { IResponse } from "@/src/shared/types";
 
 type IResponseItemProps = {
   response: IResponse;

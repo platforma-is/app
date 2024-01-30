@@ -10,12 +10,12 @@ import {
 import Link from "next/link";
 import { IconDots, IconTrash } from "@tabler/icons-react";
 import React, { FC } from "react";
-import { IForm } from "types";
 import { deleteFormApi } from "@/data/form";
 import Router from "next/router";
-import { ActiveToggleForm } from "features/Forms/ActiveToggleForm";
+import { IForm } from "@/src/shared/types";
+import { ActiveToggleForm } from "@/src/features/form/id/ui/Forms/ActiveToggleForm";
 
-type MenuFormProps = {
+type MenuForm = {
   form: IForm;
   publicLink: string;
 };
@@ -25,7 +25,7 @@ async function deleteForm(id: string): Promise<void> {
   await Router.push("/");
 }
 
-export const MenuForm: FC<MenuFormProps> = (props) => {
+export const MenuForm: FC<MenuForm> = (props) => {
   const { form, publicLink } = props;
 
   const copyFormLink = (

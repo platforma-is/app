@@ -93,4 +93,4 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
     //   </form> */}
     </Card>
   );
-};
+}

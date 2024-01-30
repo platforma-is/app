@@ -13,7 +13,7 @@ import {
   Menu,
 } from "@mantine/core";
 import classes from "@/components/HeaderMenu.module.css";
-import logo from "@/public/assets/icons/logo.svg";
+import logo from "../public/assets/icons/logo.svg";
 
 const Header: React.FC = () => {
   const router = useRouter();
