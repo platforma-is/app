@@ -3,14 +3,16 @@ import { Button, Card, Code, Text, rem, Container } from "@mantine/core";
 import StageBlock from "@/components/StageBlock";
 import { IconStar } from "@tabler/icons-react";
 
-type IntegrationLayoutProps = {
-  publicLink: string;
-};
 
 type TextBlockProps = {
   header: string;
   description?: string;
 };
+
+type IntegrationLayoutProps = {
+  publicLink: string;
+};
+
 
 const TextBlock: FC<TextBlockProps> = ({ header, description }) => (
   <Container w="100%" px="0" mb="xs">
@@ -30,8 +32,7 @@ const TextBlock: FC<TextBlockProps> = ({ header, description }) => (
   </Container>
 );
 
-export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
-  const { publicLink } = props;
+export const IntegrationLayout: FC<IntegrationLayoutProps> = ({publicLink}) => {
 
   const htmlFormCode = `<form method="POST" action="${publicLink}">
   <input type="text" name="name" placeholder="Name" />

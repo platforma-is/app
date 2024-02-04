@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
-import Layout from "@/components/Layout";
+import Layout from "@/features/Layout";
 import { Card, Tabs, Text } from "@mantine/core";
 import { IForm, IResponse } from "types";
 import {
@@ -9,7 +9,7 @@ import {
   IconNorthStar,
   IconSettings2,
 } from "@tabler/icons-react";
-import { ResponsesLayout } from "features/Responses/ResponsesLayout";
+import { Responses } from "@/features/Responses";
 import { IntegrationLayout } from "@/components/IntegrationLayout";
 import FormTitle from "features/FormTitle";
 
@@ -95,7 +95,7 @@ const Post: React.FC<{
             <IntegrationLayout publicLink={publicLink} />
           </Tabs.Panel>
           <Tabs.Panel value="responses">
-            <ResponsesLayout responses={responses} />
+            <Responses responses={responses} />
           </Tabs.Panel>
           <Tabs.Panel value="settings">settings</Tabs.Panel>
         </Tabs>

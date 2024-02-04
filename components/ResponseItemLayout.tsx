@@ -1,26 +1,17 @@
+import React, { FC } from "react";
 import { ActionIcon, Menu, rem, Table, Text } from "@mantine/core";
 import { IconDots, IconTrash } from "@tabler/icons-react";
-import React, { FC } from "react";
-import dayjs from "dayjs";
-import { deleteResponseApi } from "@/data/response";
-import Router from "next/router";
-import "dayjs/locale/ru";
 import { IResponse } from "types";
+import { formatDate } from "../utils";
 
-type IResponseItemProps = {
+type ResponseItemLayoutProps = {
   response: IResponse;
+  onDeleteItem: (id: string) => void;
 };
 
-async function deleteResponse(id: string): Promise<void> {
-  await deleteResponseApi(id);
-  await Router.reload();
-}
 
-export const ResponseItem: FC<IResponseItemProps> = (props) => {
-  const { response } = props;
-  const createdAt = dayjs(response.createdAt)
-    .locale("ru")
-    .format("DD MMMM YYYY, HH:mm");
+export const ResponseItemLayout: FC<ResponseItemLayoutProps> = ({response, onDeleteItem}) => {
+  const createdAt = formatDate(response.createdAt);
 
   return (
     <Table.Tr key={response.id}>
@@ -57,7 +48,7 @@ export const ResponseItem: FC<IResponseItemProps> = (props) => {
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Item
-              onClick={() => deleteResponse(response.id)}
+              onClick={() => onDeleteItem(response.id)}
               leftSection={
                 <IconTrash
                   style={{ width: rem(16), height: rem(16) }}

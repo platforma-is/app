@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { IForm } from "types";
 import { deleteFormApi } from "@/data/form";
 import Router from "next/router";
-import FormTitleLayout from "@/components/FormTitleLayout";
+import { FormMenuLayout } from "@/components/FormMenuLayout";
 
-type FormTitleProps = {
+type FormMenuProps = {
   form: IForm;
   publicLink: string;
 };
@@ -14,14 +14,16 @@ async function deleteForm(id: string): Promise<void> {
   await Router.push("/");
 }
 
-const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
+export const FormMenu: FC<FormMenuProps> = ({ form, publicLink }) => {
+  const onDeleteItem = (formId) => {
+    deleteForm(formId);
+  };
+
   return (
-    <FormTitleLayout
-    form={form}
+    <FormMenuLayout
       publicLink={publicLink}
-      onDeleteClick={() => deleteForm(form.id)}
+      form={form}
+      onDeleteItem={onDeleteItem}
     />
   );
 };
-
-export default FormTitle;

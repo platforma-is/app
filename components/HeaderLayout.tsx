@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { NextRouter, Router, useRouter } from "next/router";
+import { NextRouter } from "next/router";
 import { SessionContextValue  } from "next-auth/react";
 import { IconFilePlus } from "@tabler/icons-react";
 import Image from "next/image";

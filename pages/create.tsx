@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "@/components/Layout";
+import Layout from "@/features/Layout";
 import Router from "next/router";
 import { Button, Card, Group, Stack, Text, TextInput } from "@mantine/core";
 

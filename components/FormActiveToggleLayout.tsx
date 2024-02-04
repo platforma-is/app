@@ -1,31 +1,29 @@
 import { useCallback, useState } from "react";
-import { activeFormApi, unactiveFormApi } from "@/data/form";
 import { Switch } from "@mantine/core";
 
-async function activeForm(id: string): Promise<void> {
-  await activeFormApi(id);
+
+type FormActiveToggleLayoutProps = {
+  formId: string,
+  active: boolean,
+  onFormActive: (id: string) => void,
+  onFormDeactive: (id: string) => void
 }
 
-async function unactiveForm(id: string): Promise<void> {
-  await unactiveFormApi(id);
-}
-
-export function ActiveToggleForm({
+export function FormActiveToggleLayout({
   formId,
   active,
-}: {
-  formId: string;
-  active: boolean;
-}) {
+  onFormActive,
+  onFormDeactive
+}: FormActiveToggleLayoutProps) {
   const [checked, setChecked] = useState(active);
 
   const toggle = useCallback(async () => {
     if (active) {
       setChecked(false);
-      unactiveForm(formId);
+      onFormDeactive(formId);
     } else {
       setChecked(true);
-      activeForm(formId);
+      onFormActive(formId);
     }
   }, [active, formId]);
 

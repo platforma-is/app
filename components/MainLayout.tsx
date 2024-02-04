@@ -1,14 +1,15 @@
 import React, { ReactNode } from "react";
-import { useSession } from "next-auth/react";
+import { SessionContextValue } from "next-auth/react";
 import { Container } from "@mantine/core";
 import Header from "features/Header";
 
-type Props = {
+type LayoutWrapperProps = {
   children: ReactNode;
+  session: SessionContextValue
 };
 
-const Layout: React.FC<Props> = (props) => {
-  const { data: session, status } = useSession();
+const LayoutWrapper: React.FC<LayoutWrapperProps> = ({children, session}) => {
+  const { data: sessionData, status } = session;
 
   if (status === "loading") {
     return (
@@ -21,7 +22,7 @@ const Layout: React.FC<Props> = (props) => {
     );
   }
 
-  if (!session) {
+  if (!sessionData) {
     return (
       <Container size="xl">
         <Header />
@@ -38,10 +39,10 @@ const Layout: React.FC<Props> = (props) => {
     <Container size="xl">
       <Header />
       <Container pb="xl" pt="md">
-        <Container size="md">{props.children}</Container>
+        <Container size="md">{children}</Container>
       </Container>
     </Container>
   );
 };
 
-export default Layout;
+export default LayoutWrapper;

@@ -2,7 +2,7 @@ import React from "react";
 import type { GetServerSideProps } from "next";
 import dayjs from "dayjs";
 import { ActionIcon, Button, CopyButton, Menu, rem } from "@mantine/core";
-import Layout from "@/components/Layout";
+import Layout from "@/features/Layout";
 import Router from "next/router";
 import prisma from "@/lib/prisma";
 import { Card, Group, Text } from "@mantine/core";

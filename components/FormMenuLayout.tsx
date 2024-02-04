@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import {
   ActionIcon,
   Button,
@@ -9,24 +10,17 @@ import {
 } from "@mantine/core";
 import Link from "next/link";
 import { IconDots, IconTrash } from "@tabler/icons-react";
-import React, { FC } from "react";
 import { IForm } from "types";
-import { deleteFormApi } from "@/data/form";
-import Router from "next/router";
-import { ActiveToggleForm } from "features/Forms/ActiveToggleForm";
+import { FormActiveToggle } from "@/features/FormActiveToggle";
 
-type MenuFormProps = {
+type FormMenuProps = {
   form: IForm;
   publicLink: string;
+  onDeleteItem: (id: string) => void;
 };
 
-async function deleteForm(id: string): Promise<void> {
-  await deleteFormApi(id);
-  await Router.push("/");
-}
 
-export const MenuForm: FC<MenuFormProps> = (props) => {
-  const { form, publicLink } = props;
+export const FormMenuLayout: FC<FormMenuProps> = ({form, publicLink, onDeleteItem}) => {
 
   const copyFormLink = (
     <CopyButton value={publicLink}>
@@ -49,7 +43,7 @@ export const MenuForm: FC<MenuFormProps> = (props) => {
 
       <Group>
         {copyFormLink}
-        <ActiveToggleForm formId={form.id} active={form.active} />
+        <FormActiveToggle formId={form.id} active={form.active} />
 
         <Menu
           transitionProps={{ transition: "pop" }}
@@ -67,7 +61,7 @@ export const MenuForm: FC<MenuFormProps> = (props) => {
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Item
-              onClick={() => deleteForm(form.id)}
+              onClick={() => onDeleteItem(form.id)}
               leftSection={
                 <IconTrash
                   style={{ width: rem(16), height: rem(16) }}
