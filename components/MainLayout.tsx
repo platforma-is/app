@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
 import { SessionContextValue } from "next-auth/react";
 import { Container } from "@mantine/core";
-import Header from "features/Header";
+import Header from "@/features/Header";
 
 type LayoutWrapperProps = {
   children: ReactNode;
-  session: SessionContextValue
+  session: SessionContextValue;
 };
 
-const LayoutWrapper: React.FC<LayoutWrapperProps> = ({children, session}) => {
+const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ children, session }) => {
   const { data: sessionData, status } = session;
 
   if (status === "loading") {

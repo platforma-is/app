@@ -1,19 +1,18 @@
 import { useCallback, useState } from "react";
 import { Switch } from "@mantine/core";
 
-
 type FormActiveToggleLayoutProps = {
-  formId: string,
-  active: boolean,
-  onFormActive: (id: string) => void,
-  onFormDeactive: (id: string) => void
-}
+  formId: string;
+  active: boolean;
+  onFormActive: (id: string) => void;
+  onFormDeactive: (id: string) => void;
+};
 
 export function FormActiveToggleLayout({
   formId,
   active,
   onFormActive,
-  onFormDeactive
+  onFormDeactive,
 }: FormActiveToggleLayoutProps) {
   const [checked, setChecked] = useState(active);
 

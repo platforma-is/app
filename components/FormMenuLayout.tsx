@@ -19,9 +19,11 @@ type FormMenuProps = {
   onDeleteItem: (id: string) => void;
 };
 
-
-export const FormMenuLayout: FC<FormMenuProps> = ({form, publicLink, onDeleteItem}) => {
-
+export const FormMenuLayout: FC<FormMenuProps> = ({
+  form,
+  publicLink,
+  onDeleteItem,
+}) => {
   const copyFormLink = (
     <CopyButton value={publicLink}>
       {({ copied, copy }) => (

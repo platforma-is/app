@@ -7,8 +7,7 @@ type ResponsesLayoutProps = {
   responses: IResponse[];
 };
 
-export const ResponsesLayout: FC<ResponsesLayoutProps> = ({responses}) => {
-
+export const ResponsesLayout: FC<ResponsesLayoutProps> = ({ responses }) => {
   return (
     <Paper
       bg={"#F8F9FA"}

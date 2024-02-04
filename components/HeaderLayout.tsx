@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { NextRouter } from "next/router";
-import { SessionContextValue  } from "next-auth/react";
+import { SessionContextValue } from "next-auth/react";
 import { IconFilePlus } from "@tabler/icons-react";
 import Image from "next/image";
 import {
@@ -15,19 +15,21 @@ import {
 import classes from "@/components/HeaderMenu.module.css";
 import logo from "@/public/assets/icons/logo.svg";
 
-
 type HeaderProps = {
-  router: NextRouter,
-  session: SessionContextValue,
-  onLogoutClick: () => void
-}
+  router: NextRouter;
+  session: SessionContextValue;
+  onLogoutClick: () => void;
+};
 
-const HeaderNavLayout: React.FC<HeaderProps> = ({router, session, onLogoutClick}) => {
+const HeaderNavLayout: React.FC<HeaderProps> = ({
+  router,
+  session,
+  onLogoutClick,
+}) => {
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
   const { data: sessionData, status } = session;
 
-  
   if (status === "loading") {
     return <p>Validating session ...</p>;
   }
@@ -76,7 +78,11 @@ const HeaderNavLayout: React.FC<HeaderProps> = ({router, session, onLogoutClick}
   }
 };
 
-export default function HeaderLayout ({router, session, onLogoutClick}: HeaderProps) {
+export default function HeaderLayout({
+  router,
+  session,
+  onLogoutClick,
+}: HeaderProps) {
   return (
     <header className={classes.header}>
       <Container size="xl" px="md" py="sm">
@@ -84,7 +90,11 @@ export default function HeaderLayout ({router, session, onLogoutClick}: HeaderPr
           <Link href="/" legacyBehavior>
             <Image src={logo} alt="platforma.is" className={classes.logo} />
           </Link>
-          <HeaderNavLayout router={router} session={session} onLogoutClick={onLogoutClick} />
+          <HeaderNavLayout
+            router={router}
+            session={session}
+            onLogoutClick={onLogoutClick}
+          />
         </div>
       </Container>
     </header>

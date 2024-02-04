@@ -18,12 +18,16 @@ import classes from "@/components/FormTitle.module.css";
 import { IForm } from "types";
 
 type FormTitleLayoutProps = {
-    form: IForm;
-    onDeleteClick: () => void;
-    publicLink: string;
+  form: IForm;
+  onDeleteClick: () => void;
+  publicLink: string;
 };
 
-const FormTitleLayout: FC<FormTitleLayoutProps> = ({ form, onDeleteClick, publicLink }) => {
+const FormTitleLayout: FC<FormTitleLayoutProps> = ({
+  form,
+  onDeleteClick,
+  publicLink,
+}) => {
   const copyFormLink = (
     <CopyButton value={publicLink} timeout={2000}>
       {({ copied, copy }) => (
