@@ -38,10 +38,10 @@ https://dev.to/markusmp/step-by-step-guide-deploying-a-nextjs-app-on-a-vps-4iaj
 
 /pages — вот тут инициализация страниц
 
-/features — вот тут можно писать фичи. Работа с формами, авторизацией и проч.
+/features — (умные компоненты) вот тут можно писать фичи. Работа с формами, авторизацией и проч.
 --- /state — (redux-toolkit)
 
-/components — всё про ui, кнпопочки, менюшку, лейауты и тд
+/components — (глупые компоненты) всё про ui, кнпопочки, менюшку, лейауты и тд
 
 /shared
 --- /types & constants
@@ -57,4 +57,15 @@ https://dev.to/markusmp/step-by-step-guide-deploying-a-nextjs-app-on-a-vps-4iaj
 
 Попробовал сделать, чтобы eslint подсказывал если видим неверные импорты
 (npm run lint или плагин ide)
+```
+
+
+# Table
+
+```js
+
+const columns = [{id: 'one', title: 'One'}]
+const rows = [{one: '1'}, {one: '2'}, {one: '3'}]
+
+<Table rows={rows} columns={columns} />
 ```
