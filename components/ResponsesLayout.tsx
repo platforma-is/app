@@ -1,13 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { Paper, Table, Text } from "@mantine/core";
 import { IResponse } from "types";
-import { ResponseItem } from "@/features/ResponseItem";
 
 type ResponsesLayoutProps = {
   responses: IResponse[];
+  children: ReactNode;
 };
 
-export const ResponsesLayout: FC<ResponsesLayoutProps> = ({ responses }) => {
+export const ResponsesLayout: FC<ResponsesLayoutProps> = ({
+  responses,
+  children,
+}) => {
   return (
     <Paper
       bg={"#F8F9FA"}
@@ -40,11 +43,7 @@ export const ResponsesLayout: FC<ResponsesLayoutProps> = ({ responses }) => {
             <Table.Th />
           </Table.Tr>
         </Table.Thead>
-        <Table.Tbody>
-          {responses.map((response) => (
-            <ResponseItem key={response.id} response={response} />
-          ))}
-        </Table.Tbody>
+        <Table.Tbody>{children}</Table.Tbody>
       </Table>
     </Paper>
   );

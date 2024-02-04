@@ -1,10 +1,8 @@
-import { ActionIcon, Menu, rem, Table, Text } from "@mantine/core";
-import { IconDots, IconTrash } from "@tabler/icons-react";
 import React, { FC } from "react";
-import { deleteResponseApi } from "@/data/response";
 import Router from "next/router";
-import { IResponse } from "types";
+import { deleteResponseApi } from "@/data/response";
 import { ResponseItemLayout } from "@/components/ResponseItemLayout";
+import { IResponse } from "types";
 
 type ResponseItemProps = {
   response: IResponse;

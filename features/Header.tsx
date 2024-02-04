@@ -11,5 +11,11 @@ export default function HeaderMenu() {
     signOut();
   };
 
-  return <HeaderLayout router={router} session={session}  onLogoutClick={onLogoutClick}/>;
+  return (
+    <HeaderLayout
+      router={router}
+      session={session}
+      onLogoutClick={onLogoutClick}
+    />
+  );
 }

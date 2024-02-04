@@ -3,6 +3,7 @@ import { IForm } from "types";
 import { deleteFormApi } from "@/data/form";
 import Router from "next/router";
 import { FormMenuLayout } from "@/components/FormMenuLayout";
+import { FormActiveToggle } from "@/features/FormActiveToggle";
 
 type FormMenuProps = {
   form: IForm;
@@ -24,6 +25,8 @@ export const FormMenu: FC<FormMenuProps> = ({ form, publicLink }) => {
       publicLink={publicLink}
       form={form}
       onDeleteItem={onDeleteItem}
-    />
+    >
+      <FormActiveToggle formId={form.id} active={form.active} />
+    </FormMenuLayout>
   );
 };

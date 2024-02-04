@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import {
   ActionIcon,
   Button,
@@ -11,18 +11,19 @@ import {
 import Link from "next/link";
 import { IconDots, IconTrash } from "@tabler/icons-react";
 import { IForm } from "types";
-import { FormActiveToggle } from "@/features/FormActiveToggle";
 
 type FormMenuProps = {
   form: IForm;
   publicLink: string;
   onDeleteItem: (id: string) => void;
+  children: ReactNode;
 };
 
 export const FormMenuLayout: FC<FormMenuProps> = ({
   form,
   publicLink,
   onDeleteItem,
+  children,
 }) => {
   const copyFormLink = (
     <CopyButton value={publicLink}>
@@ -45,8 +46,7 @@ export const FormMenuLayout: FC<FormMenuProps> = ({
 
       <Group>
         {copyFormLink}
-        <FormActiveToggle formId={form.id} active={form.active} />
-
+        {children}
         <Menu
           transitionProps={{ transition: "pop" }}
           withArrow

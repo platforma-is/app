@@ -9,8 +9,10 @@ type ResponseItemLayoutProps = {
   onDeleteItem: (id: string) => void;
 };
 
-
-export const ResponseItemLayout: FC<ResponseItemLayoutProps> = ({response, onDeleteItem}) => {
+export const ResponseItemLayout: FC<ResponseItemLayoutProps> = ({
+  response,
+  onDeleteItem,
+}) => {
   const createdAt = formatDate(response.createdAt);
 
   return (

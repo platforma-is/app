@@ -17,7 +17,7 @@ async function deleteForm(id: string): Promise<void> {
 const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
   return (
     <FormTitleLayout
-    form={form}
+      form={form}
       publicLink={publicLink}
       onDeleteClick={() => deleteForm(form.id)}
     />
