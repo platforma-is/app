@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "@mantine/core";
 import { IForm } from "src/shared/types";
 import { HomePageLayout } from "@/src/shared/ui-kit/layouts/HomePageLayout";
-import { HomePageBodyAdapter } from "@/src/features/home/ui/HomePageBodyAdapter";
+import { HomePageBodyAdapter } from "@/src/entities/home/ui/HomePageBodyAdapter";
 
 type Props = {
   forms: IForm[];

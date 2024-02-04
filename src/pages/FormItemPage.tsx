@@ -6,8 +6,8 @@ import {
   IconNorthStar,
   IconSettings2,
 } from "@tabler/icons-react";
-import { ResponsesLayout } from "@/src/features/form/id/ui/responses/ResponsesLayout";
-import FormTitle from "@/src/features/form/id/ui/FormTitle";
+import { ResponsesLayout } from "@/src/entities/form/id/ui/responses/ResponsesLayout";
+import FormTitle from "@/src/entities/form/id/ui/FormTitle";
 import Layout from "@/src/components/Layout";
 import { IntegrationLayout } from "@/src/components/Forms/integration/IntegrationLayout";
 

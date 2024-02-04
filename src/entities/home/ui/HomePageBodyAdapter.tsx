@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Link from "next/link";
 import { Text } from "@mantine/core";
 import dayjs from "dayjs";
-import { HomeFormItem } from "@/src/features/home/ui/HomeFormItem";
+import { HomeFormItem } from "@/src/entities/home/ui/HomeFormItem";
 import { IForm } from "@/src/shared/types";
 
 type HomePageBodyAdapterProps = {
@@ -32,7 +32,7 @@ export const HomePageBodyAdapter: FC<HomePageBodyAdapterProps> = ({
   if (items.length === 0) {
     return (
       <Text fz="lg" fw={500}>
-        No forms yet. <Link href="/create">Create</Link>
+        No forms yet. <Link href="/pages/create">Create</Link>
       </Text>
     );
   } else {

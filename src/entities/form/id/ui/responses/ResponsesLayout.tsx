@@ -1,6 +1,6 @@
 import { Paper, Table, Text } from "@mantine/core";
 import React, { FC } from "react";
-import { ResponseItem } from "@/src/features/form/id/ui/responses/ResponseItem";
+import { ResponseItem } from "@/src/entities/form/id/ui/responses/ResponseItem";
 import { IResponse } from "@/src/shared/types";
 
 type ResponsesLayoutProps = {

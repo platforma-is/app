@@ -4,7 +4,7 @@ import Router from "next/router";
 import { IconDots, IconTrash } from "@tabler/icons-react";
 import React, { FC } from "react";
 import { IForm } from "@/src/shared/types";
-import { deleteForm } from "@/src/entities/home/queries";
+import { deleteForm } from "@/src/features/home/queries";
 import {
   ActionIcon,
   Button,

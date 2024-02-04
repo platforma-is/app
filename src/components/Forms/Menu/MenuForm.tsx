@@ -13,7 +13,7 @@ import React, { FC } from "react";
 import { deleteFormApi } from "@/data/form";
 import Router from "next/router";
 import { IForm } from "@/src/shared/types";
-import { ActiveToggleForm } from "@/src/features/form/id/ui/Forms/ActiveToggleForm";
+import { ActiveToggleForm } from "@/src/entities/form/id/ui/Forms/ActiveToggleForm";
 
 type MenuForm = {
   form: IForm;
