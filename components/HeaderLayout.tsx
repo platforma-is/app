@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Router, useRouter } from "next/router";
-import { SessionContextValue, SessionProviderProps, signOut, useSession,  } from "next-auth/react";
+import { NextRouter, Router, useRouter } from "next/router";
+import { SessionContextValue  } from "next-auth/react";
 import { IconFilePlus } from "@tabler/icons-react";
 import Image from "next/image";
 import {
@@ -17,20 +17,22 @@ import logo from "@/public/assets/icons/logo.svg";
 
 
 type HeaderProps = {
-  router: Router,
-  session: SessionContextValue
+  router: NextRouter,
+  session: SessionContextValue,
+  onLogoutClick: () => void
 }
 
-const HeaderLayout: React.FC<HeaderProps> = ({router, session}) => {
+const HeaderNavLayout: React.FC<HeaderProps> = ({router, session, onLogoutClick}) => {
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
   const { data: sessionData, status } = session;
 
+  
   if (status === "loading") {
     return <p>Validating session ...</p>;
   }
 
-  if (!session) {
+  if (!sessionData) {
     return (
       <Link href="/api/auth/signin" legacyBehavior>
         <a className={classes.link} data-active={isActive("/signup")}>
@@ -40,7 +42,7 @@ const HeaderLayout: React.FC<HeaderProps> = ({router, session}) => {
     );
   }
 
-  if (session) {
+  if (sessionData) {
     return (
       <Group>
         <Button
@@ -52,7 +54,7 @@ const HeaderLayout: React.FC<HeaderProps> = ({router, session}) => {
           Создать форму
         </Button>
 
-        {session.user?.image && (
+        {sessionData.user?.image && (
           <Menu
             transitionProps={{ transition: "pop" }}
             withArrow
@@ -65,7 +67,7 @@ const HeaderLayout: React.FC<HeaderProps> = ({router, session}) => {
               </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item onClick={() => signOut()}>Log out</Menu.Item>
+              <Menu.Item onClick={() => onLogoutClick()}>Log out</Menu.Item>
             </Menu.Dropdown>
           </Menu>
         )}
@@ -74,7 +76,7 @@ const HeaderLayout: React.FC<HeaderProps> = ({router, session}) => {
   }
 };
 
-export default function HeaderMenuLayout () {
+export default function HeaderLayout ({router, session, onLogoutClick}: HeaderProps) {
   return (
     <header className={classes.header}>
       <Container size="xl" px="md" py="sm">
@@ -82,7 +84,7 @@ export default function HeaderMenuLayout () {
           <Link href="/" legacyBehavior>
             <Image src={logo} alt="platforma.is" className={classes.logo} />
           </Link>
-          <HeaderLayout />
+          <HeaderNavLayout router={router} session={session} onLogoutClick={onLogoutClick} />
         </div>
       </Container>
     </header>
