@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/react";
+import { Router, useRouter } from "next/router";
+import { SessionContextValue, SessionProviderProps, signOut, useSession,  } from "next-auth/react";
 import { IconFilePlus } from "@tabler/icons-react";
 import Image from "next/image";
 import {
@@ -15,11 +15,16 @@ import {
 import classes from "@/components/HeaderMenu.module.css";
 import logo from "@/public/assets/icons/logo.svg";
 
-const Header: React.FC = () => {
-  const router = useRouter();
+
+type HeaderProps = {
+  router: Router,
+  session: SessionContextValue
+}
+
+const HeaderLayout: React.FC<HeaderProps> = ({router, session}) => {
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
-  const { data: session, status } = useSession();
+  const { data: sessionData, status } = session;
 
   if (status === "loading") {
     return <p>Validating session ...</p>;
@@ -43,7 +48,6 @@ const Header: React.FC = () => {
           href="/create"
           size="xs"
           leftSection={<IconFilePlus size="16" />}
-          // onClick={(event) => event.preventDefault()}
         >
           Создать форму
         </Button>
@@ -57,7 +61,7 @@ const Header: React.FC = () => {
           >
             <Menu.Target>
               <ActionIcon variant="subtle" color="gray">
-                <Avatar src={session.user?.image} alt="it's me" size="sm" />
+                <Avatar src={sessionData.user?.image} alt="it's me" size="sm" />
               </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
@@ -70,7 +74,7 @@ const Header: React.FC = () => {
   }
 };
 
-export default function HeaderMenu() {
+export default function HeaderMenuLayout () {
   return (
     <header className={classes.header}>
       <Container size="xl" px="md" py="sm">
@@ -78,7 +82,7 @@ export default function HeaderMenu() {
           <Link href="/" legacyBehavior>
             <Image src={logo} alt="platforma.is" className={classes.logo} />
           </Link>
-          <Header />
+          <HeaderLayout />
         </div>
       </Container>
     </header>

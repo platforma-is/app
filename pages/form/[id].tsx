@@ -9,8 +9,8 @@ import {
   IconNorthStar,
   IconSettings2,
 } from "@tabler/icons-react";
-import { ResponsesLayout } from "features/responses/ResponsesLayout";
-import { IntegrationLayout } from "features/integration/IntegrationLayout";
+import { ResponsesLayout } from "features/Responses/ResponsesLayout";
+import { IntegrationLayout } from "@/components/IntegrationLayout";
 import FormTitle from "features/FormTitle";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
