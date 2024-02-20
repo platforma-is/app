@@ -1,0 +1,52 @@
+:root {
+  --color-bg-white: rgba(255, 255, 255, 1);
+  --color-gray-0: rgba(248, 249, 250, 1);
+  --color-dark-2: rgba(144, 146, 150, 1);
+  --color-dark-8: rgba(20, 21, 23, 1);
+  --color-platforma-0: rgba(247, 245, 255, 1);
+  --color-platforma-6: rgba(118, 97, 255, 1);
+  --color-platforma-9: rgba(80, 51, 255, 1);
+}
+
+@font-face {
+  font-family: "PP Pangarm Sans Rounded";
+  src: url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.eot');
+  src: url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.eot') format('embedded-opentype'),
+    url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.woff2') format('woff2'),
+    url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.woff') format('woff'),
+    url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.ttf') format('truetype');
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  background-color: #f2f2f3;
+}
+
+input,
+textarea {
+  font-size: 16px;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--mantine-primary-color-filled);
+  text-decoration: none;
+}

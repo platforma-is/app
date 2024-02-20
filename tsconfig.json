@@ -14,14 +14,14 @@
       "@/public/*": [
         "public/*"
       ],
-      "@/utils/*": [
-        "utils/*"
+      "@/shared/*": [
+        "shared/*"
       ],
-      "@/data/*": [
-        "data/*"
+      "@/features/*": [
+        "features/*"
       ],
-      "@/src/*": [
-        "src/*"
+      "@/app/*": [
+        "app/*"
       ]
     },
     "target": "es5",
