@@ -5,6 +5,8 @@ import prisma from "@/lib/prisma";
 import { IForm } from "@/shared/types";
 import { HomePageLayout } from "@/shared/ui-kit/layouts/HomePageLayout";
 import { HomePageBodyAdapter } from "@/components/home/HomePageBodyAdapter";
+import { GlobalWrapper } from "@/components/global/GlobalWraper";
+import { Header } from "@/components/global/Header";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const forms = await prisma.form.findMany({
@@ -24,14 +26,16 @@ type Props = {
 
 const Index: React.FC<Props> = ({ forms }) => {
   return (
-    <HomePageLayout
-      header={
-        <Text fz="lg" fw={900} mb="xl">
-          Forms
-        </Text>
-      }
-      body={<HomePageBodyAdapter forms={forms} />}
-    />
+    <GlobalWrapper header={<Header />}>
+      <HomePageLayout
+        title={
+          <Text fz="lg" fw={900} mb="xl">
+            Forms
+          </Text>
+        }
+        body={<HomePageBodyAdapter forms={forms} />}
+      />
+    </GlobalWrapper>
   );
 };
 

@@ -1,5 +1,5 @@
-import { Avatar, Container, Flex, rem } from "@mantine/core";
 import React, { FC, ReactNode } from "react";
+import { Avatar, Container, Flex, rem } from "@mantine/core";
 import classes from "./StageBlock.module.css";
 
 type StageBlockType = {
@@ -9,7 +9,7 @@ type StageBlockType = {
   content?: ReactNode;
 };
 
-const StageBlock: FC<StageBlockType> = ({
+export const StageBlock: FC<StageBlockType> = ({
   stage,
   title,
   description,
@@ -52,5 +52,3 @@ const StageBlock: FC<StageBlockType> = ({
     </Container>
   );
 };
-
-export default StageBlock;

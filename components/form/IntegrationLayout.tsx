@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Button, Card, Code, Text, rem, Container } from "@mantine/core";
-import StageBlock from "../Menu/StageBlock";
+import { StageBlock } from "@/components/form/StageBlock";
 import { IconStar } from "@tabler/icons-react";
 
 type IntegrationLayoutProps = {
@@ -93,4 +93,4 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
     //   </form> */}
     </Card>
   );
-}
+};

@@ -1,19 +1,16 @@
 import React, { FC, ReactNode } from "react";
 import { Card } from "@mantine/core";
-import Layout from "@/components/global/Layout";
 
 type HomePageLayoutProps = {
-  header?: ReactNode;
+  title?: ReactNode;
   body?: ReactNode;
 };
 
-export const HomePageLayout: FC<HomePageLayoutProps> = ({ header, body }) => {
+export const HomePageLayout: FC<HomePageLayoutProps> = ({ title, body }) => {
   return (
-    <Layout>
-      <Card radius="md" p="xl">
-        {header}
-        {body}
-      </Card>
-    </Layout>
+    <Card radius="md" p="xl">
+      {title}
+      {body}
+    </Card>
   );
 };

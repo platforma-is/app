@@ -8,10 +8,11 @@ import {
 import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
 import { IForm, IResponse } from "@/shared/types";
-import Layout from "@/components/global/Layout";
-import { IntegrationLayout } from "@/components/form/Forms/integration/IntegrationLayout";
-import FormTitle from "@/components/form/Forms/FormTitle";
-import { ResponsesLayout } from "@/components/form/Forms/responses/ResponsesLayout";
+import { IntegrationLayout } from "@/components/form/IntegrationLayout";
+import FormTitle from "@/components/form/FormTitle";
+import { GlobalWrapper } from "@/components/global/GlobalWraper";
+import { Header } from "@/components/global/Header";
+import { Responses } from "@/components/form/Responses";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const form = await prisma.form.findUnique({
@@ -62,7 +63,7 @@ const Post: React.FC<{
   ];
 
   return (
-    <Layout>
+    <GlobalWrapper header={<Header />}>
       <Card radius="md" p="xl" mb="md">
         <FormTitle publicLink={publicLink} form={form} />
         <Tabs value={activeTab} onChange={setActiveTab}>
@@ -95,12 +96,12 @@ const Post: React.FC<{
             <IntegrationLayout publicLink={publicLink} />
           </Tabs.Panel>
           <Tabs.Panel value="responses">
-            <ResponsesLayout responses={responses} />
+            <Responses responses={responses} />
           </Tabs.Panel>
           <Tabs.Panel value="settings">settings</Tabs.Panel>
         </Tabs>
       </Card>
-    </Layout>
+    </GlobalWrapper>
   );
 };
 

@@ -56,6 +56,11 @@ module.exports = {
           },
           {
             from: "./components",
+            target: "./shared",
+            message: "В shared нельзя импортировать модули из components",
+          },
+          {
+            from: "./components",
             target: "./features",
             message: "В features нельзя импортировать модули из components",
           },
@@ -72,5 +77,6 @@ module.exports = {
         ],
       },
     ],
+    "prettier/prettier": ["error", { endOfLine: "auto" }],
   },
 };

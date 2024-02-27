@@ -14,22 +14,20 @@ import {
   IconEdit,
   IconTrash,
 } from "@tabler/icons-react";
+import classes from "@/components/form/FormTitle.module.css";
 import { IForm } from "@/shared/types";
-import Router from "next/router";
-import classes from "./FormTitle.module.css";
-import { deleteFormApi } from "@/features/form/queries";
 
-type FormTitleProps = {
+type FormTitleLayoutProps = {
   form: IForm;
+  onDeleteClick: () => void;
   publicLink: string;
 };
 
-async function deleteForm(id: string): Promise<void> {
-  await deleteFormApi(id);
-  await Router.push("/");
-}
-
-const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
+const FormTitleLayout: FC<FormTitleLayoutProps> = ({
+  form,
+  onDeleteClick,
+  publicLink,
+}) => {
   const copyFormLink = (
     <CopyButton value={publicLink} timeout={2000}>
       {({ copied, copy }) => (
@@ -97,7 +95,7 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
             </Menu.Target>
             <Menu.Dropdown>
               <Menu.Item
-                onClick={() => deleteForm(form.id)}
+                onClick={() => onDeleteClick()}
                 leftSection={
                   <IconTrash
                     style={{ width: rem(12), height: rem(12) }}
@@ -120,4 +118,4 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
   );
 };
 
-export default FormTitle;
+export default FormTitleLayout;
