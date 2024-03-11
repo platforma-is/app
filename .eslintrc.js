@@ -49,12 +49,34 @@ module.exports = {
       {
         zones: [
           // separate ui and logic
-          { from: "./state", target: "./components" },
-          { from: "./constants", target: "./components" },
-          { from: "./features", target: "./components" },
-          { from: "./data", target: "./components" },
+          {
+            from: "./features",
+            target: "./shared",
+            message: "В shared нельзя импортировать модули из features",
+          },
+          {
+            from: "./components",
+            target: "./shared",
+            message: "В shared нельзя импортировать модули из components",
+          },
+          {
+            from: "./components",
+            target: "./features",
+            message: "В features нельзя импортировать модули из components",
+          },
+          {
+            from: "./pages",
+            target: "./components",
+            message: "В components нельзя импортировать модули из pages",
+          },
+          {
+            from: "./app",
+            target: "./pages",
+            message: "В pages нельзя импортировать модули из app",
+          },
         ],
       },
     ],
+    "prettier/prettier": ["error", { endOfLine: "auto" }],
   },
 };

@@ -10,11 +10,11 @@
 
 @font-face {
   font-family: "PP Pangarm Sans Rounded";
-  src: url('/assets/fonts/261bd41f743f968436b6709532d4343e.eot');
-  src: url('/assets/fonts/261bd41f743f968436b6709532d4343e.eot') format('embedded-opentype'),
-    url('/assets/fonts/261bd41f743f968436b6709532d4343e.woff2') format('woff2'),
-    url('/assets/fonts/261bd41f743f968436b6709532d4343e.woff') format('woff'),
-    url('/assets/fonts/261bd41f743f968436b6709532d4343e.ttf') format('truetype');
+  src: url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.eot');
+  src: url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.eot') format('embedded-opentype'),
+    url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.woff2') format('woff2'),
+    url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.woff') format('woff'),
+    url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.ttf') format('truetype');
 }
 
 html {

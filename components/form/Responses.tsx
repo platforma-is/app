@@ -1,14 +1,13 @@
+import React, { FC, ReactNode } from "react";
 import { Paper, Table, Text } from "@mantine/core";
-import React, { FC } from "react";
-import { ResponseItem } from "features/responses/ResponseItem";
-import { IResponse } from "types";
+import { IResponse } from "@/shared/types";
+import { ResponseItem } from "@/components/form/ResponseItem";
 
-type ResponsesLayoutProps = {
+type ResponsesProps = {
   responses: IResponse[];
 };
-export const ResponsesLayout: FC<ResponsesLayoutProps> = (props) => {
-  const { responses } = props;
 
+export const Responses: FC<ResponsesProps> = ({ responses }) => {
   return (
     <Paper
       bg={"#F8F9FA"}

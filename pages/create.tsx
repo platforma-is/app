@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Layout from "@/components/Layout";
 import Router from "next/router";
 import { Button, Card, Group, Stack, Text, TextInput } from "@mantine/core";
+import { GlobalWrapper } from "@/components/global/GlobalWraper";
+import { Header } from "@/components/global/Header";
 
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -24,7 +25,7 @@ const Draft: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <GlobalWrapper header={<Header />}>
       <Card radius="md" p="xl">
         <Text fz="lg" fw={900} mb="xl">
           Forms / Create new
@@ -51,7 +52,7 @@ const Draft: React.FC = () => {
           </Stack>
         </form>
       </Card>
-    </Layout>
+    </GlobalWrapper>
   );
 };
 

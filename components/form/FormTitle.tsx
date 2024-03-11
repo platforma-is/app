@@ -14,10 +14,10 @@ import {
   IconEdit,
   IconTrash,
 } from "@tabler/icons-react";
-import { IForm } from "types";
-import { deleteFormApi } from "@/data/form";
+import { deleteFormApi } from "@/features/form/queries";
 import Router from "next/router";
-import classes from "@/components/Forms/Menu/FormTitle.module.css";
+import { IForm } from "@/shared/types";
+import classes from "@/components/form/FormTitle.module.css";
 
 type FormTitleProps = {
   form: IForm;

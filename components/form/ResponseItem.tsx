@@ -1,13 +1,12 @@
-import { ActionIcon, Menu, rem, Table, Text } from "@mantine/core";
-import { IconDots, IconTrash } from "@tabler/icons-react";
 import React, { FC } from "react";
-import dayjs from "dayjs";
-import { deleteResponseApi } from "@/data/response";
+import { ActionIcon, Menu, rem, Table, Text } from "@mantine/core";
 import Router from "next/router";
-import "dayjs/locale/ru";
-import { IResponse } from "types";
+import { deleteResponseApi } from "@/features/form/queries";
+import { IconDots, IconTrash } from "@tabler/icons-react";
+import { IResponse } from "@/shared/types";
+import { formatDate } from "@/utils/index";
 
-type IResponseItemProps = {
+type ResponseItemProps = {
   response: IResponse;
 };
 
@@ -16,11 +15,8 @@ async function deleteResponse(id: string): Promise<void> {
   await Router.reload();
 }
 
-export const ResponseItem: FC<IResponseItemProps> = (props) => {
-  const { response } = props;
-  const createdAt = dayjs(response.createdAt)
-    .locale("ru")
-    .format("DD MMMM YYYY, HH:mm");
+export const ResponseItem: FC<ResponseItemProps> = ({ response }) => {
+  const createdAt = formatDate(response.createdAt);
 
   return (
     <Table.Tr key={response.id}>

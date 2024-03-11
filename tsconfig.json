@@ -2,12 +2,30 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
-      "@/pages/*": ["pages/*"],
-      "@/public/*": ["public/*"],
-      "@/utils/*": ["utils/*"],
-      "@/data/*": ["data/*"]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/public/*": [
+        "public/*"
+      ],
+      "@/shared/*": [
+        "shared/*"
+      ],
+      "@/features/*": [
+        "features/*"
+      ],
+      "@/app/*": [
+        "app/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ]
     },
     "target": "es5",
     "lib": [
@@ -26,7 +44,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "exclude": [
     "node_modules"
@@ -34,7 +58,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "ts-node": {
     "compilerOptions": {
