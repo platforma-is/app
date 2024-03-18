@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 import { Container } from "@mantine/core";
 
 type GlobalLayoutProps = {
-  children: ReactNode;
-  header: ReactNode;
+  children?: ReactNode;
+  header?: ReactNode;
 };
 
 export const GlobalLayout: React.FC<GlobalLayoutProps> = ({

@@ -1,10 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Tabs, Text } from "@mantine/core";
-import {
-  IconClipboardList,
-  IconNorthStar,
-  IconSettings2,
-} from "@tabler/icons-react";
 import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
 import { IForm, IResponse } from "@/shared/types";
@@ -13,6 +8,9 @@ import FormTitle from "@/components/form/FormTitle";
 import { GlobalWrapper } from "@/components/global/GlobalWraper";
 import { Header } from "@/components/global/Header";
 import { Responses } from "@/components/form/Responses";
+import useFormItemPage from "@/features/form/use-form-item-page";
+import { FormItemLayout } from "@/shared/ui-kit/layouts/FormItemLayout";
+import { FormTabs } from "@/components/form/FormTabs";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const form = await prisma.form.findUnique({
@@ -36,71 +34,24 @@ const Post: React.FC<{
   responses: IResponse[];
   form: IForm;
 }> = ({ responses, form }) => {
-  const [activeTab, setActiveTab] = useState<string | null>("integration");
+  const { tabs, publicLink, activeTab, setActiveTab } = useFormItemPage(form);
 
   if (!form) return null;
 
-  const publicLink = `${
-    typeof window !== "undefined" ? window.location.origin : ""
-  }/api/form/${form.id}`;
-
-  const tabs = [
-    {
-      name: "integration",
-      text: "Установка на сайт",
-      ico: IconNorthStar,
-    },
-    {
-      name: "responses",
-      text: "Ответы",
-      ico: IconClipboardList,
-    },
-    {
-      name: "settings",
-      text: "Интеграции и настройки",
-      ico: IconSettings2,
-    },
-  ];
-
   return (
-    <GlobalWrapper header={<Header />}>
-      <Card radius="md" p="xl" mb="md">
-        <FormTitle publicLink={publicLink} form={form} />
-        <Tabs value={activeTab} onChange={setActiveTab}>
-          <Tabs.List>
-            {tabs.map((it, idx) => (
-              <Tabs.Tab
-                key={idx}
-                value={it.name}
-                color={"#5033FF"}
-                leftSection={
-                  <it.ico
-                    width={"0.75rem"}
-                    height={"0.75rem"}
-                    color={activeTab === it.name ? "#5033FF" : "black"}
-                  />
-                }
-              >
-                <Text
-                  size={"0.75rem"}
-                  fw={"400"}
-                  color={activeTab === it.name ? "#5033FF" : "black"}
-                >
-                  {it.text}
-                </Text>
-              </Tabs.Tab>
-            ))}
-          </Tabs.List>
-
-          <Tabs.Panel value="integration">
-            <IntegrationLayout publicLink={publicLink} />
-          </Tabs.Panel>
-          <Tabs.Panel value="responses">
-            <Responses responses={responses} />
-          </Tabs.Panel>
-          <Tabs.Panel value="settings">settings</Tabs.Panel>
-        </Tabs>
-      </Card>
+    <GlobalWrapper>
+      <FormItemLayout
+        title={<FormTitle publicLink={publicLink} form={form} />}
+        tabs={
+          <FormTabs
+            tabs={tabs}
+            activeTab={activeTab}
+            publicLink={publicLink}
+            responses={responses}
+            setActiveTab={setActiveTab}
+          />
+        }
+      />
     </GlobalWrapper>
   );
 };

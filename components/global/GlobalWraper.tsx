@@ -2,15 +2,16 @@ import React, { ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { Container } from "@mantine/core";
 import { GlobalLayout } from "@/shared/ui-kit/layouts/GlobalLayout";
+import { Header } from "@/components/global/Header";
 
 type GlobalWrapperProps = {
   children: ReactNode;
-  header: ReactNode;
+  header?: ReactNode;
 };
 
 export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
   children,
-  header,
+  header = <Header />,
 }) => {
   const { data: sessionData, status } = useSession();
 
