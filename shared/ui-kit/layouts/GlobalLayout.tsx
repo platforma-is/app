@@ -19,8 +19,6 @@ export const GlobalLayout: React.FC<GlobalLayoutProps> = ({
       <Container
         {...containerProps}
         className={clsx("global_body", containerProps?.className)}
-        pb="xl"
-        pt="md"
       >
         {children}
       </Container>

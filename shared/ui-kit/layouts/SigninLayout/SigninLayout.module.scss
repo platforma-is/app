@@ -1,0 +1,57 @@
+.signin_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-25%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .logo_container {
+    align-items: flex-start;
+    gap: 1rem;
+
+    .logo_img {
+      margin-top: 0.5rem;
+    }
+
+    .text_container {
+      width: 30rem;
+
+      .logo_title {
+        color: var(--Dark-Dark-9, #101113);
+      }
+
+      h3 {
+        /* Heading/h1 */
+        margin: 0;
+        padding: 0;
+        color: var(--Gray-Gray-5, #ADB5BD);
+        font-family: "PP Pangarm Sans Rounded", sans-serif;
+        font-size: 2.5rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 3rem; /* 120% */
+      }
+
+      .auth_container {
+        .auth_btn {
+          padding: 0rem 1.5rem;
+          height: 3rem;
+          align-items: flex-start;
+          justify-content: flex-start;
+          display: flex;
+          border-radius: 0.5rem;
+          border: 1px solid var(--Gray-Gray-4, #CED4DA);
+          color: var(--Dark-Dark-8, #141517);
+          /* Text/lg */
+          font-family: "Inter", sans-serif;
+          font-size: 1.125rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1.25rem; /* 111.111% */
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import React, { ReactNode } from "react";
 import { useSession } from "next-auth/react";
-import { Container } from "@mantine/core";
+import { Container, Loader } from "@mantine/core";
 import { GlobalLayout } from "@/shared/ui-kit/layouts/GlobalLayout";
 import { Sidebar } from "@/components/global/Sidebar";
+import { router } from "next/client";
+import { useRouter } from "next/router";
 
 type GlobalWrapperProps = {
   children: ReactNode;
@@ -13,27 +15,29 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
   children,
   sidebar = <Sidebar />,
 }) => {
+  const router = useRouter();
   const { data: sessionData, status } = useSession();
 
   const render = () => {
     if (status === "loading") {
-      return <Container size="md">Authenticating ...</Container>;
-    }
-
-    if (!sessionData) {
       return (
         <Container size="md">
-          You need to be logged in to view this page.
+          <Loader pos={"absolute"} top={"50%"} left={"50%"} />
         </Container>
       );
+    } else {
+      if (!sessionData) {
+        router.push("/auth/signin");
+      }
+      if (sessionData) {
+        return <Container>{children}</Container>;
+      }
     }
-
-    return <Container size="md">{children}</Container>;
   };
 
   return (
     <GlobalLayout
-      containerProps={{ pl: sessionData ? "20rem" : "0" }}
+      containerProps={{ w: "100%", pl: sessionData ? "20rem" : "0" }}
       sidebar={sidebar}
     >
       {render()}

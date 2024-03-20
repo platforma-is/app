@@ -7,7 +7,7 @@ interface FormItemLayoutProps {
 }
 export const FormItemLayout = ({ title, tabs }: FormItemLayoutProps) => {
   return (
-    <Card radius="md" p="xl" mb="md">
+    <Card w={"100%"} radius="md" p="xl" mb="md">
       {title}
       {tabs}
     </Card>

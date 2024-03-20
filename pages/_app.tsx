@@ -74,7 +74,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
             "Segoe UI Symbol";
-          background-color: #f2f2f3;
+          background-color: #fff;
         }
 
         input,

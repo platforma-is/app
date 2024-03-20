@@ -9,7 +9,6 @@ import { IconMoodSmile } from "@tabler/icons-react";
 export const Sidebar: React.FC = () => {
   const router = useRouter();
   const { data: sessionData, status } = useSession();
-
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
@@ -19,7 +18,7 @@ export const Sidebar: React.FC = () => {
 
   const render = () => {
     if (status === "loading") {
-      return <Loader />;
+      return <></>;
       // return createPortal(<Loader />, document.body);
     }
 
@@ -33,6 +32,7 @@ export const Sidebar: React.FC = () => {
           <Container className={classes.sidebar_content}>
             <h3 className={classes.logo_title}>Формы</h3>
             <Button
+              onClick={() => router.push("/create")}
               className={classes.create_form_btn}
               leftSection={<img src={"/assets/icons/Plus.svg"} alt={"plus"} />}
               variant={"transparent"}
@@ -42,12 +42,13 @@ export const Sidebar: React.FC = () => {
           </Container>
           <Container className={classes.bottom_sidebar}>
             <Button
+              onClick={onLogoutClick}
               className={classes.profile_btn}
               color={"black"}
               variant={"transparent"}
               leftSection={<IconMoodSmile />}
             >
-              Константин К.
+              {sessionData.user?.name} (exit)
             </Button>
           </Container>
         </SidebarLayout>
