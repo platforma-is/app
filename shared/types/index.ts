@@ -1,3 +1,6 @@
+import { ClientSafeProvider, getProviders, LiteralUnion } from "next-auth/react";
+import { BuiltInProviderType } from "next-auth/providers";
+
 export type IResponse = {
   id: string;
   formId: string;
@@ -18,3 +21,5 @@ export type IForm = {
     email: string;
   } | null;
 };
+
+export type TProvider = typeof getProviders;
