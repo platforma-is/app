@@ -1,21 +1,29 @@
 import React, { ReactNode } from "react";
-import { Container } from "@mantine/core";
+import { Container, ContainerProps, Flex } from "@mantine/core";
+import clsx from "clsx";
 
 type GlobalLayoutProps = {
   children?: ReactNode;
-  header?: ReactNode;
+  sidebar?: ReactNode;
+  containerProps?: ContainerProps;
 };
 
 export const GlobalLayout: React.FC<GlobalLayoutProps> = ({
   children,
-  header,
+  sidebar,
+  containerProps,
 }) => {
   return (
-    <Container size="xl">
-      {header}
-      <Container pb="xl" pt="md">
+    <Flex className={"global"} display={"flex"}>
+      {sidebar}
+      <Container
+        {...containerProps}
+        className={clsx("global_body", containerProps?.className)}
+        pb="xl"
+        pt="md"
+      >
         {children}
       </Container>
-    </Container>
+    </Flex>
   );
 };

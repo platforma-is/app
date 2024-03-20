@@ -2,16 +2,16 @@ import React, { ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { Container } from "@mantine/core";
 import { GlobalLayout } from "@/shared/ui-kit/layouts/GlobalLayout";
-import { Header } from "@/components/global/Header";
+import { Sidebar } from "@/components/global/Sidebar";
 
 type GlobalWrapperProps = {
   children: ReactNode;
-  header?: ReactNode;
+  sidebar?: ReactNode;
 };
 
 export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
   children,
-  header = <Header />,
+  sidebar = <Sidebar />,
 }) => {
   const { data: sessionData, status } = useSession();
 
@@ -31,5 +31,12 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
     return <Container size="md">{children}</Container>;
   };
 
-  return <GlobalLayout header={header}>{render()}</GlobalLayout>;
+  return (
+    <GlobalLayout
+      containerProps={{ pl: sessionData ? "20rem" : "0" }}
+      sidebar={sidebar}
+    >
+      {render()}
+    </GlobalLayout>
+  );
 };

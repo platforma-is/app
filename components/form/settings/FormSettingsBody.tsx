@@ -16,6 +16,7 @@ export const FormSettingsBody = (props: FormSettingsBodyProps) => {
       <SettingFirstBlock />
       <SettingSecondBlock />
       <Button
+        onClick={() => }
         leftSection={<IconTrash />}
         fw={400}
         px={"1rem"}
