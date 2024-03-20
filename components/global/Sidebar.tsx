@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import { SidebarLayout } from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout";
-import { Button, Container, Loader, rem } from "@mantine/core";
+import { Button, Container } from "@mantine/core";
 import classes from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout.module.scss";
 import { IconMoodSmile } from "@tabler/icons-react";
 

@@ -4,8 +4,10 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  position: fixed;
   height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
   justify-content: space-between;
   align-items: flex-start;
   border: 1px solid #DEE2E6;

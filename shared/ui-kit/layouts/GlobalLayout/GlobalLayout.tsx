@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { Container, ContainerProps, Flex } from "@mantine/core";
 import clsx from "clsx";
+import classes from "./GlobalLayout.module.scss";
 
 type GlobalLayoutProps = {
   children?: ReactNode;
@@ -14,11 +15,11 @@ export const GlobalLayout: React.FC<GlobalLayoutProps> = ({
   containerProps,
 }) => {
   return (
-    <Flex className={"global"} display={"flex"}>
+    <Flex className={classes.global} display={"flex"}>
       {sidebar}
       <Container
         {...containerProps}
-        className={clsx("global_body", containerProps?.className)}
+        className={clsx(classes.global_body, containerProps?.className)}
       >
         {children}
       </Container>
