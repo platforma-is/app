@@ -6,7 +6,7 @@ import { IForm } from "@/shared/types";
 import { HomePageLayout } from "@/shared/ui-kit/layouts/HomePageLayout";
 import { HomePageBodyAdapter } from "@/components/home/HomePageBodyAdapter";
 import { GlobalWrapper } from "@/components/global/GlobalWraper";
-import { Header } from "@/components/global/Header";
+import { Sidebar } from "@/components/global/Sidebar";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const forms = await prisma.form.findMany({
@@ -26,7 +26,7 @@ type Props = {
 
 const Index: React.FC<Props> = ({ forms }) => {
   return (
-    <GlobalWrapper header={<Header />}>
+    <GlobalWrapper sidebar={<Sidebar />}>
       <HomePageLayout
         title={
           <Text fz="lg" fw={900} mb="xl">

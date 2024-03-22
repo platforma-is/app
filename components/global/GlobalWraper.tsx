@@ -1,34 +1,46 @@
 import React, { ReactNode } from "react";
 import { useSession } from "next-auth/react";
-import { Container } from "@mantine/core";
-import { GlobalLayout } from "@/shared/ui-kit/layouts/GlobalLayout";
+import { Container, Loader } from "@mantine/core";
+import { GlobalLayout } from "@/shared/ui-kit/layouts/GlobalLayout/GlobalLayout";
+import { Sidebar } from "@/components/global/Sidebar";
+import { useRouter } from "next/router";
+import classes from "@/shared/ui-kit/layouts/GlobalLayout/GlobalLayout.module.scss";
 
 type GlobalWrapperProps = {
   children: ReactNode;
-  header: ReactNode;
+  sidebar?: ReactNode;
 };
 
 export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
   children,
-  header,
+  sidebar = <Sidebar />,
 }) => {
+  const router = useRouter();
   const { data: sessionData, status } = useSession();
 
   const render = () => {
     if (status === "loading") {
-      return <Container size="md">Authenticating ...</Container>;
-    }
-
-    if (!sessionData) {
       return (
         <Container size="md">
-          You need to be logged in to view this page.
+          <Loader pos={"absolute"} top={"50%"} left={"50%"} />
         </Container>
       );
+    } else {
+      if (!sessionData) {
+        router.push("/auth/signin");
+      }
+      if (sessionData) {
+        return <Container className={classes.inner}>{children}</Container>;
+      }
     }
-
-    return <Container size="md">{children}</Container>;
   };
 
-  return <GlobalLayout header={header}>{render()}</GlobalLayout>;
+  return (
+    <GlobalLayout
+      containerProps={{ pl: sessionData ? "5rem" : "0" }}
+      sidebar={sidebar}
+    >
+      {render()}
+    </GlobalLayout>
+  );
 };

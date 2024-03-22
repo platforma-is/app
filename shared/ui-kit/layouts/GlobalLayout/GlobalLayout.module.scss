@@ -1,0 +1,14 @@
+.global {
+  width: 100vw;
+  box-sizing: border-box;
+
+  .global_body {
+    width: 100%;
+    box-sizing: border-box;
+
+    .inner {
+      box-sizing: border-box;
+    }
+  }
+
+}

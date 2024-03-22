@@ -25,7 +25,9 @@
     "next-superjson": "0.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.51.1",
     "react-markdown": "8.0.7",
+    "sass": "^1.72.0",
     "superjson": "1.13.3"
   },
   "devDependencies": {
