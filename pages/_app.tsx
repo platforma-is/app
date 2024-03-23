@@ -35,7 +35,7 @@ const theme = createTheme({
     ],
   },
   primaryColor: "platforma",
-  fontFamily: "PP Pangarm Sans Rounded, sans-serif",
+  fontFamily: "PP Pangram Sans Rounded, sans-serif",
 });
 
 const App = ({ Component, pageProps }: AppProps) => {

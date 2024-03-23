@@ -1,13 +1,14 @@
 import { Tabs, Text } from "@mantine/core";
 import { IntegrationLayout } from "@/components/form/IntegrationLayout";
-import { Responses } from "@/components/form/Responses";
+import { Responses } from "@/components/form/responses/Responses";
 import React, { SetStateAction } from "react";
-import { IResponse } from "@/shared/types";
+import { IForm, IResponse } from "@/shared/types";
 import { FormSettingsLayout } from "@/shared/ui-kit/layouts/FormSettingsLayout";
 import { FormSettingsBody } from "@/components/form/settings/FormSettingsBody";
 
 interface FormTabsProps {
   tabs: any[];
+  form: IForm;
   activeTab: string | null;
   publicLink: string;
   responses: IResponse[];
@@ -16,6 +17,7 @@ interface FormTabsProps {
 
 export const FormTabs = ({
   tabs,
+  form,
   responses,
   publicLink,
   setActiveTab,
@@ -55,7 +57,7 @@ export const FormTabs = ({
         <Responses responses={responses} />
       </Tabs.Panel>
       <Tabs.Panel value="settings">
-        <FormSettingsLayout body={<FormSettingsBody />} />
+        <FormSettingsLayout body={<FormSettingsBody form={form} />} />
       </Tabs.Panel>
     </Tabs>
   );

@@ -40,6 +40,7 @@ const Post: React.FC<{
         title={<FormTitle publicLink={publicLink} form={form} />}
         tabs={
           <FormTabs
+            form={form}
             tabs={tabs}
             activeTab={activeTab}
             publicLink={publicLink}

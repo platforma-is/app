@@ -2,21 +2,29 @@ import { Button, Flex, Portal } from "@mantine/core";
 import { SettingFirstBlock } from "@/components/form/settings/SettingFirstBlock";
 import { SettingSecondBlock } from "@/components/form/settings/SettingsSecondBlock";
 import { IconTrash } from "@tabler/icons-react";
+import { deleteFormApi } from "@/features/form/queries";
+import Router from "next/router";
+import { IForm } from "@/shared/types";
 
-interface FormSettingsBodyProps {}
+interface FormSettingsBodyProps {
+  form: IForm;
+}
 
-export const FormSettingsBody = (props: FormSettingsBodyProps) => {
+async function deleteForm(id: string): Promise<void> {
+  await deleteFormApi(id);
+  await Router.push("/");
+}
+
+export const FormSettingsBody = ({ form }: FormSettingsBodyProps) => {
   return (
     <Flex direction={"column"} rowGap={"2.5rem"}>
-      <Portal target={document.body}>
-        <Button pos={"fixed"} bottom={"1.5rem"} right={"1.5rem"}>
-          Сохранить
-        </Button>
-      </Portal>
+      <Button pos={"fixed"} bottom={"1.5rem"} right={"1.5rem"}>
+        Сохранить
+      </Button>
       <SettingFirstBlock />
       <SettingSecondBlock />
       <Button
-        onClick={() => {}}
+        onClick={() => deleteForm(form.id)}
         leftSection={<IconTrash />}
         fw={400}
         px={"1rem"}

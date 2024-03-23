@@ -1,0 +1,34 @@
+.content {
+  cursor: pointer;
+}
+
+.modal_root {
+  .modal_content {
+    padding: 1.25rem 1.5rem;
+    .modal_header {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      .header_title {
+        color: var(--Dark-Dark-9, #101113);
+        font-family: "PP Pangram Sans Rounded";
+        font-size: 2.5rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 3rem; /* 120% */
+      }
+    }
+
+    .modal_body {
+      row-gap: 1.5rem;
+      display: flex;
+      flex-direction: column;
+
+      .response_item_wrapper {
+        word-break: break-word;
+      }
+    }
+  }
+
+}
