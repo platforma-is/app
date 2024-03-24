@@ -13,7 +13,7 @@ import "@mantine/dates/styles.css";
 // import '@mantine/code-highlight/styles.css';
 // ...
 
-import { MantineProvider, createTheme } from "@mantine/core";
+import { MantineProvider, Tabs, createTheme } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -36,6 +36,15 @@ const theme = createTheme({
   },
   primaryColor: "platforma",
   fontFamily: "PP Pangram Sans Rounded, sans-serif",
+  components: {
+    Tabs: Tabs.extend({
+      styles: {
+        tab: {
+          fontSize: "20px",
+        },
+      },
+    }),
+  },
 });
 
 const App = ({ Component, pageProps }: AppProps) => {

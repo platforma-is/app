@@ -33,14 +33,14 @@ export const FormTabs = ({
             color={"#5033FF"}
             leftSection={
               <it.ico
-                width={"0.75rem"}
-                height={"0.75rem"}
+                width={"24px"}
+                height={"24px"}
                 color={activeTab === it.name ? "#5033FF" : "black"}
               />
             }
           >
             <Text
-              size={"0.75rem"}
+              size={"18px"}
               fw={"400"}
               color={activeTab === it.name ? "#5033FF" : "black"}
             >
