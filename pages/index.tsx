@@ -1,10 +1,9 @@
 import React from "react";
-import { Text } from "@mantine/core";
 import { GetServerSideProps } from "next";
 import prisma from "@/lib/prisma";
 import { IForm } from "@/shared/types";
-import { HomePageLayout } from "@/shared/ui-kit/layouts/HomePageLayout";
-import { HomePageBodyAdapter } from "@/components/home/HomePageBodyAdapter";
+import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
+import { SidebarMenu } from "@/components/global/SidebarMenu";
 import { GlobalWrapper } from "@/components/global/GlobalWraper";
 import { Sidebar } from "@/components/global/Sidebar";
 
@@ -26,15 +25,10 @@ type Props = {
 
 const Index: React.FC<Props> = ({ forms }) => {
   return (
-    <GlobalWrapper sidebar={<Sidebar />}>
-      <HomePageLayout
-        title={
-          <Text fz="lg" fw={900} mb="xl">
-            Forms
-          </Text>
-        }
-        body={<HomePageBodyAdapter forms={forms} />}
-      />
+    <GlobalWrapper
+      sidebar={<Sidebar menuContent={<SidebarMenu forms={forms} />} />}
+    >
+      <ApplicationLayout title="Формы" />
     </GlobalWrapper>
   );
 };

@@ -30,17 +30,14 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
         router.push("/auth/signin");
       }
       if (sessionData) {
-        return <Container className={classes.inner}>{children}</Container>;
+        return (
+          <Container p="0px" className={classes.inner}>
+            {children}
+          </Container>
+        );
       }
     }
   };
 
-  return (
-    <GlobalLayout
-      containerProps={{ pl: sessionData ? "5rem" : "0" }}
-      sidebar={sidebar}
-    >
-      {render()}
-    </GlobalLayout>
-  );
+  return <GlobalLayout sidebar={sidebar}>{render()}</GlobalLayout>;
 };

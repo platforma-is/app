@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import { SidebarLayout } from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout";
@@ -6,7 +6,11 @@ import { Button, Container } from "@mantine/core";
 import classes from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout.module.scss";
 import { IconMoodSmile } from "@tabler/icons-react";
 
-export const Sidebar: React.FC = () => {
+interface SibebarProps {
+  menuContent?: ReactNode;
+}
+
+export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
   const router = useRouter();
   const { data: sessionData, status } = useSession();
   const isActive: (pathname: string) => boolean = (pathname) =>
@@ -39,6 +43,7 @@ export const Sidebar: React.FC = () => {
             >
               Создать...
             </Button>
+            {menuContent}
           </Container>
           <Container className={classes.bottom_sidebar}>
             <Button

@@ -5,8 +5,8 @@ import { IForm, IResponse } from "@/shared/types";
 import FormTitle from "@/components/form/FormTitle";
 import { GlobalWrapper } from "@/components/global/GlobalWraper";
 import useFormItemPage from "@/features/form/use-form-item-page";
-import { FormItemLayout } from "@/shared/ui-kit/layouts/FormItemLayout";
 import { FormTabs } from "@/components/form/FormTabs";
+import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const form = await prisma.form.findUnique({
@@ -36,19 +36,18 @@ const Post: React.FC<{
 
   return (
     <GlobalWrapper>
-      <FormItemLayout
+      <ApplicationLayout
         title={<FormTitle publicLink={publicLink} form={form} />}
-        tabs={
-          <FormTabs
-            form={form}
-            tabs={tabs}
-            activeTab={activeTab}
-            publicLink={publicLink}
-            responses={responses}
-            setActiveTab={setActiveTab}
-          />
-        }
-      />
+      >
+        <FormTabs
+          form={form}
+          tabs={tabs}
+          activeTab={activeTab}
+          publicLink={publicLink}
+          responses={responses}
+          setActiveTab={setActiveTab}
+        />
+      </ApplicationLayout>
     </GlobalWrapper>
   );
 };
