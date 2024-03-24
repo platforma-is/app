@@ -1,7 +1,7 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import { Paper, Table, Text } from "@mantine/core";
 import { IResponse } from "@/shared/types";
-import { ResponseItem } from "@/components/form/ResponseItem";
+import { ResponseItem } from "@/components/form/responses/ResponseItem/ResponseItem";
 
 type ResponsesProps = {
   responses: IResponse[];
@@ -34,14 +34,14 @@ export const Responses: FC<ResponsesProps> = ({ responses }) => {
             ))}
             <Table.Th pl={"1rem"}>
               <Text color={"#A6A7AB"} size={"0.75rem"}>
-                Дата создания
+                Дата и время
               </Text>
             </Table.Th>
             <Table.Th />
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {responses.map((response) => (
+          {responses?.map((response) => (
             <ResponseItem key={response.id} response={response} />
           ))}
         </Table.Tbody>
