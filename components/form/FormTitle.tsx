@@ -5,6 +5,7 @@ import {
   Flex,
   rem,
   Text,
+  TextInput,
   Tooltip,
 } from "@mantine/core";
 import { IconCheck, IconCopy } from "@tabler/icons-react";
@@ -51,7 +52,14 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
 
   return (
     <Flex className={classes.wrapper} mih={50}>
-      <div className={classes.title}>{form.title}</div>
+      <TextInput
+        variant="unstyled"
+        placeholder="Введите название формы"
+        className={classes.title}
+        defaultValue={form.title}
+        size="xl"
+        styles={{root: {width: "100%"}}}
+      />
       <div className={classes.subtitle}>
         {form.id}
         {copyFormLink}

@@ -3,6 +3,7 @@ import Router from "next/router";
 import { Button, Card, Group, Stack, Text, TextInput } from "@mantine/core";
 import { GlobalWrapper } from "@/components/global/GlobalWraper";
 import { Sidebar } from "@/components/global/Sidebar";
+import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
 
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -26,32 +27,30 @@ const Draft: React.FC = () => {
 
   return (
     <GlobalWrapper sidebar={<Sidebar />}>
-      <Card radius="md" p="xl">
-        <Text fz="lg" fw={900} mb="xl">
-          Forms / Create new
-        </Text>
+      <ApplicationLayout title="Создать форму">
+        <Card radius="md" p="xl">
+          <form onSubmit={submitData}>
+            <Stack gap="xl">
+              <TextInput
+                autoFocus
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Введите название формы"
+                type="text"
+                value={title}
+              />
 
-        <form onSubmit={submitData}>
-          <Stack gap="xl">
-            <TextInput
-              autoFocus
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Title"
-              type="text"
-              value={title}
-            />
-
-            <Group>
-              <Button disabled={!title} type="submit">
-                Create
-              </Button>
-              <Button onClick={() => Router.push("/")} variant="subtle">
-                Cancel
-              </Button>
-            </Group>
-          </Stack>
-        </form>
-      </Card>
+              <Group>
+                <Button disabled={!title} type="submit">
+                  Создать
+                </Button>
+                <Button onClick={() => Router.push("/")} variant="subtle">
+                  Отмена
+                </Button>
+              </Group>
+            </Stack>
+          </form>
+        </Card>
+      </ApplicationLayout>
     </GlobalWrapper>
   );
 };
