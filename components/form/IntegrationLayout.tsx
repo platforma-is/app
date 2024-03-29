@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, Card, Code, Text, rem, Container } from "@mantine/core";
+import { Card, Code, Text, rem, Container } from "@mantine/core";
 import { StageBlock } from "@/components/form/StageBlock";
 
 type IntegrationLayoutProps = {
@@ -11,7 +11,7 @@ type TextBlockProps = {
   description?: string;
 };
 
-const TextBlock: FC<TextBlockProps> = ({ header, description }) => (
+export const TextBlock: FC<TextBlockProps> = ({ header, description }) => (
   <Container w="100%" px="0" mb="xs">
     <Text fw={600} lh={rem(20)} size="md">
       {header}
