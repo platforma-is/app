@@ -1,5 +1,6 @@
 import {
-  IconClipboardList,
+  IconMail,
+  IconCode,
   IconNorthStar,
   IconSettings2,
 } from "@tabler/icons-react";
@@ -7,19 +8,24 @@ import { IForm } from "@/shared/types";
 import { useState } from "react";
 
 function useFormItemPage(form: IForm) {
-
   const [activeTab, setActiveTab] = useState<string | null>("integration");
 
   const tabs = [
     {
       name: "integration",
-      text: "Установка на сайт",
-      ico: IconNorthStar,
+      text: "Вставка на сайт",
+      ico: IconCode,
     },
+
     {
       name: "responses",
       text: "Ответы",
-      ico: IconClipboardList,
+      ico: IconMail,
+    },
+    {
+      name: "integrations",
+      text: "Интеграции",
+      ico: IconNorthStar,
     },
     {
       name: "settings",

@@ -31,7 +31,7 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
       }
       if (sessionData) {
         return (
-          <Container p="0px" className={classes.inner}>
+          <Container p={0} className={classes.inner}>
             {children}
           </Container>
         );

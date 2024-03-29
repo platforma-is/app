@@ -9,8 +9,15 @@ type SidebarMenuProps = {
 };
 
 export const SidebarMenu: FC<SidebarMenuProps> = ({ forms }) => {
-  const items = forms.map((form) => {
-    return <SidebarMenuItem key={form.id} form={form} />;
+  const items = forms.map((form, index) => {
+    return (
+      <SidebarMenuItem
+        key={form.id}
+        form={form}
+        notificationsNumber={index}
+        isActive={index === 0}
+      />
+    );
   });
 
   if (items.length === 0) {

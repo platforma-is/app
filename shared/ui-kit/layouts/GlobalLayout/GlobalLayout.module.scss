@@ -7,9 +7,10 @@
     box-sizing: border-box;
 
     .inner {
-      width: 100%;
+      width: calc(100vw - 20rem);
       box-sizing: border-box;
+      margin: 0;
+      padding: 0px;
     }
   }
-
 }

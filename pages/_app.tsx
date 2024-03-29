@@ -35,6 +35,7 @@ const theme = createTheme({
     ],
   },
   primaryColor: "platforma",
+  primaryShade: 9,
   fontFamily: "PP Pangram Sans Rounded, sans-serif",
 });
 
