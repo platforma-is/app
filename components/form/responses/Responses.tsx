@@ -8,7 +8,7 @@ type ResponsesProps = {
 };
 
 export const Responses: FC<ResponsesProps> = ({ responses }) => {
-  return (
+  return responses.length > 0 ? (
     <Paper
       bg={"#F8F9FA"}
       radius={"md"}
@@ -47,5 +47,17 @@ export const Responses: FC<ResponsesProps> = ({ responses }) => {
         </Table.Tbody>
       </Table>
     </Paper>
+  ) : (
+    <Text
+      ff={"PP Pangram Sans Rounded"}
+      color={"#ADB5BD"}
+      top={"50%"}
+      left={"50%"}
+      pos={"absolute"}
+      fw={"500"}
+      size={"2.5rem"}
+    >
+      Пока ответов нет
+    </Text>
   );
 };

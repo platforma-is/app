@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { Text } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 import { SidebarMenuItem } from "./SidebarMenuItem";
 import { IForm } from "@/shared/types";
 
@@ -23,10 +23,14 @@ export const SidebarMenu: FC<SidebarMenuProps> = ({ forms }) => {
   if (items.length === 0) {
     return (
       <Text fz="lg" fw={500}>
-        No forms yet. <Link href="/pages/create">Create</Link>
+        Еще нет форм <Link href="/pages/create">Создать</Link>
       </Text>
     );
   } else {
-    return items;
+    return (
+      <Flex w={"100%"} direction={"column"} style={{ overflowY: "scroll" }}>
+        {items}
+      </Flex>
+    );
   }
 };
