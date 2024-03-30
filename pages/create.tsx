@@ -4,6 +4,7 @@ import { Button, Card, Group, Stack, Text, TextInput } from "@mantine/core";
 import { GlobalWrapper } from "@/components/global/GlobalWraper";
 import { Sidebar } from "@/components/global/Sidebar";
 import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
+import { formCreate } from "@/shared/api/formsApi";
 
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -11,15 +12,8 @@ const Draft: React.FC = () => {
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const body = { title };
-
-      await fetch(`/api/form`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      await Router.push("/");
+      const response = await formCreate(title);
+      await Router.push(`/form/${response?.data?.id}`);
     } catch (error) {
       console.error(error);
     }

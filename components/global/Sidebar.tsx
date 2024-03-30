@@ -1,10 +1,12 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import { SidebarLayout } from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout";
-import { Button, Container } from "@mantine/core";
+import { Button, Container, Flex, Paper, Text } from "@mantine/core";
 import classes from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout.module.scss";
 import { IconMoodSmile } from "@tabler/icons-react";
+import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
+import { CreateModalSidebar } from "@/components/global/CreateModalSidebar";
 
 interface SibebarProps {
   menuContent?: ReactNode;
@@ -13,6 +15,7 @@ interface SibebarProps {
 export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
   const router = useRouter();
   const { data: sessionData, status } = useSession();
+  const [openedCreateModal, setOpenedCreateModal] = useState(false);
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
@@ -36,7 +39,7 @@ export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
           <Container className={classes.sidebar_content}>
             <h3 className={classes.logo_title}>Формы</h3>
             <Button
-              onClick={() => router.push("/create")}
+              onClick={() => setOpenedCreateModal(true)}
               className={classes.create_form_btn}
               leftSection={<img src={"/assets/icons/Plus.svg"} alt={"plus"} />}
               variant={"transparent"}
@@ -56,6 +59,10 @@ export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
               {sessionData.user?.name} (exit)
             </Button>
           </Container>
+          <CreateModalSidebar
+            open={openedCreateModal}
+            setOpen={setOpenedCreateModal}
+          />
         </SidebarLayout>
       );
     }

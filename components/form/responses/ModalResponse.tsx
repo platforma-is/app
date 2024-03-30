@@ -2,6 +2,7 @@ import classes from "@/components/form/responses/ResponseItem/ResponseItem.modul
 import { Button, CloseButton, Flex, Modal, Text } from "@mantine/core";
 import React from "react";
 import { IResponse } from "@/shared/types";
+import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 
 type ModalResponseProps = {
   openedModal: boolean;
@@ -16,21 +17,22 @@ export const ModalResponse = ({
   close,
 }: ModalResponseProps) => {
   return (
-    <Modal.Root
-      size={"lg"}
-      className={classes.modal_root}
-      opened={openedModal}
-      onClose={close}
-    >
-      <Modal.Overlay />
-      <Modal.Content className={classes.modal_content}>
-        <Modal.Header className={classes.modal_header}>
-          <Text className={classes.header_title}>{createdAt}</Text>
-          <CloseButton onClick={close} />
-        </Modal.Header>
-        <Modal.Body className={classes.modal_body}>
-          {Object.keys(response?.data).map((key) => (
+    <ModalLayout
+      ModalRootProps={{
+        size: "lg",
+        className: classes.modal_root,
+        opened: openedModal,
+        onClose: close,
+      }}
+      ModalContentProps={{ className: classes.modal_content }}
+      ModalBodyProps={{ className: classes.modal_body }}
+      ModalHeaderProps={{ className: classes.modal_header }}
+      header={<Text className={classes.header_title}>{createdAt}</Text>}
+      body={
+        <>
+          {Object.keys(response?.data).map((key, idx) => (
             <Flex
+              key={idx}
               className={classes.response_item_wrapper}
               direction={"column"}
               align={"flex-start"}
@@ -46,8 +48,8 @@ export const ModalResponse = ({
           <Button w={"fit-content"} variant={"light"} onClick={close}>
             Закрыть
           </Button>
-        </Modal.Body>
-      </Modal.Content>
-    </Modal.Root>
+        </>
+      }
+    />
   );
 };

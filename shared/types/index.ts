@@ -1,5 +1,4 @@
-import { ClientSafeProvider, getProviders, LiteralUnion } from "next-auth/react";
-import { BuiltInProviderType } from "next-auth/providers";
+import { getProviders } from "next-auth/react";
 
 export type IResponse = {
   id: string;

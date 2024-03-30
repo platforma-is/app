@@ -7,7 +7,5 @@ type SigninLayoutProps = {
 };
 
 export const SigninLayout = ({ children }: SigninLayoutProps) => {
-  return <Container className={classes.signin_content}>
-    {children}
-  </Container>;
+  return <Container className={classes.signin_content}>{children}</Container>;
 };

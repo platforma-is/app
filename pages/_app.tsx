@@ -17,6 +17,16 @@ import { MantineProvider, Tabs, createTheme } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 
 import relativeTime from "dayjs/plugin/relativeTime";
+import { ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
 dayjs.extend(relativeTime);
 
 const theme = createTheme({
@@ -48,7 +58,9 @@ const theme = createTheme({
   },
 });
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <MantineProvider theme={theme}>
       <SessionProvider session={pageProps.session}>
@@ -62,7 +74,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             }
           }
         >
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
         </DatesProvider>
       </SessionProvider>
 
