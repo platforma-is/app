@@ -1,12 +1,8 @@
-import { Button, Flex, Portal } from "@mantine/core";
+import { Flex } from "@mantine/core";
 import { SettingsTextField } from "@/components/form/settings/SettingsTextField";
 import { SettingsSelect } from "@/components/form/settings/SettingsSelect";
 import { SettingsSwitch } from "@/components/form/settings/SettingsSwitch";
-
-interface SettingBlockProps {
-
-}
-export const SettingFirstBlock = ({}: SettingBlockProps) => {
+export const SettingFirstBlock = () => {
   return (
     <Flex direction={"column"} rowGap={"1rem"}>
       <SettingsTextField

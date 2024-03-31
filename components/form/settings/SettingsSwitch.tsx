@@ -1,9 +1,9 @@
 import {
   Flex,
-  Input,
   InputLabel,
   InputLabelProps,
-  InputProps, Switch, SwitchProps
+  Switch,
+  SwitchProps,
 } from "@mantine/core";
 import { useId } from "react";
 

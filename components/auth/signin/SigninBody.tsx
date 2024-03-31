@@ -33,7 +33,11 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
 
   return (
     <Flex className={classes.logo_container} direction={"row"}>
-      <img className={classes.logo_img} src={"/assets/icons/platforma.svg"} />
+      <img
+        alt={"platforma"}
+        className={classes.logo_img}
+        src={"/assets/icons/platforma.svg"}
+      />
       <Flex className={classes.text_container} direction={"column"}>
         <h3 className={classes.logo_title}>Вход в Платформу</h3>
         <h3>Пока через соцсети, скоро будет по почте</h3>

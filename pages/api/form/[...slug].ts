@@ -9,7 +9,7 @@ export default async function handle(
 ) {
   try {
     const { slug } = req.query;
-    const formId = slug[0];
+    const formId = slug?.at(0);
 
     // DELETE /api/form/:id
     if (req.method === "DELETE") {
@@ -55,7 +55,7 @@ export default async function handle(
       const session = await getServerSession(req, res, options);
 
       if (session) {
-        switch (slug[1]) {
+        switch (slug?.at(1)) {
           case "active":
             await prisma.form.update({
               where: { id: String(formId) },

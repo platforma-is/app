@@ -4,13 +4,10 @@ import {
   CopyButton,
   Flex,
   rem,
-  Text,
   TextInput,
   Tooltip,
 } from "@mantine/core";
 import { IconCheck, IconCopy } from "@tabler/icons-react";
-import { deleteFormApi } from "@/features/form/queries";
-import Router from "next/router";
 import { IForm } from "@/shared/types";
 import classes from "@/components/form/FormTitle.module.scss";
 

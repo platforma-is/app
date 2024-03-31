@@ -9,10 +9,7 @@ type ResponsesProps = {
 
 export const Responses: FC<ResponsesProps> = ({ responses }) => {
   return responses.length > 0 ? (
-    <Paper
-      radius={"md"}
-      mt={"1.5rem"}
-    >
+    <Paper radius={"md"} mt={"1.5rem"}>
       <Table
         highlightOnHover
         bgcolor={"white"}

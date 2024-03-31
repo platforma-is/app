@@ -18,7 +18,7 @@ export default async function handle(
     const result = await prisma.form.create({
       data: {
         title: title,
-        author: { connect: { email: session.user.email } },
+        author: { connect: { email: session?.user?.email ?? "" } },
       },
     });
     res.json(result);
