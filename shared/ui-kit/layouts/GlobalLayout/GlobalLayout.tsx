@@ -20,7 +20,7 @@ export const GlobalLayout: React.FC<GlobalLayoutProps> = ({
       <Container
         {...containerProps}
         w="100vw"
-        maw={'calc(100vw - calc(20rem * var(--mantine-scale))'}
+        maw={"calc(100vw - calc(20rem * var(--mantine-scale))"}
         p="24px"
         ml={"20rem"}
         mr={"0px"}

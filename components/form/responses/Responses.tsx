@@ -10,16 +10,14 @@ type ResponsesProps = {
 export const Responses: FC<ResponsesProps> = ({ responses }) => {
   return responses.length > 0 ? (
     <Paper
-      bg={"#F8F9FA"}
       radius={"md"}
-      px={"0.5rem"}
-      mt={"2.5rem"}
-      py={"0.75rem"}
+      mt={"1.5rem"}
     >
       <Table
-        striped
-        stripedColor={"#E9ECEF"}
-        withRowBorders={false}
+        highlightOnHover
+        bgcolor={"white"}
+        stickyHeader
+        stickyHeaderOffset={60}
         verticalSpacing={"0.75rem"}
         horizontalSpacing={"0.75rem"}
       >

@@ -16,7 +16,7 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
     VkProvider({
-      clientId: process.env.VK_CLIENT_ID,
+      clientId: process.env.VK_ID,
       clientSecret: process.env.VK_CLIENT_SECRET,
     }),
     YandexProvider({
