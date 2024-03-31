@@ -19,11 +19,6 @@ type FormTitleProps = {
   publicLink: string;
 };
 
-async function deleteForm(id: string): Promise<void> {
-  await deleteFormApi(id);
-  await Router.push("/");
-}
-
 const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
   const copyFormLink = (
     <CopyButton value={publicLink} timeout={2000}>
@@ -56,9 +51,9 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
         variant="unstyled"
         placeholder="Введите название формы"
         className={classes.title}
-        defaultValue={form.title}
+        value={form.title}
         size="xl"
-        styles={{root: {width: "100%"}}}
+        styles={{ root: { width: "100%" } }}
       />
       <div className={classes.subtitle}>
         {form.id}

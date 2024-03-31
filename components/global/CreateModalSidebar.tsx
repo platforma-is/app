@@ -1,8 +1,9 @@
-import { Button, Flex, Paper, Text, TextInput } from "@mantine/core";
+import { Button, Flex, Loader, Paper, Text, TextInput } from "@mantine/core";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import React, { useState } from "react";
-import { formCreate } from "@/shared/api/formsApi";
 import Router from "next/router";
+import { createFormApi } from "@/features/form/queries";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type CreateModalSidebarProps = {
   open: boolean;
@@ -15,16 +16,21 @@ export const CreateModalSidebar = ({
 }: CreateModalSidebarProps) => {
   const [selectedOption, setSelectedOption] = useState(0);
   const [title, setTitle] = useState("");
-
+  const queryClient = useQueryClient();
+  const createFormMutation = useMutation({
+    mutationFn: (title: string) => createFormApi(title),
+  });
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      if (title !== "") {
-        const response = await formCreate(title);
-        await Router.push(`/form/${response?.data?.id}`);
-        setOpen(false);
-        setTitle(() => "");
-      }
+      createFormMutation.mutate(title, {
+        onSuccess: async (data) => {
+          await queryClient.invalidateQueries({ queryKey: ["forms"] });
+          await Router.push(`/form/${data?.id}`);
+          setOpen(false);
+          setTitle(() => "");
+        },
+      });
     } catch (error) {
       console.error(error);
     }
@@ -75,7 +81,11 @@ export const CreateModalSidebar = ({
               mt={"1rem"}
               w={"fit-content"}
             >
-              Создать
+              {createFormMutation.isPending ? (
+                <Loader size={"1rem"} color={"white"} />
+              ) : (
+                "Создать"
+              )}
             </Button>
           </Flex>
         </form>

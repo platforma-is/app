@@ -7,6 +7,9 @@ import { GlobalWrapper } from "@/components/global/GlobalWraper";
 import useFormItemPage from "@/features/form/use-form-item-page";
 import { FormTabs } from "@/components/form/FormTabs";
 import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
+import { Sidebar } from "@/components/global/Sidebar";
+import { SidebarMenu } from "@/components/global/SidebarMenu";
+import { Loader } from "@mantine/core";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const form = await prisma.form.findUnique({
@@ -32,10 +35,10 @@ const Post: React.FC<{
 }> = ({ responses, form }) => {
   const { tabs, publicLink, activeTab, setActiveTab } = useFormItemPage(form);
 
-  if (!form) return null;
+  if (!form) return <Loader />;
 
   return (
-    <GlobalWrapper>
+    <GlobalWrapper sidebar={<Sidebar menuContent={<SidebarMenu />} />}>
       <ApplicationLayout
         title={<FormTitle publicLink={publicLink} form={form} />}
       >

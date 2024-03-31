@@ -6,19 +6,22 @@ import { AppProps } from "next/app";
 import "@/app/core.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 
 // other css files are required only if
 // you are using components from the corresponding package
 // import '@mantine/dropzone/styles.css';
 // import '@mantine/code-highlight/styles.css';
 // ...
-
-import { MantineProvider, Tabs, createTheme } from "@mantine/core";
+import { createTheme, MantineProvider, Tabs } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 
 import relativeTime from "dayjs/plugin/relativeTime";
-import { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
+import { QueryClient } from "@tanstack/react-query";
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -60,23 +63,37 @@ const theme = createTheme({
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => page);
-
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        gcTime: 1000 * 60 * 60 * 24, // 24 hours
+      },
+    },
+  });
+  const persister = createSyncStoragePersister({
+    storage: typeof window !== "undefined" ? window.localStorage : null,
+  });
   return (
     <MantineProvider theme={theme}>
-      <SessionProvider session={pageProps.session}>
-        <DatesProvider
-          settings={
-            {
-              // locale: "en-US",
-              // firstDayOfWeek: 0,
-              // weekendDays: [0],
-              // timezone: "UTC",
+      <PersistQueryClientProvider
+        client={queryClient}
+        persistOptions={{ persister }}
+      >
+        <SessionProvider session={pageProps.session}>
+          <DatesProvider
+            settings={
+              {
+                // locale: "en-US",
+                // firstDayOfWeek: 0,
+                // weekendDays: [0],
+                // timezone: "UTC",
+              }
             }
-          }
-        >
-          {getLayout(<Component {...pageProps} />)}
-        </DatesProvider>
-      </SessionProvider>
+          >
+            {getLayout(<Component {...pageProps} />)}
+          </DatesProvider>
+        </SessionProvider>
+      </PersistQueryClientProvider>
 
       <style jsx global>{`
         html {
