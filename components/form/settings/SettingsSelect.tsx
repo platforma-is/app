@@ -1,5 +1,11 @@
 import { useId } from "react";
-import { Flex, InputLabel, InputLabelProps, Select, SelectProps } from "@mantine/core";
+import {
+  Flex,
+  InputLabel,
+  InputLabelProps,
+  Select,
+  SelectProps,
+} from "@mantine/core";
 
 interface SettingsSelectProps {
   title?: string;

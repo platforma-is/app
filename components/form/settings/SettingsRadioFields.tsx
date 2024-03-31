@@ -6,8 +6,6 @@ import {
   Radio,
   RadioGroup,
   RadioProps,
-  Select,
-  SelectProps,
 } from "@mantine/core";
 import { useId } from "react";
 
@@ -33,7 +31,7 @@ export const SettingsRadioFields = ({
       <RadioGroup>
         <Group style={{ flexDirection: "column", display: "flex" }}>
           {data?.map((item, idx) => (
-            <Radio value={item} {...radioProps} label={item} />
+            <Radio key={idx} value={item} {...radioProps} label={item} />
           ))}
         </Group>
       </RadioGroup>

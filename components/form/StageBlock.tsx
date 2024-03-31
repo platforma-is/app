@@ -52,7 +52,9 @@ export const StageBlock: FC<StageBlockType> = ({
           ) : null}
         </Flex>
       </Flex>
-      <div className={classes.content}><div className={classes.content}>{content ? content : null}</div></div>
+      <div className={classes.content}>
+        <div className={classes.content}>{content ? content : null}</div>
+      </div>
     </Container>
   );
 };

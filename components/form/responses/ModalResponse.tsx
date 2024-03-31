@@ -1,5 +1,5 @@
 import classes from "@/components/form/responses/ResponseItem/ResponseItem.module.scss";
-import { Button, CloseButton, Flex, Modal, Text } from "@mantine/core";
+import { Button, Flex, Text } from "@mantine/core";
 import React from "react";
 import { IResponse } from "@/shared/types";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";

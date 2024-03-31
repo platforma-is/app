@@ -2,14 +2,9 @@ import {
   Button,
   CloseButton,
   Flex,
-  Input,
   InputLabel,
   InputLabelProps,
-  InputProps,
   Paper,
-  rem,
-  Switch,
-  SwitchProps,
   Text,
   TextInput,
   TextInputProps,
@@ -69,10 +64,7 @@ export const SettingsMultipleSelect = ({
             rightSectionWidth={"auto"}
             rightSectionPointerEvents={"all"}
           />
-          <Button
-            onClick={() => handleAddItem(inputValue)}
-            variant={"light"}
-          >
+          <Button onClick={() => handleAddItem(inputValue)} variant={"light"}>
             Добавить
           </Button>
         </Paper>

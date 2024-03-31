@@ -4,8 +4,7 @@ import { SettingsSwitch } from "@/components/form/settings/SettingsSwitch";
 import { SettingsMultipleSelect } from "@/components/form/settings/SettingsMultipleSelect";
 import { SettingsRadioFields } from "@/components/form/settings/SettingsRadioFields";
 
-interface SettingBlockProps {}
-export const SettingSecondBlock = ({}: SettingBlockProps) => {
+export const SettingSecondBlock = () => {
   return (
     <Flex direction={"column"} rowGap={"1rem"}>
       <Text fw={600} lh={"1.25rem"}>

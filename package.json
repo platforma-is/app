@@ -9,7 +9,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
     "@mantine/core": "^7.1.7",

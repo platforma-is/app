@@ -5,9 +5,14 @@ import React, { SetStateAction } from "react";
 import { IForm, IResponse } from "@/shared/types";
 import { FormSettingsLayout } from "@/shared/ui-kit/layouts/FormSettingsLayout";
 import { FormSettingsBody } from "@/components/form/settings/FormSettingsBody";
+import { TablerIconsProps } from "@tabler/icons-react";
 
 interface FormTabsProps {
-  tabs: any[];
+  tabs: {
+    name: string;
+    text: string;
+    ico: (props: TablerIconsProps) => JSX.Element;
+  }[];
   form: IForm;
   activeTab: string | null;
   publicLink: string;

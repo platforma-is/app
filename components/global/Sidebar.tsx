@@ -1,11 +1,9 @@
 import React, { ReactNode, useState } from "react";
-import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import { SidebarLayout } from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout";
-import { Button, Container, Flex, Paper, Text } from "@mantine/core";
+import { Button, Container } from "@mantine/core";
 import classes from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout.module.scss";
 import { IconMoodSmile } from "@tabler/icons-react";
-import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import { CreateModalSidebar } from "@/components/global/CreateModalSidebar";
 
 interface SibebarProps {
@@ -13,11 +11,8 @@ interface SibebarProps {
 }
 
 export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
-  const router = useRouter();
   const { data: sessionData, status } = useSession();
   const [openedCreateModal, setOpenedCreateModal] = useState(false);
-  const isActive: (pathname: string) => boolean = (pathname) =>
-    router.pathname === pathname;
 
   const onLogoutClick = () => {
     signOut();

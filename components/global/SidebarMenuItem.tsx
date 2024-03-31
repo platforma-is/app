@@ -2,7 +2,7 @@ import classes from "@/components/form/Forms.module.scss";
 import Router from "next/router";
 import React, { FC } from "react";
 import { IForm } from "@/shared/types";
-import { Badge, Text } from "@mantine/core";
+import { Badge } from "@mantine/core";
 import clsx from "clsx";
 
 type SidebarMenuItemProps = {
@@ -23,7 +23,9 @@ export const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
     >
       <div className={classes.title}>{form.title}</div>
       {!!notificationsNumber && (
-        <Badge color="rgba(80, 51, 255, 1)" circle>{notificationsNumber}</Badge>
+        <Badge color="rgba(80, 51, 255, 1)" circle>
+          {notificationsNumber}
+        </Badge>
       )}
     </div>
   );

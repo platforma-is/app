@@ -1,5 +1,3 @@
 export const HomeFormTitle = () => {
-  return (
-    <></>
-  );
+  return <></>;
 };
