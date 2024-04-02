@@ -1,3 +1,5 @@
+import { getProviders } from "next-auth/react";
+
 export type IResponse = {
   id: string;
   formId: string;
@@ -18,3 +20,5 @@ export type IForm = {
     email: string;
   } | null;
 };
+
+export type TProvider = typeof getProviders;

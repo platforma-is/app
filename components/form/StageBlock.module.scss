@@ -1,0 +1,29 @@
+.container {
+    font-family: "Inter";
+    font-size: 18px;
+    line-height: 20px;
+    .title {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--color-dark-8);
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        font-family: "Inter", sans-serif;
+    }
+
+    .description {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--color-dark-2);
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        font-family: "Inter", sans-serif;
+    }
+    .content {
+        margin-left: 60px;
+    }
+}

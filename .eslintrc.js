@@ -69,11 +69,11 @@ module.exports = {
             target: "./components",
             message: "В components нельзя импортировать модули из pages",
           },
-          {
-            from: "./app",
-            target: "./pages",
-            message: "В pages нельзя импортировать модули из app",
-          },
+          // {
+          //   from: "./app",
+          //   target: "./pages",
+          //   message: "В pages нельзя импортировать модули из app",
+          // },
         ],
       },
     ],

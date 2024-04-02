@@ -1,0 +1,71 @@
+.sidebar {
+  width: 20rem;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid #DEE2E6;
+
+  .sidebar_content {
+    padding-left: 1rem;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0;
+    height: auto;
+    width: 100%;
+    align-items: flex-start;
+
+    .logo_title {
+      color: var(--Dark-Dark-9, #101113);
+      font-family: "PP Pangram Sans Rounded", sans-serif;
+      font-size: 2.5rem;
+      font-style: normal;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .create_form_btn {
+      margin-top: 1rem;
+      padding: 0;
+      color: var(--Dark-Dark-9, #101113);
+      /* Text/lg */
+      font-family: "Inter", sans-serif;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.25rem; /* 111.111% */
+      // padding: 14px 24px;
+      // width: 100%;
+      height: 48px;
+      margin-bottom: 12px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding-left: 12px;
+    }
+  }
+
+  .bottom_sidebar {
+    width: 100%;
+    padding: 0.75rem;
+    border-top: 1px solid var(--Gray-Gray-3, #DEE2E6);
+
+    .profile_btn {
+      font-family: "Inter", sans-serif;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.25rem; /* 111.111% */
+    }
+  }
+
+}

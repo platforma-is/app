@@ -1,0 +1,36 @@
+.wrapper {
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  .title {
+    input {
+      color: var(--Dark-Dark-9, #101113);
+      /* Heading/h1 */
+      font-family: "PP Pangram Sans Rounded";
+      font-size: 2.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 4rem; /* 120% */
+      padding: 0px 0px 6px 0px;
+      width: 100%;
+    }
+  }
+
+  .subtitle {
+    color: var(--Gray-Gray-6, #868e96);
+    /* Text/lg */
+    font-family: "Inter", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem; /* 111.111% */
+
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+}

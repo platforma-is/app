@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { Avatar, Container, Flex, rem } from "@mantine/core";
-import classes from "./StageBlock.module.css";
+import classes from "./StageBlock.module.scss";
 
 type StageBlockType = {
   stage: number;
@@ -16,23 +16,26 @@ export const StageBlock: FC<StageBlockType> = ({
   content,
 }) => {
   return (
-    <Container
-      bg="var(--color-gray-0)"
-      style={{ borderRadius: rem(12) }}
-      mb="md"
-      w="100%"
-      p="sm"
-    >
+    <Container style={{ borderRadius: rem(12) }} mb="md" w="100%" p="sm">
       <Flex
         mih={50}
-        gap="md"
+        gap="12px"
         justify="flex-start"
         align="center"
         direction="row"
         wrap="nowrap"
         mb="md"
       >
-        <Avatar color="gray" radius="xl">
+        <Avatar
+          radius="xl"
+          variant="filled"
+          size={48}
+          color={"var(--color-gray-1)"}
+          styles={{
+            placeholder: { color: "var(--color-black)", fontWeight: 400 },
+          }}
+          autoContrast={false}
+        >
           {stage}
         </Avatar>
         <Flex
@@ -41,6 +44,7 @@ export const StageBlock: FC<StageBlockType> = ({
           align="flex-start"
           direction="column"
           wrap="nowrap"
+          gap={4}
         >
           <div className={classes.title}>{title}</div>
           {description ? (
@@ -48,7 +52,9 @@ export const StageBlock: FC<StageBlockType> = ({
           ) : null}
         </Flex>
       </Flex>
-      {content ? content : null}
+      <div className={classes.content}>
+        <div className={classes.content}>{content ? content : null}</div>
+      </div>
     </Container>
   );
 };
