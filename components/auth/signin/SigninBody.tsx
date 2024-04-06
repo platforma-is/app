@@ -25,6 +25,9 @@ const SocialIcon: FC<SocialIconProps> = ({ src }) => {
 };
 
 export const SigninBody = ({ providers }: SigninBodyProps) => {
+
+  console.log(providers);
+  
   const icons = {
     github: githubIcon.src,
     vk: vkIcon.src,
@@ -48,20 +51,21 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
           mt={"2.5rem"}
           rowGap={"1rem"}
         >
-          {Object.values(providers).map((provider) => {
-            return (
-              <Button
-                className={classes.auth_btn}
-                color={"black"}
-                variant={"outline"}
-                onClick={() => signIn(provider.id)}
-                key={provider.name}
-                leftSection={<SocialIcon src={icons[provider.id]} />}
-              >
-                {provider.name} ID
-              </Button>
-            );
-          })}
+          {providers &&
+            Object.values(providers).map((provider) => {
+              return (
+                <Button
+                  className={classes.auth_btn}
+                  color={"black"}
+                  variant={"outline"}
+                  onClick={() => signIn(provider.id)}
+                  key={provider.name}
+                  leftSection={<SocialIcon src={icons[provider.id]} />}
+                >
+                  {provider.name} ID
+                </Button>
+              );
+            })}
         </Flex>
       </Flex>
     </Flex>
