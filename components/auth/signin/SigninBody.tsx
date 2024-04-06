@@ -25,9 +25,8 @@ const SocialIcon: FC<SocialIconProps> = ({ src }) => {
 };
 
 export const SigninBody = ({ providers }: SigninBodyProps) => {
-
   console.log(providers);
-  
+
   const icons = {
     github: githubIcon.src,
     vk: vkIcon.src,
