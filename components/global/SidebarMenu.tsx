@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { Flex, Text } from "@mantine/core";
+import { Flex, ScrollArea, Text } from "@mantine/core";
 import { SidebarMenuItem } from "./SidebarMenuItem";
 import { getForms } from "@/features/form/queries";
 import { useQuery } from "@tanstack/react-query";
 import { IForm } from "@/shared/types";
+import { useParams } from "next/navigation";
 
 type SidebarMenuProps = {
   // forms?: IForm[];
@@ -15,6 +16,9 @@ export const SidebarMenu: FC<SidebarMenuProps> = () => {
     queryKey: ["forms"],
     queryFn: getForms,
   });
+
+  const params = useParams();
+  const locationFormId = params?.id;
 
   if (formsQuery.isLoading) {
     return (
@@ -31,16 +35,21 @@ export const SidebarMenu: FC<SidebarMenuProps> = () => {
     );
   } else {
     return (
-      <Flex w={"100%"} direction={"column"} style={{ overflowY: "scroll" }}>
-        {formsQuery.data?.map((form, index) => (
-          <SidebarMenuItem
-            key={form.id}
-            form={form}
-            notificationsNumber={index}
-            isActive={index === 0}
-          />
-        ))}
-      </Flex>
+      <ScrollArea h={"%100"} w={"100%"}>
+        <Flex w={"100%"} direction={"column"}>
+          {formsQuery.data?.map((form, index) => {
+            const isActive = locationFormId ? form.id === params.id : false;
+            return (
+              <SidebarMenuItem
+                key={form.id}
+                form={form}
+                notificationsNumber={index}
+                isActive={isActive}
+              />
+            );
+          })}
+        </Flex>
+      </ScrollArea>
     );
   }
 };

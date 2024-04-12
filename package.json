@@ -1,8 +1,8 @@
 {
-  "name": "hello-next",
+  "name": "platforma",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
+  "keywords": ["forms", "application"],
   "license": "MIT",
   "author": "",
   "scripts": {
@@ -26,10 +26,11 @@
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
     "isbot": "^3.7.0",
-    "next": "13.5.6",
+    "next": "^14.2.0",
     "next-auth": "^4.24.5",
     "next-superjson": "0.0.4",
     "next-swagger-doc": "^0.4.0",
+    "pm2": "^5.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.1",
