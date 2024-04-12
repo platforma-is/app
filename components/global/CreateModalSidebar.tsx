@@ -45,7 +45,7 @@ export const CreateModalSidebar = ({
       }}
       ModalContentProps={{ p: "1rem" }}
       header={
-        <Text fw={600} size={"2.5rem"} ff={"PP Pangram Sans Rounded"}>
+        <Text fw={600} size={"2.5rem"} ff={"Circe Rounded Medium"}>
           Создать…
         </Text>
       }
