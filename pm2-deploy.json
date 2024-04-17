@@ -5,9 +5,9 @@
             "script": "./node_modules/next/dist/bin/next",
             "env": {
                 "SECRET": "l__adsfjlkajsd!fh1",
-                "NEXTAUTH_URL": "http://localhost:3000",
-                "GITHUB_ID": "cd242eb87f628b75b8a4",
-                "GITHUB_SECRET": "fce6dd3fbefd2835656a8a0a2abf8fb80cdd04c9",
+                "NEXTAUTH_URL": "https://v2426725.hosted-by-vdsina.ru/",
+                "GITHUB_ID": "04a339873631a35754a7",
+                "GITHUB_SECRET": "8fd3466c6c830e2dfefcb0826813ee75480dbe64",
                 "POSTGRES_USER": "postgres",
                 "POSTGRES_PASSWORD": "postgres",
                 "POSTGRES_DB": "postgres",
