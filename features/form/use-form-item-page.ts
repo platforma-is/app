@@ -1,13 +1,13 @@
 import {
-  IconMail,
   IconCode,
+  IconMail,
   IconNorthStar,
   IconSettings2,
 } from "@tabler/icons-react";
-import { IForm } from "@/shared/types";
 import { useState } from "react";
+import { Form } from "@/shared/api/model";
 
-function useFormItemPage(form: IForm) {
+function useFormItemPage(form: Form) {
   const [activeTab, setActiveTab] = useState<string | null>("integration");
 
   const tabs = [

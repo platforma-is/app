@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Card, Code, Text, rem, Container } from "@mantine/core";
-import { StageBlock } from "@/components/form/StageBlock";
+import { StageBlock } from "@/components/form/StageBlock/StageBlock";
 
 type IntegrationLayoutProps = {
   publicLink: string;

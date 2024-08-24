@@ -2,32 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/lib/*": [
-        "lib/*"
-      ],
-      "@/pages/*": [
-        "pages/*"
-      ],
-      "@/public/*": [
-        "public/*"
-      ],
-      "@/shared/*": [
-        "shared/*"
-      ],
-      "@/features/*": [
-        "features/*"
-      ],
-      "@/app/*": [
-        "app/*"
-      ],
-      "@/utils/*": [
-        "utils/*"
+      "@/*": [
+        "*"
       ]
     },
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",

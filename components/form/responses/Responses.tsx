@@ -44,7 +44,7 @@ export const Responses: FC<ResponsesProps> = ({ responses }) => {
     </Paper>
   ) : (
     <Text
-      ff={"PP Pangram Sans Rounded"}
+      ff={"Circe Rounded Medium"}
       color={"#ADB5BD"}
       top={"50%"}
       left={"50%"}

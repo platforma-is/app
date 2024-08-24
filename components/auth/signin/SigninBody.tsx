@@ -1,11 +1,11 @@
 import classes from "@/shared/ui-kit/layouts/SigninLayout/SigninLayout.module.scss";
 import { Button, Flex } from "@mantine/core";
 import { signIn } from "next-auth/react";
-import { TProvider } from "@/shared/types";
 import githubIcon from "@/public/assets/icons/socials/github.svg";
 import yandexIcon from "@/public/assets/icons/socials/yandex.svg";
 import vkIcon from "@/public/assets/icons/socials/vk.svg";
 import { FC } from "react";
+import { TProvider } from "@/shared/types";
 
 type SigninBodyProps = {
   providers: TProvider;
@@ -48,20 +48,25 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
           mt={"2.5rem"}
           rowGap={"1rem"}
         >
-          {Object.values(providers).map((provider) => {
-            return (
-              <Button
-                className={classes.auth_btn}
-                color={"black"}
-                variant={"outline"}
-                onClick={() => signIn(provider.id)}
-                key={provider.name}
-                leftSection={<SocialIcon src={icons[provider.id]} />}
-              >
-                {provider.name} ID
-              </Button>
-            );
-          })}
+          {providers &&
+            Object.values(providers).map((provider) => {
+              return (
+                <Button
+                  className={classes.auth_btn}
+                  color={"black"}
+                  variant={"outline"}
+                  onClick={() =>
+                    signIn(provider.id, {
+                      callbackUrl: "http://localhost:3000/",
+                    })
+                  }
+                  key={provider.name}
+                  leftSection={<SocialIcon src={icons[provider.id]} />}
+                >
+                  {provider.name} ID
+                </Button>
+              );
+            })}
         </Flex>
       </Flex>
     </Flex>

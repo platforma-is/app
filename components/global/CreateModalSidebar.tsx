@@ -20,8 +20,7 @@ export const CreateModalSidebar = ({
   const createFormMutation = useMutation({
     mutationFn: (title: string) => createFormApi(title),
   });
-  const submitData = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const submitData = async () => {
     try {
       createFormMutation.mutate(title, {
         onSuccess: async (data) => {
@@ -45,7 +44,7 @@ export const CreateModalSidebar = ({
       }}
       ModalContentProps={{ p: "1rem" }}
       header={
-        <Text fw={600} size={"2.5rem"} ff={"PP Pangram Sans Rounded"}>
+        <Text fw={600} size={"2.5rem"} ff={"Circe Rounded Medium"}>
           Создать…
         </Text>
       }
@@ -76,7 +75,7 @@ export const CreateModalSidebar = ({
               placeholder={"Название формы"}
             />
             <Button
-              disabled={title === ""}
+              disabled={title.trim() === "" || createFormMutation.isPending}
               type={"submit"}
               mt={"1rem"}
               w={"fit-content"}

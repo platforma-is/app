@@ -49,7 +49,7 @@ const theme = createTheme({
   },
   primaryColor: "platforma",
   primaryShade: 9,
-  fontFamily: "PP Pangram Sans Rounded, sans-serif",
+  fontFamily: "Circe Rounded Medium, sans-serif",
   components: {
     Tabs: Tabs.extend({
       styles: {

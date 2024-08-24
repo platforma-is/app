@@ -8,11 +8,11 @@ import {
   Tooltip,
 } from "@mantine/core";
 import { IconCheck, IconCopy } from "@tabler/icons-react";
-import { IForm } from "@/shared/types";
-import classes from "@/components/form/FormTitle.module.scss";
+import classes from "@/components/form/FormTitle/FormTitle.module.scss";
+import { Form } from "@/shared/api/model";
 
 type FormTitleProps = {
-  form: IForm;
+  form: Form;
   publicLink: string;
 };
 

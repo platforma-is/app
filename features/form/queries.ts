@@ -35,8 +35,3 @@ export async function createFormApi(title: string): Promise<IForm> {
   );
   return response.data;
 }
-
-export async function getForms(): Promise<IForm[]> {
-  const response = await axios.get("/api/forms");
-  return response.data;
-}
