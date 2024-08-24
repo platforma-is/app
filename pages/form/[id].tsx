@@ -1,8 +1,6 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import prisma from "@/lib/prisma";
-import { IForm, IResponse } from "@/shared/types";
-import FormTitle from "@/components/form/FormTitle";
+import FormTitle from "@/components/form/FormTitle/FormTitle";
 import { GlobalWrapper } from "@/components/global/GlobalWraper";
 import useFormItemPage from "@/features/form/use-form-item-page";
 import { FormTabs } from "@/components/form/FormTabs";
@@ -10,29 +8,22 @@ import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
 import { Sidebar } from "@/components/global/Sidebar";
 import { SidebarMenu } from "@/components/global/SidebarMenu";
 import { Loader } from "@mantine/core";
+import {
+  useGetFormById,
+  useGetResponses,
+} from "@/shared/api/gen/forms/forms.api";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const form = await prisma.form.findUnique({
-    where: {
-      id: params?.id as string,
-    },
-  });
-
-  const responses = await prisma.response.findMany({
-    where: {
-      formId: params?.id as string,
-    },
-  });
-
   return {
-    props: { form, responses },
+    props: { id: params?.id },
   };
 };
 
 const Post: React.FC<{
-  responses: IResponse[];
-  form: IForm;
-}> = ({ responses, form }) => {
+  id?: string;
+}> = ({ id }) => {
+  const { data: form } = useGetFormById(id ?? "");
+  const { data: responses } = useGetResponses(id ?? "");
   const { tabs, publicLink, activeTab, setActiveTab } = useFormItemPage(form);
 
   if (!form) return <Loader />;
@@ -47,7 +38,7 @@ const Post: React.FC<{
           tabs={tabs}
           activeTab={activeTab}
           publicLink={publicLink}
-          responses={responses}
+          responses={responses || []}
           setActiveTab={setActiveTab}
         />
       </ApplicationLayout>

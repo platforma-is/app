@@ -1,11 +1,11 @@
 import classes from "@/shared/ui-kit/layouts/SigninLayout/SigninLayout.module.scss";
 import { Button, Flex } from "@mantine/core";
 import { signIn } from "next-auth/react";
-import { TProvider } from "@/shared/types";
 import githubIcon from "@/public/assets/icons/socials/github.svg";
 import yandexIcon from "@/public/assets/icons/socials/yandex.svg";
 import vkIcon from "@/public/assets/icons/socials/vk.svg";
 import { FC } from "react";
+import { TProvider } from "@/shared/types";
 
 type SigninBodyProps = {
   providers: TProvider;
@@ -25,8 +25,6 @@ const SocialIcon: FC<SocialIconProps> = ({ src }) => {
 };
 
 export const SigninBody = ({ providers }: SigninBodyProps) => {
-  console.log(providers);
-
   const icons = {
     github: githubIcon.src,
     vk: vkIcon.src,
@@ -57,7 +55,11 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
                   className={classes.auth_btn}
                   color={"black"}
                   variant={"outline"}
-                  onClick={() => signIn(provider.id)}
+                  onClick={() =>
+                    signIn(provider.id, {
+                      callbackUrl: "http://localhost:3000/",
+                    })
+                  }
                   key={provider.name}
                   leftSection={<SocialIcon src={icons[provider.id]} />}
                 >

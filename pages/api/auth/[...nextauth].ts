@@ -1,8 +1,6 @@
 import { NextApiHandler } from "next";
 import NextAuth, { NextAuthOptions } from "next-auth";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GitHubProvider from "next-auth/providers/github";
-import prisma from "@/lib/prisma";
 import VkProvider from "next-auth/providers/vk";
 import YandexProvider from "next-auth/providers/yandex";
 
@@ -24,7 +22,6 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.YANDEX_CLIENT_SECRET ?? "",
     }),
   ],
-  adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
   pages: {
     signIn: "/auth/signin",

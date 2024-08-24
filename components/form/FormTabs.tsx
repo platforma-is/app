@@ -2,10 +2,10 @@ import { Tabs, Text } from "@mantine/core";
 import { IntegrationLayout } from "@/components/form/IntegrationLayout";
 import { Responses } from "@/components/form/responses/Responses";
 import React, { SetStateAction } from "react";
-import { IForm, IResponse } from "@/shared/types";
 import { FormSettingsLayout } from "@/shared/ui-kit/layouts/FormSettingsLayout";
 import { FormSettingsBody } from "@/components/form/settings/FormSettingsBody";
 import { TablerIconsProps } from "@tabler/icons-react";
+import { Form, Response } from "@/shared/api/model";
 
 interface FormTabsProps {
   tabs: {
@@ -13,10 +13,10 @@ interface FormTabsProps {
     text: string;
     ico: (props: TablerIconsProps) => JSX.Element;
   }[];
-  form: IForm;
+  form: Form;
   activeTab: string | null;
   publicLink: string;
-  responses: IResponse[];
+  responses: Response[];
   setActiveTab: React.Dispatch<SetStateAction<string | null>>;
 }
 
