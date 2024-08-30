@@ -2,7 +2,16 @@ import Axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { CamelCase } from "type-fest";
 
 const BACKEND_URL = "http://localhost:3001";
-export const AXIOS_INSTANCE = Axios.create({ baseURL: BACKEND_URL }); // use your own URL here or environment variable
+export const AXIOS_INSTANCE = Axios.create({
+  baseURL: BACKEND_URL,
+  withCredentials: true,
+  headers: {
+    "Access-Control-Allow-Headers": "*",
+    "Access-Control-Allow-Methods": "*",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": "true",
+  },
+}); // use your own URL here or environment variable
 
 // add a second `options` argument here if you want to pass extra options to each generated query
 export const customInstance = <T>(

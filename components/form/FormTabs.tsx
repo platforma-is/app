@@ -1,11 +1,11 @@
 import { Tabs, Text } from "@mantine/core";
-import { IntegrationLayout } from "@/components/form/IntegrationLayout";
 import { Responses } from "@/components/form/responses/Responses";
 import React, { SetStateAction } from "react";
 import { FormSettingsLayout } from "@/shared/ui-kit/layouts/FormSettingsLayout";
-import { FormSettingsBody } from "@/components/form/settings/FormSettingsBody";
+import { FormSettingsBody } from "@/components/form/settings/ui/FormSettingsBody";
 import { TablerIconsProps } from "@tabler/icons-react";
 import { Form, Response } from "@/shared/api/model";
+import { IntegrationLayout } from "@/components/form/IntegrationLayout";
 
 interface FormTabsProps {
   tabs: {
@@ -54,7 +54,6 @@ export const FormTabs = ({
           </Tabs.Tab>
         ))}
       </Tabs.List>
-
       <Tabs.Panel value="integration">
         <IntegrationLayout publicLink={publicLink} />
       </Tabs.Panel>

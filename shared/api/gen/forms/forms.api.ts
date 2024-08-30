@@ -24,12 +24,177 @@ import type {
   DefaultSelectionPrisma36ResponsePayload,
   NullableForm,
   PartialForm,
+  PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
 } from "../../model";
 import { customInstance } from "../../mutator/custom-instance";
 import type { ErrorType, BodyType } from "../../mutator/custom-instance";
 
 type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1];
 
+export const updateSettings = (
+  formId: string,
+  pickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>,
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DefaultSelectionPrisma36FormPayload>(
+    {
+      url: `/forms/${formId}/settings`,
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      data: pickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
+    },
+    options,
+  );
+};
+
+export const getUpdateSettingsMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateSettings>>,
+    TError,
+    {
+      formId: string;
+      data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof updateSettings>>,
+  TError,
+  {
+    formId: string;
+    data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+  },
+  TContext
+> => {
+  const { mutation: mutationOptions, request: requestOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof updateSettings>>,
+    {
+      formId: string;
+      data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    }
+  > = (props) => {
+    const { formId, data } = props ?? {};
+
+    return updateSettings(formId, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type UpdateSettingsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateSettings>>
+>;
+export type UpdateSettingsMutationBody =
+  BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+export type UpdateSettingsMutationError = ErrorType<unknown>;
+
+export const useUpdateSettings = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateSettings>>,
+    TError,
+    {
+      formId: string;
+      data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof updateSettings>>,
+  TError,
+  {
+    formId: string;
+    data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+  },
+  TContext
+> => {
+  const mutationOptions = getUpdateSettingsMutationOptions(options);
+
+  return useMutation(mutationOptions);
+};
+export const addResponse = (
+  formId: string,
+  addResponseBody: BodyType<unknown>,
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DefaultSelectionPrisma36ResponsePayload>(
+    {
+      url: `/forms/${formId}/responses`,
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      data: addResponseBody,
+    },
+    options,
+  );
+};
+
+export const getAddResponseMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof addResponse>>,
+    TError,
+    { formId: string; data: BodyType<unknown> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof addResponse>>,
+  TError,
+  { formId: string; data: BodyType<unknown> },
+  TContext
+> => {
+  const { mutation: mutationOptions, request: requestOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof addResponse>>,
+    { formId: string; data: BodyType<unknown> }
+  > = (props) => {
+    const { formId, data } = props ?? {};
+
+    return addResponse(formId, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type AddResponseMutationResult = NonNullable<
+  Awaited<ReturnType<typeof addResponse>>
+>;
+export type AddResponseMutationBody = BodyType<unknown>;
+export type AddResponseMutationError = ErrorType<unknown>;
+
+export const useAddResponse = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof addResponse>>,
+    TError,
+    { formId: string; data: BodyType<unknown> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof addResponse>>,
+  TError,
+  { formId: string; data: BodyType<unknown> },
+  TContext
+> => {
+  const mutationOptions = getAddResponseMutationOptions(options);
+
+  return useMutation(mutationOptions);
+};
 export const getResponses = (
   formId: string,
   options?: SecondParameter<typeof customInstance>,

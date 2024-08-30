@@ -1,10 +1,11 @@
 import { Flex, Text } from "@mantine/core";
-import { SettingsTextField } from "@/components/form/settings/SettingsTextField";
-import { SettingsSwitch } from "@/components/form/settings/SettingsSwitch";
-import { SettingsMultipleSelect } from "@/components/form/settings/SettingsMultipleSelect";
-import { SettingsRadioFields } from "@/components/form/settings/SettingsRadioFields";
+import { SettingsTextField } from "@/components/form/settings/ui/SettingsTextField";
+import { SettingsSwitch } from "@/components/form/settings/ui/SettingsSwitch";
+import { SettingsMultipleSelect } from "@/components/form/settings/ui/SettingsMultipleSelect";
+import { SettingsRadioFields } from "@/components/form/settings/ui/SettingsRadioFields";
+import { ISettingsBlock } from "@/components/form/settings/types";
 
-export const SettingSecondBlock = () => {
+export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
   return (
     <Flex direction={"column"} rowGap={"1rem"}>
       <Text fw={600} lh={"1.25rem"}>

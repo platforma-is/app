@@ -1,13 +1,8 @@
-import {
-  IconCode,
-  IconMail,
-  IconNorthStar,
-  IconSettings2,
-} from "@tabler/icons-react";
+import { IconCode, IconMail, IconSettings2 } from "@tabler/icons-react";
 import { useState } from "react";
-import { Form } from "@/shared/api/model";
+import { NullableForm } from "@/shared/api/model";
 
-function useFormItemPage(form: Form) {
+function useFormItemPage(form: NullableForm) {
   const [activeTab, setActiveTab] = useState<string | null>("integration");
 
   const tabs = [
@@ -22,11 +17,13 @@ function useFormItemPage(form: Form) {
       text: "Ответы",
       ico: IconMail,
     },
-    {
-      name: "integrations",
-      text: "Интеграции",
-      ico: IconNorthStar,
-    },
+    //TODO интеграции сначала реализовать а потом отобразить
+
+    // {
+    //   name: "integrations",
+    //   text: "Интеграции",
+    //   ico: IconNorthStar,
+    // },
     {
       name: "settings",
       text: "Настройка",
@@ -36,7 +33,7 @@ function useFormItemPage(form: Form) {
 
   const publicLink = `${
     typeof window !== "undefined" ? window.location.origin : ""
-  }/api/form/${form?.id}`;
+  }/forms/${form?.id}/responses`;
 
   return {
     tabs,
