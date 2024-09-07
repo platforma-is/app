@@ -2,8 +2,8 @@ import { Button, Flex, Loader, Paper, Text, TextInput } from "@mantine/core";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import React, { useState } from "react";
 import Router from "next/router";
-import { useQueryClient } from "@tanstack/react-query";
 import { useAddForm } from "@/shared/api/gen/forms/forms.api";
+import { useQueryClient } from "@tanstack/react-query";
 
 type CreateModalSidebarProps = {
   open: boolean;

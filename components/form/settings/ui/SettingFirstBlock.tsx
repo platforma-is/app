@@ -9,27 +9,36 @@ export const SettingFirstBlock = ({ formController }: ISettingsBlock) => {
     <Flex direction={"column"} rowGap={"1rem"}>
       <SettingsTextField
         title={"Название"}
-        key={formController.key("title")}
-        inputProps={{ placeholder: "например: Форма 123" }}
-        {...formController.getInputProps("title")}
+        inputProps={{
+          placeholder: "например: Форма 123",
+          key: formController.key("title"),
+          ...formController.getInputProps("title"),
+        }}
       />
       <SettingsSelect
         title={"Папка"}
-        key={formController.key("folder")}
-        selectProps={{ placeholder: "Выберете папку", data: ["1", "2", "3"] }}
-        {...formController.getInputProps("folder")}
+        selectProps={{
+          placeholder: "Выберете папку",
+          data: ["1", "2", "3"],
+          key: formController.key("folder"),
+          ...formController.getInputProps("folder"),
+        }}
       />
       <SettingsSwitch
-        key={formController.key("active")}
         title={"Приём ответов"}
-        switchProps={{ color: "#5033FF" }}
-        {...formController.getInputProps("active")}
+        switchProps={{
+          color: "#5033FF",
+          key: formController.key("active"),
+          ...formController.getInputProps("active"),
+        }}
       />
       <SettingsSwitch
-        key={formController.key("spamProtected")}
         title={"Защита от спама"}
-        switchProps={{ color: "#5033FF" }}
-        {...formController.getInputProps("spamProtected")}
+        switchProps={{
+          color: "#5033FF",
+          key: formController.key("spamProtected"),
+          ...formController.getInputProps("spamProtected"),
+        }}
       />
     </Flex>
   );

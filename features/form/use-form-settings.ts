@@ -1,5 +1,6 @@
 import {
   useDeleteForm,
+  useGetSettings,
   useUpdateSettings,
 } from "@/shared/api/gen/forms/forms.api";
 import Router from "next/router";
@@ -8,13 +9,14 @@ import { Form, TSettings } from "@/shared/api/model";
 import { useQueryClient } from "@tanstack/react-query";
 
 export const useFormSettings = (form: Form) => {
+  const queryClient = useQueryClient();
   const deleteFormMutation = useDeleteForm();
   const updateSettings = useUpdateSettings();
-  const queryClient = useQueryClient();
-  const formController = useForm<TSettings>({
+  const getSettings = useGetSettings(form.id, { query: { staleTime: 0 } });
+  const formController = useForm<Partial<TSettings>>({
     mode: "uncontrolled",
     initialValues: {
-      ...form,
+      ...getSettings.data,
     },
   });
 
@@ -34,6 +36,7 @@ export const useFormSettings = (form: Form) => {
   };
 
   const onSubmit = (values: TSettings) => {
+    console.log(values);
     updateSettings.mutate({
       formId: form.id,
       data: values,

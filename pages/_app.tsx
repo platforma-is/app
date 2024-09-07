@@ -19,7 +19,7 @@ import { DatesProvider } from "@mantine/dates";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import { QueryClient } from "@tanstack/react-query";
+import { HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
@@ -79,20 +79,25 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
         client={queryClient}
         persistOptions={{ persister }}
       >
-        <SessionProvider session={pageProps.session}>
-          <DatesProvider
-            settings={
-              {
-                // locale: "en-US",
-                // firstDayOfWeek: 0,
-                // weekendDays: [0],
-                // timezone: "UTC",
+        <HydrationBoundary
+          queryClient={queryClient}
+          state={pageProps.dehydratedState}
+        >
+          <SessionProvider session={pageProps.session}>
+            <DatesProvider
+              settings={
+                {
+                  // locale: "en-US",
+                  // firstDayOfWeek: 0,
+                  // weekendDays: [0],
+                  // timezone: "UTC",
+                }
               }
-            }
-          >
-            {getLayout(<Component {...pageProps} />)}
-          </DatesProvider>
-        </SessionProvider>
+            >
+              {getLayout(<Component {...pageProps} />)}
+            </DatesProvider>
+          </SessionProvider>
+        </HydrationBoundary>
       </PersistQueryClientProvider>
 
       <style jsx global>{`

@@ -9,24 +9,24 @@ import {
   TextInput,
   TextInputProps,
 } from "@mantine/core";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 interface SettingsMultipleSelectProps {
   title?: string;
   labelProps?: InputLabelProps;
   inputProps?: TextInputProps;
   selected?: string[];
+  addCallback?: (selected: string[]) => void;
+  removeCallback?: (selected: string[]) => void;
 }
 
 export const SettingsMultipleSelect = ({
   title,
   labelProps,
   inputProps,
-  selected = [
-    "pashaomelekhin@gmail.com",
-    "pashaomelekhin1@gmail.com",
-    "pashaomelekhin2@gmail.com",
-  ],
+  selected = [],
+  addCallback = () => {},
+  removeCallback = () => {},
 }: SettingsMultipleSelectProps) => {
   const id = useId();
   const [items, setItems] = useState(selected);
@@ -36,9 +36,14 @@ export const SettingsMultipleSelect = ({
     setInputValue(() => "");
   };
 
-  const handleRemoveItem = (it) => {
-    setItems((prev) => prev?.filter((item) => item != it));
+  const handleRemoveItem = (rmItem) => {
+    setItems(items?.filter((prevOption) => prevOption != rmItem));
   };
+
+  useEffect(() => {
+    addCallback(items);
+    removeCallback(items);
+  }, [items]);
 
   return (
     <Flex align={"flex-start"} gap={"1.5rem"} direction={"row"}>
@@ -55,6 +60,7 @@ export const SettingsMultipleSelect = ({
         >
           <TextInput
             w={"65%"}
+            type={"email"}
             {...inputProps}
             placeholder={"inbox@mail.com"}
             id={id}
@@ -64,7 +70,11 @@ export const SettingsMultipleSelect = ({
             rightSectionWidth={"auto"}
             rightSectionPointerEvents={"all"}
           />
-          <Button onClick={() => handleAddItem(inputValue)} variant={"light"}>
+          <Button
+            disabled={inputValue?.length === 0}
+            onClick={() => handleAddItem(inputValue)}
+            variant={"light"}
+          >
             Добавить
           </Button>
         </Paper>

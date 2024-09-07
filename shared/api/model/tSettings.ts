@@ -5,7 +5,6 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId } from "./pickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId";
+import type { PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId } from "./partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId";
 
-export type TSettings =
-  PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId;
+export type TSettings = PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId;

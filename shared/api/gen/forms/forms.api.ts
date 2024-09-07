@@ -24,7 +24,7 @@ import type {
   DefaultSelectionPrisma36ResponsePayload,
   NullableForm,
   PartialForm,
-  PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
+  PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
 } from "../../model";
 import { customInstance } from "../../mutator/custom-instance";
 import type { ErrorType, BodyType } from "../../mutator/custom-instance";
@@ -33,15 +33,15 @@ type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1];
 
 export const updateSettings = (
   formId: string,
-  pickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>,
+  partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>,
   options?: SecondParameter<typeof customInstance>,
 ) => {
   return customInstance<DefaultSelectionPrisma36FormPayload>(
     {
       url: `/forms/${formId}/settings`,
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      data: pickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
+      data: partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
     },
     options,
   );
@@ -56,7 +56,7 @@ export const getUpdateSettingsMutationOptions = <
     TError,
     {
       formId: string;
-      data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+      data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
     },
     TContext
   >;
@@ -66,7 +66,7 @@ export const getUpdateSettingsMutationOptions = <
   TError,
   {
     formId: string;
-    data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
   },
   TContext
 > => {
@@ -76,7 +76,7 @@ export const getUpdateSettingsMutationOptions = <
     Awaited<ReturnType<typeof updateSettings>>,
     {
       formId: string;
-      data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+      data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
     }
   > = (props) => {
     const { formId, data } = props ?? {};
@@ -91,7 +91,7 @@ export type UpdateSettingsMutationResult = NonNullable<
   Awaited<ReturnType<typeof updateSettings>>
 >;
 export type UpdateSettingsMutationBody =
-  BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+  BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
 export type UpdateSettingsMutationError = ErrorType<unknown>;
 
 export const useUpdateSettings = <
@@ -103,7 +103,7 @@ export const useUpdateSettings = <
     TError,
     {
       formId: string;
-      data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+      data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
     },
     TContext
   >;
@@ -113,7 +113,7 @@ export const useUpdateSettings = <
   TError,
   {
     formId: string;
-    data: BodyType<PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
   },
   TContext
 > => {
@@ -121,6 +121,134 @@ export const useUpdateSettings = <
 
   return useMutation(mutationOptions);
 };
+export const getSettings = (
+  formId: string,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>(
+    { url: `/forms/${formId}/settings`, method: "GET", signal },
+    options,
+  );
+};
+
+export const getGetSettingsQueryKey = (formId: string) => {
+  return [`/forms/${formId}/settings`] as const;
+};
+
+export const getGetSettingsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetSettingsQueryKey(formId);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getSettings>>> = ({
+    signal,
+  }) => getSettings(formId, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: !!formId,
+    ...queryOptions,
+  } as UseQueryOptions<
+    Awaited<ReturnType<typeof getSettings>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetSettingsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getSettings>>
+>;
+export type GetSettingsQueryError = ErrorType<unknown>;
+
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options: {
+    query: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSettings>>,
+          TError,
+          TData
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): DefinedUseQueryResult<TData, TError> & { queryKey: QueryKey };
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSettings>>,
+          TError,
+          TData
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey };
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetSettingsQueryOptions(formId, options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
+
 export const addResponse = (
   formId: string,
   addResponseBody: BodyType<unknown>,
