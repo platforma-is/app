@@ -1,13 +1,13 @@
 import classes from "@/components/form/responses/ResponseItem/ResponseItem.module.scss";
 import { Button, Flex, Text } from "@mantine/core";
 import React from "react";
-import { IResponse } from "@/shared/types";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
+import { Response } from "@/shared/api/model";
 
 type ModalResponseProps = {
   openedModal: boolean;
   createdAt: string;
-  response: IResponse;
+  response: Response;
   close: () => void;
 };
 export const ModalResponse = ({
@@ -16,6 +16,8 @@ export const ModalResponse = ({
   createdAt,
   close,
 }: ModalResponseProps) => {
+  const response_data = response?.data;
+
   return (
     <ModalLayout
       ModalRootProps={{
@@ -30,21 +32,22 @@ export const ModalResponse = ({
       header={<Text className={classes.header_title}>{createdAt}</Text>}
       body={
         <>
-          {Object.keys(response?.data).map((key, idx) => (
-            <Flex
-              key={idx}
-              className={classes.response_item_wrapper}
-              direction={"column"}
-              align={"flex-start"}
-            >
-              <Text fs={"1.125rem"} fw={600} lh={"1.25rem"}>
-                {key}
-              </Text>
-              <Text fs={"1.125rem"} fw={400} lh={"1.5rem"}>
-                {response?.data[key] ?? "Данные отсутствуют"}
-              </Text>
-            </Flex>
-          ))}
+          {response_data &&
+            Object.keys(response_data).map((key, idx) => (
+              <Flex
+                key={idx}
+                className={classes.response_item_wrapper}
+                direction={"column"}
+                align={"flex-start"}
+              >
+                <Text fs={"1.125rem"} fw={600} lh={"1.25rem"}>
+                  {key}
+                </Text>
+                <Text fs={"1.125rem"} fw={400} lh={"1.5rem"}>
+                  {response_data[key] ?? "Данные отсутствуют"}
+                </Text>
+              </Flex>
+            ))}
           <Button w={"fit-content"} variant={"light"} onClick={close}>
             Закрыть
           </Button>

@@ -24,12 +24,305 @@ import type {
   DefaultSelectionPrisma36ResponsePayload,
   NullableForm,
   PartialForm,
+  PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
 } from "../../model";
 import { customInstance } from "../../mutator/custom-instance";
 import type { ErrorType, BodyType } from "../../mutator/custom-instance";
 
 type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1];
 
+export const updateSettings = (
+  formId: string,
+  partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>,
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DefaultSelectionPrisma36FormPayload>(
+    {
+      url: `/forms/${formId}/settings`,
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      data: partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId,
+    },
+    options,
+  );
+};
+
+export const getUpdateSettingsMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateSettings>>,
+    TError,
+    {
+      formId: string;
+      data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof updateSettings>>,
+  TError,
+  {
+    formId: string;
+    data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+  },
+  TContext
+> => {
+  const { mutation: mutationOptions, request: requestOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof updateSettings>>,
+    {
+      formId: string;
+      data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    }
+  > = (props) => {
+    const { formId, data } = props ?? {};
+
+    return updateSettings(formId, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type UpdateSettingsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateSettings>>
+>;
+export type UpdateSettingsMutationBody =
+  BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+export type UpdateSettingsMutationError = ErrorType<unknown>;
+
+export const useUpdateSettings = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateSettings>>,
+    TError,
+    {
+      formId: string;
+      data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof updateSettings>>,
+  TError,
+  {
+    formId: string;
+    data: BodyType<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>;
+  },
+  TContext
+> => {
+  const mutationOptions = getUpdateSettingsMutationOptions(options);
+
+  return useMutation(mutationOptions);
+};
+export const getSettings = (
+  formId: string,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId>(
+    { url: `/forms/${formId}/settings`, method: "GET", signal },
+    options,
+  );
+};
+
+export const getGetSettingsQueryKey = (formId: string) => {
+  return [`/forms/${formId}/settings`] as const;
+};
+
+export const getGetSettingsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetSettingsQueryKey(formId);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getSettings>>> = ({
+    signal,
+  }) => getSettings(formId, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: !!formId,
+    ...queryOptions,
+  } as UseQueryOptions<
+    Awaited<ReturnType<typeof getSettings>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetSettingsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getSettings>>
+>;
+export type GetSettingsQueryError = ErrorType<unknown>;
+
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options: {
+    query: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSettings>>,
+          TError,
+          TData
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): DefinedUseQueryResult<TData, TError> & { queryKey: QueryKey };
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSettings>>,
+          TError,
+          TData
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey };
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+export function useGetSettings<
+  TData = Awaited<ReturnType<typeof getSettings>>,
+  TError = ErrorType<unknown>,
+>(
+  formId: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getSettings>>, TError, TData>
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetSettingsQueryOptions(formId, options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
+
+export const addResponse = (
+  formId: string,
+  addResponseBody: BodyType<unknown>,
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DefaultSelectionPrisma36ResponsePayload>(
+    {
+      url: `/forms/${formId}/responses`,
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      data: addResponseBody,
+    },
+    options,
+  );
+};
+
+export const getAddResponseMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof addResponse>>,
+    TError,
+    { formId: string; data: BodyType<unknown> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof addResponse>>,
+  TError,
+  { formId: string; data: BodyType<unknown> },
+  TContext
+> => {
+  const { mutation: mutationOptions, request: requestOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof addResponse>>,
+    { formId: string; data: BodyType<unknown> }
+  > = (props) => {
+    const { formId, data } = props ?? {};
+
+    return addResponse(formId, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type AddResponseMutationResult = NonNullable<
+  Awaited<ReturnType<typeof addResponse>>
+>;
+export type AddResponseMutationBody = BodyType<unknown>;
+export type AddResponseMutationError = ErrorType<unknown>;
+
+export const useAddResponse = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof addResponse>>,
+    TError,
+    { formId: string; data: BodyType<unknown> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof addResponse>>,
+  TError,
+  { formId: string; data: BodyType<unknown> },
+  TContext
+> => {
+  const mutationOptions = getAddResponseMutationOptions(options);
+
+  return useMutation(mutationOptions);
+};
 export const getResponses = (
   formId: string,
   options?: SecondParameter<typeof customInstance>,

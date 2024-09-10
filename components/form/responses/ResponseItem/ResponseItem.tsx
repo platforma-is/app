@@ -14,7 +14,7 @@ type ResponseItemProps = {
 export const ResponseItem: FC<ResponseItemProps> = ({ response, trProps }) => {
   const createdAt = formatDate(new Date(response.createdAt));
   const [openedModal, { open, close }] = useDisclosure(false);
-  const data = response?.data;
+  const responseData = response?.data;
   return (
     <>
       <Table.Tr
@@ -23,13 +23,13 @@ export const ResponseItem: FC<ResponseItemProps> = ({ response, trProps }) => {
         onClick={open}
         key={response.id}
       >
-        {data &&
-          Object.keys(data).map((key) => (
+        {responseData &&
+          Object.keys(responseData).map((key) => (
             <Table.Td key={key}>
               <Text size={"0.875rem"} key={key}>
-                {data[key].length > 40
-                  ? data[key].substring(0, 40) + "..."
-                  : data[key]}
+                {responseData[key].length > 40
+                  ? responseData[key].substring(0, 40) + "..."
+                  : responseData[key]}
               </Text>
             </Table.Td>
           ))}

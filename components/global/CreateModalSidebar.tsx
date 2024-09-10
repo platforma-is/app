@@ -2,8 +2,8 @@ import { Button, Flex, Loader, Paper, Text, TextInput } from "@mantine/core";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import React, { useState } from "react";
 import Router from "next/router";
-import { createFormApi } from "@/features/form/queries";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useAddForm } from "@/shared/api/gen/forms/forms.api";
+import { useQueryClient } from "@tanstack/react-query";
 
 type CreateModalSidebarProps = {
   open: boolean;
@@ -17,19 +17,23 @@ export const CreateModalSidebar = ({
   const [selectedOption, setSelectedOption] = useState(0);
   const [title, setTitle] = useState("");
   const queryClient = useQueryClient();
-  const createFormMutation = useMutation({
-    mutationFn: (title: string) => createFormApi(title),
-  });
+  const createFormMutation = useAddForm();
   const submitData = async () => {
     try {
-      createFormMutation.mutate(title, {
-        onSuccess: async (data) => {
-          await queryClient.invalidateQueries({ queryKey: ["forms"] });
-          await Router.push(`/form/${data?.id}`);
-          setOpen(false);
-          setTitle(() => "");
+      createFormMutation.mutate(
+        { data: { title } },
+        {
+          onSuccess: async (data) => {
+            await queryClient
+              .invalidateQueries({ queryKey: ["forms"] })
+              .then(() => {
+                setOpen(false);
+                setTitle("");
+                Router.push(`/form/${data?.id}`);
+              });
+          },
         },
-      });
+      );
     } catch (error) {
       console.error(error);
     }

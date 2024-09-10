@@ -24,7 +24,9 @@ const Post: React.FC<{
 }> = ({ id }) => {
   const { data: form } = useGetFormById(id ?? "");
   const { data: responses } = useGetResponses(id ?? "");
-  const { tabs, publicLink, activeTab, setActiveTab } = useFormItemPage(form);
+  const { tabs, publicLink, activeTab, setActiveTab } = useFormItemPage(
+    form || null,
+  );
 
   if (!form) return <Loader />;
 

@@ -1,12 +1,12 @@
 import classes from "@/components/form/Forms.module.scss";
 import Router from "next/router";
 import React, { FC } from "react";
-import { IForm } from "@/shared/types";
 import { Badge } from "@mantine/core";
 import clsx from "clsx";
+import { Form } from "@/shared/api/model";
 
 type SidebarMenuItemProps = {
-  form: IForm;
+  form: Form;
   isActive?: boolean;
   notificationsNumber?: number;
 };

@@ -13,7 +13,8 @@ interface SettingsSelectProps {
   title?: string;
   labelProps?: InputLabelProps;
   radioProps?: RadioProps;
-  data?: string[];
+  data?: { label: string; value: string }[];
+  active?: string;
 }
 
 export const SettingsRadioFields = ({
@@ -21,6 +22,7 @@ export const SettingsRadioFields = ({
   labelProps,
   radioProps,
   data,
+  active,
 }: SettingsSelectProps) => {
   const id = useId();
   return (
@@ -30,8 +32,13 @@ export const SettingsRadioFields = ({
       </InputLabel>
       <RadioGroup>
         <Group style={{ flexDirection: "column", display: "flex" }}>
-          {data?.map((item, idx) => (
-            <Radio key={idx} value={item} {...radioProps} label={item} />
+          {data?.map((radioItem, idx) => (
+            <Radio
+              defaultChecked={active === radioItem.value}
+              key={idx}
+              {...radioItem}
+              {...radioProps}
+            />
           ))}
         </Group>
       </RadioGroup>

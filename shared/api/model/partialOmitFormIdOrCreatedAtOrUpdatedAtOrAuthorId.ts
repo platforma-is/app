@@ -10,18 +10,14 @@ import type { _36EnumsSucessScreen } from "./_36EnumsSucessScreen";
 /**
  * Make all properties in T optional
  */
-export interface PartialForm {
+export interface PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId {
   active?: boolean;
-  authorId?: string;
-  createdAt?: string;
   customUrlError?: string;
   customUrlSuccess?: string;
   emailNotification?: boolean;
   emailNotificationMails?: string[];
   folder?: string;
-  id?: string;
   spamProtected?: boolean;
   successScreen?: _36EnumsSucessScreen;
   title?: string;
-  updatedAt?: string;
 }

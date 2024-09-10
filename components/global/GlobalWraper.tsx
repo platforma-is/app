@@ -21,7 +21,7 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
   const render = () => {
     if (status === "loading") {
       return (
-        <Container size="md">
+        <Container size="md" className={classes.inner}>
           <Loader pos={"absolute"} top={"50%"} left={"50%"} />
         </Container>
       );

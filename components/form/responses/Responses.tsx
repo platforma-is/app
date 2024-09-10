@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Paper, Table, Text } from "@mantine/core";
-import { IResponse } from "@/shared/types";
 import { ResponseItem } from "@/components/form/responses/ResponseItem/ResponseItem";
+import { Response } from "@/shared/api/model";
 
 type ResponsesProps = {
-  responses: IResponse[];
+  responses: Response[];
 };
 
 export const Responses: FC<ResponsesProps> = ({ responses }) => {

@@ -7,18 +7,17 @@
  */
 import type { _36EnumsSucessScreen } from "./_36EnumsSucessScreen";
 
-export interface DefaultSelectionPrisma36FormPayload {
+/**
+ * From T, pick a set of properties whose keys are in the union K
+ */
+export interface PickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId {
   active: boolean;
-  authorId: string;
-  createdAt: string;
   customUrlError: string;
   customUrlSuccess: string;
   emailNotification: boolean;
   emailNotificationMails: string[];
   folder: string;
-  id: string;
   spamProtected: boolean;
   successScreen: _36EnumsSucessScreen;
   title: string;
-  updatedAt: string;
 }
