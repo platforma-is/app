@@ -1,3 +1,5 @@
+"use client";
+
 import { IconCode, IconMail, IconSettings2 } from "@tabler/icons-react";
 import { useState } from "react";
 import { NullableForm } from "@/shared/api/model";

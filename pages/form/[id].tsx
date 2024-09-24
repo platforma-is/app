@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { GetServerSideProps } from "next";
 import FormTitle from "@/components/form/FormTitle/FormTitle";
@@ -25,11 +27,10 @@ const Post: React.FC<{
   const { data: form } = useGetFormById(id ?? "");
   const { data: responses } = useGetResponses(id ?? "");
   const { tabs, publicLink, activeTab, setActiveTab } = useFormItemPage(
-    form || null,
+    form ?? null,
   );
 
   if (!form) return <Loader />;
-
   return (
     <GlobalWrapper sidebar={<Sidebar menuContent={<SidebarMenu />} />}>
       <ApplicationLayout

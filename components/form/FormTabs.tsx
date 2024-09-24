@@ -31,9 +31,9 @@ export const FormTabs = ({
   return (
     <Tabs value={activeTab} onChange={setActiveTab}>
       <Tabs.List>
-        {tabs.map((it, idx) => (
+        {tabs.map((it) => (
           <Tabs.Tab
-            key={idx}
+            key={it.name}
             value={it?.name}
             color={"#5033FF"}
             leftSection={
@@ -54,13 +54,13 @@ export const FormTabs = ({
           </Tabs.Tab>
         ))}
       </Tabs.List>
-      <Tabs.Panel value="integration">
+      <Tabs.Panel key={`integration_panel${form.id}`} value="integration">
         <IntegrationLayout publicLink={publicLink} />
       </Tabs.Panel>
-      <Tabs.Panel value="responses">
+      <Tabs.Panel key={`responses_panel${form.id}`} value="responses">
         <Responses responses={responses} />
       </Tabs.Panel>
-      <Tabs.Panel value="settings">
+      <Tabs.Panel key={`settings_panel${form.id}`} value="settings">
         <FormSettingsLayout body={<FormSettingsBody form={form} />} />
       </Tabs.Panel>
     </Tabs>
