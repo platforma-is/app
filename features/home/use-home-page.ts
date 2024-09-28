@@ -1,5 +1,3 @@
-"use client";
-
 import { getGetFormsQueryKey } from "@/shared/api/gen/forms/forms.api";
 import { useEffect } from "react";
 import { isNotEmpty } from "ramda";

@@ -1,5 +1,3 @@
-"use client";
-
 import React, { ReactNode, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { SidebarLayout } from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout";

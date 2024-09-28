@@ -1,7 +1,4 @@
-"use client";
-
 import {
-  getGetFormsQueryKey,
   useDeleteForm,
   useGetSettings,
   useUpdateSettings,
@@ -10,25 +7,18 @@ import Router from "next/router";
 import { useForm } from "@mantine/form";
 import { Form, TSettings } from "@/shared/api/model";
 import { useQueryClient } from "@tanstack/react-query";
-import { handleNotification } from "@/shared/utils";
-import { useEffect } from "react";
 
 export const useFormSettings = (form: Form) => {
   const queryClient = useQueryClient();
   const deleteFormMutation = useDeleteForm();
   const updateSettings = useUpdateSettings();
-  const { data: settingsData, isSuccess } = useGetSettings(form.id);
+  const getSettings = useGetSettings(form.id, { query: { staleTime: 0 } });
   const formController = useForm<Partial<TSettings>>({
     mode: "uncontrolled",
     initialValues: {
-      ...settingsData,
+      ...getSettings.data,
     },
   });
-  useEffect(() => {
-    if (isSuccess) {
-      formController.setValues({ ...settingsData });
-    }
-  }, [formController, isSuccess, settingsData]);
 
   const deleteAction = () => {
     deleteFormMutation.mutate(
@@ -36,7 +26,7 @@ export const useFormSettings = (form: Form) => {
       {
         onSuccess: async () => {
           await queryClient
-            .invalidateQueries({ queryKey: [getGetFormsQueryKey()] })
+            .invalidateQueries({ queryKey: ["forms"] })
             .then(() => {
               Router.push("/");
             });
@@ -45,36 +35,18 @@ export const useFormSettings = (form: Form) => {
     );
   };
 
-  const onSubmit = (values: Partial<TSettings>) => {
-    updateSettings.mutate(
-      {
-        formId: form.id,
-        data: values,
-      },
-      {
-        onSuccess: async () => {
-          await queryClient
-            .invalidateQueries({
-              queryKey: getGetFormsQueryKey(),
-            })
-            .then(() =>
-              handleNotification({
-                message: "Настройки вашей формы успешно обновлены!",
-              }),
-            );
-        },
-        onError: () => {
-          handleNotification({ mode: "error", message: "Произошла ошибка" });
-        },
-      },
-    );
+  const onSubmit = (values: TSettings) => {
+    console.log(values);
+    updateSettings.mutate({
+      formId: form.id,
+      data: values,
+    });
   };
 
   return {
     deleteAction,
     onSubmit,
-    isDeleteLoading: deleteFormMutation.isPending,
-    isSaveLoading: updateSettings.isPending,
+    isLoading: deleteFormMutation.isPending,
     formController,
   };
 };

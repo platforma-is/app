@@ -11,6 +11,7 @@ type SidebarMenuProps = {
 
 export const SidebarMenu: FC<SidebarMenuProps> = () => {
   const { data: forms, isLoading } = useGetForms();
+
   const params = useParams();
   const locationFormId = params?.id;
 

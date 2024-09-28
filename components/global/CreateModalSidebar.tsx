@@ -1,5 +1,3 @@
-"use client";
-
 import { Button, Flex, Loader, Paper, Text, TextInput } from "@mantine/core";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import React, { useState } from "react";

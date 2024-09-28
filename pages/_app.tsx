@@ -1,21 +1,26 @@
 /* eslint-disable react/no-unknown-property */
 import dayjs from "dayjs";
-import { Notifications } from "@mantine/notifications";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
+// core styles are required for all packages
 import "@/app/core.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+
+// other css files are required only if
+// you are using components from the corresponding package
+// import '@mantine/dropzone/styles.css';
+// import '@mantine/code-highlight/styles.css';
+// ...
 import { createTheme, MantineProvider, Tabs } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
+
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import {
-  HydrationBoundary,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -65,9 +70,15 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       },
     },
   });
+  const persister = createSyncStoragePersister({
+    storage: typeof window !== "undefined" ? window.localStorage : null,
+  });
   return (
-    <MantineProvider withGlobalClasses withCssVariables theme={theme}>
-      <QueryClientProvider client={queryClient}>
+    <MantineProvider theme={theme}>
+      <PersistQueryClientProvider
+        client={queryClient}
+        persistOptions={{ persister }}
+      >
         <HydrationBoundary
           queryClient={queryClient}
           state={pageProps.dehydratedState}
@@ -87,8 +98,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
             </DatesProvider>
           </SessionProvider>
         </HydrationBoundary>
-        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
-      </QueryClientProvider>
+      </PersistQueryClientProvider>
 
       <style jsx global>{`
         html {
@@ -125,7 +135,6 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
           text-decoration: none;
         }
       `}</style>
-      <Notifications withinPortal />
     </MantineProvider>
   );
 };

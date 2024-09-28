@@ -10,26 +10,15 @@ interface FormSettingsBodyProps {
 }
 
 export const FormSettingsBody = ({ form }: FormSettingsBodyProps) => {
-  const {
-    deleteAction,
-    isDeleteLoading,
-    isSaveLoading,
-    onSubmit,
-    formController,
-  } = useFormSettings(form);
+  const { deleteAction, isLoading, onSubmit, formController } =
+    useFormSettings(form);
 
   return (
     <form
       onSubmit={formController.onSubmit(onSubmit)}
       style={{ display: "flex", flexDirection: "column", rowGap: "2.5rem" }}
     >
-      <Button
-        loading={isSaveLoading}
-        type={"submit"}
-        pos={"fixed"}
-        bottom={"1.5rem"}
-        right={"1.5rem"}
-      >
+      <Button type={"submit"} pos={"fixed"} bottom={"1.5rem"} right={"1.5rem"}>
         Сохранить
       </Button>
       <SettingFirstBlock formController={formController} />
@@ -43,11 +32,7 @@ export const FormSettingsBody = ({ form }: FormSettingsBodyProps) => {
         variant={"light"}
         color={"red"}
       >
-        {isDeleteLoading ? (
-          <Loader color={"red"} size={"1rem"} />
-        ) : (
-          "Удалить форму"
-        )}
+        {isLoading ? <Loader color={"red"} size={"1rem"} /> : "Удалить форму"}
       </Button>
     </form>
   );
