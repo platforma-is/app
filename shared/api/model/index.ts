@@ -6,20 +6,20 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export * from "./EnumsSucessScreen";
-export * from "./_36EnumsSucessScreen";
-export * from "./addFormBody";
-export * from "./defaultSelectionPrisma36FormPayload";
-export * from "./defaultSelectionPrisma36ResponsePayload";
-export * from "./form";
-export * from "./getUserDataById200";
-export * from "./nullableForm";
-export * from "./omitFormIdOrCreatedAtOrUpdatedAtOrAuthorId";
-export * from "./partialForm";
-export * from "./partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId";
-export * from "./pickFormExcludeKeyofFormIdOrCreatedAtOrUpdatedAtOrAuthorId";
-export * from "./prismaJsonArray";
-export * from "./prismaJsonObject";
-export * from "./prismaJsonValue";
-export * from "./response";
-export * from "./tSettings";
+export * from './addFormBody';
+export * from './form';
+export * from './jsonArray';
+export * from './jsonObject';
+export * from './jsonValue';
+export * from './nullableAny';
+export * from './nullableForm';
+export * from './partialForm';
+export * from './partialFormSuccessScreen';
+export * from './partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId';
+export * from './partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen';
+export * from './response';
+export * from './resultDefaultSelectionPrismaFormPayload';
+export * from './resultDefaultSelectionPrismaFormPayloadSuccessScreen';
+export * from './resultDefaultSelectionPrismaResponsePayload';
+export * from './sucessScreen';
+export * from './tSettings';

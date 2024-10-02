@@ -6,7 +6,6 @@ import { AppProps } from "next/app";
 import "@/app/core.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 
 // other css files are required only if
 // you are using components from the corresponding package
@@ -19,8 +18,13 @@ import { DatesProvider } from "@mantine/dates";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import { HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import {
+  HydrationBoundary,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -70,71 +74,69 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       },
     },
   });
-  const persister = createSyncStoragePersister({
-    storage: typeof window !== "undefined" ? window.localStorage : null,
-  });
+
   return (
-    <MantineProvider theme={theme}>
-      <PersistQueryClientProvider
-        client={queryClient}
-        persistOptions={{ persister }}
-      >
-        <HydrationBoundary
-          queryClient={queryClient}
-          state={pageProps.dehydratedState}
-        >
-          <SessionProvider session={pageProps.session}>
-            <DatesProvider
-              settings={
-                {
-                  // locale: "en-US",
-                  // firstDayOfWeek: 0,
-                  // weekendDays: [0],
-                  // timezone: "UTC",
+    <MantineProvider stylesTransform={emotionTransform} theme={theme}>
+      <MantineEmotionProvider>
+        <QueryClientProvider client={queryClient}>
+          <HydrationBoundary
+            queryClient={queryClient}
+            state={pageProps.dehydratedState}
+          >
+            <SessionProvider session={pageProps.session}>
+              <DatesProvider
+                settings={
+                  {
+                    // locale: "en-US",
+                    // firstDayOfWeek: 0,
+                    // weekendDays: [0],
+                    // timezone: "UTC",
+                  }
                 }
-              }
-            >
-              {getLayout(<Component {...pageProps} />)}
-            </DatesProvider>
-          </SessionProvider>
-        </HydrationBoundary>
-      </PersistQueryClientProvider>
+              >
+                {getLayout(<Component {...pageProps} />)}
+              </DatesProvider>
+            </SessionProvider>
+          </HydrationBoundary>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
 
-      <style jsx global>{`
-        html {
-          box-sizing: border-box;
-        }
+        <style jsx global>{`
+          html {
+            box-sizing: border-box;
+          }
 
-        *,
-        *:before,
-        *:after {
-          box-sizing: inherit;
-        }
+          *,
+          *:before,
+          *:after {
+            box-sizing: inherit;
+          }
 
-        body {
-          margin: 0;
-          padding: 0;
-          font-size: 16px;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-            "Segoe UI Symbol";
-          background-color: #fff;
-        }
+          body {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Helvetica, Arial, sans-serif, "Apple Color Emoji",
+              "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #fff;
+          }
 
-        input,
-        textarea {
-          font-size: 16px;
-        }
+          input,
+          textarea {
+            font-size: 16px;
+          }
 
-        button {
-          cursor: pointer;
-        }
+          button {
+            cursor: pointer;
+          }
 
-        a {
-          color: var(--mantine-primary-color-filled);
-          text-decoration: none;
-        }
-      `}</style>
+          a {
+            color: var(--mantine-primary-color-filled);
+            text-decoration: none;
+          }
+        `}</style>
+      </MantineEmotionProvider>
     </MantineProvider>
   );
 };

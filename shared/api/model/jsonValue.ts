@@ -5,18 +5,12 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { PrismaJsonObject } from "./prismaJsonObject";
-import type { PrismaJsonArray } from "./prismaJsonArray";
+import type { JsonObject } from './jsonObject';
+import type { JsonArray } from './jsonArray';
 
 /**
  * From https://github.com/sindresorhus/type-fest/
 Matches any valid JSON value.
  * @nullable
  */
-export type PrismaJsonValue =
-  | string
-  | number
-  | boolean
-  | PrismaJsonObject
-  | PrismaJsonArray
-  | null;
+export type JsonValue = string | number | boolean | JsonObject | JsonArray | null;

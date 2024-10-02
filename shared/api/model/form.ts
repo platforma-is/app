@@ -5,9 +5,9 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { DefaultSelectionPrisma36FormPayload } from "./defaultSelectionPrisma36FormPayload";
+import type { ResultDefaultSelectionPrismaFormPayload } from './resultDefaultSelectionPrismaFormPayload';
 
 /**
  * Model Form
  */
-export type Form = DefaultSelectionPrisma36FormPayload;
+export type Form = ResultDefaultSelectionPrismaFormPayload;
