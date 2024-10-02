@@ -5,19 +5,23 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { _36EnumsSucessScreen } from "./_36EnumsSucessScreen";
+import type { PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen } from './partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen';
 
 /**
  * Make all properties in T optional
  */
 export interface PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId {
   active?: boolean;
-  customUrlError?: string;
-  customUrlSuccess?: string;
+  /** @nullable */
+  customUrlError?: string | null;
+  /** @nullable */
+  customUrlSuccess?: string | null;
   emailNotification?: boolean;
   emailNotificationMails?: string[];
-  folder?: string;
+  /** @nullable */
+  folder?: string | null;
   spamProtected?: boolean;
-  successScreen?: _36EnumsSucessScreen;
+  /** @nullable */
+  successScreen?: PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen;
   title?: string;
 }

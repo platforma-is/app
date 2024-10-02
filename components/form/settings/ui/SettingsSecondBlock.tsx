@@ -4,7 +4,7 @@ import { SettingsSwitch } from "@/components/form/settings/ui/SettingsSwitch";
 import { SettingsMultipleSelect } from "@/components/form/settings/ui/SettingsMultipleSelect";
 import { SettingsRadioFields } from "@/components/form/settings/ui/SettingsRadioFields";
 import { ISettingsBlock } from "@/components/form/settings/types";
-import { EnumsSucessScreen } from "@/shared/api/model";
+import { SucessScreen } from "@/shared/api/model";
 
 export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
   return (
@@ -17,7 +17,7 @@ export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
         switchProps={{
           color: "#5033FF",
           key: formController.key("emailNotification"),
-          ...formController.getInputProps("emailNotification"),
+          ...formController.getInputProps("emailNotification", {type: 'checkbox'}),
         }}
       />
       <SettingsMultipleSelect
@@ -38,18 +38,16 @@ export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
         title={"Экран успеха"}
         labelProps={{ key: formController.key("successScreen"), fw: 600 }}
         data={[
-          { label: "Стандартный", value: EnumsSucessScreen.STANDART },
-          { label: "Собственный", value: EnumsSucessScreen.CUSTOM },
+          { label: "Стандартный", value: SucessScreen.STANDART },
+          { label: "Собственный", value: SucessScreen.CUSTOM },
         ]}
-        active={formController.getValues().successScreen}
+        active={formController.values?.successScreen || ''}
         radioProps={{
-          ...formController.getInputProps("successScreen", {
-            type: "checkbox",
-          }),
+          ...formController.getInputProps("successScreen"),
           onChange: (e) => {
             formController.setFieldValue(
               "successScreen",
-              e.target.value as EnumsSucessScreen,
+              e.target.value as SucessScreen,
             );
           },
         }}

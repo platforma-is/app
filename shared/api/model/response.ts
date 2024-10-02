@@ -5,9 +5,9 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { DefaultSelectionPrisma36ResponsePayload } from "./defaultSelectionPrisma36ResponsePayload";
+import type { ResultDefaultSelectionPrismaResponsePayload } from './resultDefaultSelectionPrismaResponsePayload';
 
 /**
  * Model Response
  */
-export type Response = DefaultSelectionPrisma36ResponsePayload;
+export type Response = ResultDefaultSelectionPrismaResponsePayload;

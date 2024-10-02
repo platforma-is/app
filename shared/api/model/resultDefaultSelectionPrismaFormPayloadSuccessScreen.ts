@@ -5,11 +5,9 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
+import type { SucessScreen } from './sucessScreen';
 
 /**
- * From https://github.com/sindresorhus/type-fest/
-Matches a JSON array.
+ * @nullable
  */
-export interface PrismaJsonArray {
-  [key: string]: unknown;
-}
+export type ResultDefaultSelectionPrismaFormPayloadSuccessScreen = SucessScreen | null;

@@ -5,13 +5,12 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
+import type { JsonValue } from './jsonValue';
 
-export type GetUserDataById200 = {
+export interface ResultDefaultSelectionPrismaResponsePayload {
   createdAt: string;
-  email: string;
-  emailVerified: string;
+  data: JsonValue;
+  formId: string;
   id: string;
-  image: string;
-  name: string;
   updatedAt: string;
-};
+}

@@ -1,6 +1,6 @@
 module.exports = {
   platforma: {
-    input: "http://localhost:3001/swagger.json",
+    input: "swagger.json",
     output: {
       mode: "tags-split",
       prettier: true,
@@ -11,9 +11,9 @@ module.exports = {
       override: {
         mutator: {
           path: "shared/api/mutator/custom-instance.ts",
-          name: "customInstance",
-        },
-      },
-    },
-  },
+          name: "customInstance"
+        }
+      }
+    }
+  }
 };

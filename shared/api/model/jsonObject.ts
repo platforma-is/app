@@ -5,13 +5,10 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { PrismaJsonValue } from "./prismaJsonValue";
 
 /**
  * From https://github.com/sindresorhus/type-fest/
 Matches a JSON object.
 This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from.
  */
-export interface PrismaJsonObject {
-  [key: string]: PrismaJsonValue;
-}
+export interface JsonObject { [key: string]: unknown }

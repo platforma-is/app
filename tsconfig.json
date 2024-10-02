@@ -32,7 +32,8 @@
     "strictNullChecks": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+//    "shared/api/gen",
   ],
   "include": [
     "next-env.d.ts",

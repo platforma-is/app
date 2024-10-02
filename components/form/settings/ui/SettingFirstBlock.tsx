@@ -29,7 +29,7 @@ export const SettingFirstBlock = ({ formController }: ISettingsBlock) => {
         switchProps={{
           color: "#5033FF",
           key: formController.key("active"),
-          ...formController.getInputProps("active"),
+          ...formController.getInputProps("active", {type: 'checkbox'}),
         }}
       />
       <SettingsSwitch
@@ -37,7 +37,7 @@ export const SettingFirstBlock = ({ formController }: ISettingsBlock) => {
         switchProps={{
           color: "#5033FF",
           key: formController.key("spamProtected"),
-          ...formController.getInputProps("spamProtected"),
+          ...formController.getInputProps("spamProtected", {type: 'checkbox'}),
         }}
       />
     </Flex>
