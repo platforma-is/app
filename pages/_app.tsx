@@ -18,13 +18,10 @@ import { DatesProvider } from "@mantine/dates";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import {
-  HydrationBoundary,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { HydrationBoundary, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Notifications } from "@mantine/notifications";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -136,6 +133,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
             text-decoration: none;
           }
         `}</style>
+        <Notifications withinPortal />
       </MantineEmotionProvider>
     </MantineProvider>
   );

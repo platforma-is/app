@@ -38,6 +38,7 @@ export const useFormSettings = (form: Form) => {
   useEffect(() => {
     if (isSuccess) {
       formController.setValues({ ...settingsData });
+      formController.resetDirty();
     }
   }, [isSuccess, settingsData]);
 
@@ -66,7 +67,7 @@ export const useFormSettings = (form: Form) => {
         onSuccess: async () => {
           await queryClient
             .invalidateQueries({
-              queryKey: getGetFormsQueryKey(),
+              queryKey: [getGetFormsQueryKey()],
             })
             .then(() =>
               handleNotification({

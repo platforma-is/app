@@ -9,7 +9,7 @@ type CreateModalSidebarProps = {
   open: boolean;
   setOpen: (it: boolean) => void;
 };
-
+const VARIANTS = ["Форму", "Папку"];
 export const CreateModalSidebar = ({
   open,
   setOpen,
@@ -55,14 +55,19 @@ export const CreateModalSidebar = ({
       body={
         <form onSubmit={submitData}>
           <Flex direction={"column"} w={"100%"}>
-            <Flex>
-              {["Форму", "Папку"].map((it, idx) => (
+            <Flex gap={10}>
+              {VARIANTS.map((it, idx) => (
                 <Paper
                   key={it}
-                  onClick={() => setSelectedOption(idx)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSelectedOption(idx);
+                  }}
+                  disabled={it === VARIANTS[1]}
                   p={"0.75rem"}
                   withBorder={idx === selectedOption}
                   shadow={idx === selectedOption ? "xl" : ""}
+                  sx={{border: idx !== selectedOption ? 'none' : ''}}
                   radius={"0.5rem"}
                   h={"fit-content"}
                   w={"fit-content"}
