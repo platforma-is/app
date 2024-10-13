@@ -8,10 +8,7 @@ import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
 import { Sidebar } from "@/components/global/Sidebar";
 import { SidebarMenu } from "@/components/global/SidebarMenu";
 import { Loader } from "@mantine/core";
-import {
-  useGetFormById,
-  useGetResponses,
-} from "@/shared/api/gen/forms/forms.api";
+import { useGetFormById, useGetResponses } from "@/shared/api/gen/forms/forms.api";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
@@ -19,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-const Post: React.FC<{
+const Form: React.FC<{
   id?: string;
 }> = ({ id }) => {
   const { data: form } = useGetFormById(id ?? "");
@@ -28,7 +25,7 @@ const Post: React.FC<{
     form || null,
   );
 
-  if (!form) return <Loader />;
+  if (!form) return <Loader pos={'absolute'} top={'50%'} left={'50%'} />;
 
   return (
     <GlobalWrapper sidebar={<Sidebar menuContent={<SidebarMenu />} />}>
@@ -48,4 +45,4 @@ const Post: React.FC<{
   );
 };
 
-export default Post;
+export default Form;

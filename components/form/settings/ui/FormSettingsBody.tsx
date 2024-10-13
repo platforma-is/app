@@ -30,10 +30,11 @@ export const FormSettingsBody = ({ form }: FormSettingsBodyProps) => {
         overlayProps={{ radius: "sm", blur: 2 }}
       />
       <Button
+        disabled={!formController.isDirty()}
         loading={isSaveLoading}
         type={"submit"}
         pos={"fixed"}
-        sx={{zIndex: 100}}
+        sx={{zIndex: 'auto'}}
         bottom={"1.5rem"}
         right={"1.5rem"}
       >

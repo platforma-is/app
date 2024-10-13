@@ -7,7 +7,7 @@ import {
   Paper,
   Text,
   TextInput,
-  TextInputProps,
+  TextInputProps
 } from "@mantine/core";
 import { useEffect, useId, useState } from "react";
 
@@ -16,8 +16,7 @@ interface SettingsMultipleSelectProps {
   labelProps?: InputLabelProps;
   inputProps?: TextInputProps;
   selected?: string[];
-  addCallback?: (selected: string[]) => void;
-  removeCallback?: (selected: string[]) => void;
+  changeCallback?: (selected: string[]) => void;
 }
 
 export const SettingsMultipleSelect = ({
@@ -25,12 +24,11 @@ export const SettingsMultipleSelect = ({
   labelProps,
   inputProps,
   selected = [],
-  addCallback = () => {},
-  removeCallback = () => {},
+  changeCallback = () => {},
 }: SettingsMultipleSelectProps) => {
   const id = useId();
   const [items, setItems] = useState(selected);
-  const [inputValue, setInputValue] = useState(inputProps?.value?.toString);
+  const [inputValue, setInputValue] = useState('');
   const handleAddItem = (it) => {
     setItems((prev) => [...prev, it]);
     setInputValue(() => "");
@@ -41,8 +39,11 @@ export const SettingsMultipleSelect = ({
   };
 
   useEffect(() => {
-    addCallback(items);
-    removeCallback(items);
+    setItems(selected)
+  }, [selected]);
+
+  useEffect(() => {
+    changeCallback(items);
   }, [items]);
 
   return (
@@ -62,7 +63,6 @@ export const SettingsMultipleSelect = ({
             w={"65%"}
             type={"email"}
             {...inputProps}
-            placeholder={"inbox@mail.com"}
             id={id}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}

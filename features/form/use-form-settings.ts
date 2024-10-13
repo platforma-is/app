@@ -1,7 +1,9 @@
 "use client";
 
 import {
+  getGetFormByIdQueryKey,
   getGetFormsQueryKey,
+  getGetSettingsQueryKey,
   useDeleteForm,
   useGetSettings,
   useUpdateSettings
@@ -25,8 +27,8 @@ export const useFormSettings = (form: Form) => {
   const formController = useForm<Partial<TSettings>>({
     mode: "uncontrolled",
     initialValues: {
-      ...settingsData,
-    },
+      ...settingsData
+    }
   });
 
   useEffect(() => {
@@ -38,6 +40,7 @@ export const useFormSettings = (form: Form) => {
   useEffect(() => {
     if (isSuccess) {
       formController.setValues({ ...settingsData });
+      formController.resetDirty();
     }
   }, [isSuccess, settingsData]);
 
@@ -51,8 +54,8 @@ export const useFormSettings = (form: Form) => {
             .then(() => {
               Router.push("/");
             });
-        },
-      },
+        }
+      }
     );
   };
 
@@ -60,24 +63,23 @@ export const useFormSettings = (form: Form) => {
     updateSettings.mutate(
       {
         formId: form.id,
-        data: values,
+        data: values
       },
       {
         onSuccess: async () => {
-          await queryClient
-            .invalidateQueries({
-              queryKey: getGetFormsQueryKey(),
-            })
+          await queryClient.invalidateQueries({ queryKey: getGetFormByIdQueryKey(form.id) });
+          await queryClient.invalidateQueries({ queryKey: getGetSettingsQueryKey(form.id) });
+          await queryClient.invalidateQueries({ queryKey: getGetFormsQueryKey() })
             .then(() =>
               handleNotification({
-                message: "Настройки вашей формы успешно обновлены!",
-              }),
+                message: "Настройки вашей формы успешно обновлены!"
+              })
             );
         },
         onError: () => {
           handleNotification({ mode: "error", message: "Произошла ошибка" });
-        },
-      },
+        }
+      }
     );
   };
 
@@ -87,6 +89,6 @@ export const useFormSettings = (form: Form) => {
     isDeleteLoading: deleteFormMutation.isPending,
     isSaveLoading: updateSettings.isPending,
     formController,
-    visible,
+    visible
   };
 };

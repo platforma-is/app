@@ -1,12 +1,4 @@
-import {
-  Flex,
-  Group,
-  InputLabel,
-  InputLabelProps,
-  Radio,
-  RadioGroup,
-  RadioProps,
-} from "@mantine/core";
+import { Flex, Group, InputLabel, InputLabelProps, Radio, RadioGroup, RadioProps } from "@mantine/core";
 import { useId } from "react";
 
 interface SettingsSelectProps {

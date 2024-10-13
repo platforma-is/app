@@ -17,21 +17,20 @@ export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
         switchProps={{
           color: "#5033FF",
           key: formController.key("emailNotification"),
-          ...formController.getInputProps("emailNotification", {type: 'checkbox'}),
+          ...formController.getInputProps("emailNotification", { type: "checkbox" })
         }}
       />
       <SettingsMultipleSelect
-        addCallback={(selected) =>
-          formController.setFieldValue("emailNotificationMails", selected)
-        }
-        removeCallback={(selected) =>
+        changeCallback={(selected) =>
           formController.setFieldValue("emailNotificationMails", selected)
         }
         title={"Электронная почта"}
         selected={formController.getValues().emailNotificationMails}
         inputProps={{
+          disabled: !formController.getValues().emailNotification,
+          placeholder:  !formController.getValues().emailNotification ? 'Разрешите получение писем' : 'inbox@mail.com',
           key: formController.key("emailNotificationMails"),
-          ...formController.getInputProps("emailNotificationMails"),
+          ...formController.getInputProps("emailNotificationMails")
         }}
       />
       <SettingsRadioFields
@@ -39,17 +38,17 @@ export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
         labelProps={{ key: formController.key("successScreen"), fw: 600 }}
         data={[
           { label: "Стандартный", value: SucessScreen.STANDART },
-          { label: "Собственный", value: SucessScreen.CUSTOM },
+          { label: "Собственный", value: SucessScreen.CUSTOM }
         ]}
-        active={formController.values?.successScreen || ''}
+        active={formController.values?.successScreen || ""}
         radioProps={{
           ...formController.getInputProps("successScreen"),
           onChange: (e) => {
             formController.setFieldValue(
               "successScreen",
-              e.target.value as SucessScreen,
+              e.target.value as SucessScreen
             );
-          },
+          }
         }}
       />
       <SettingsTextField
@@ -57,7 +56,7 @@ export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
           disabled: formController.getValues().successScreen !== "CUSTOM",
           placeholder: "https://yourdomain",
           key: formController.key("customUrlSuccess"),
-          ...formController.getInputProps("customUrlSuccess"),
+          ...formController.getInputProps("customUrlSuccess")
         }}
         title={"URL успеха"}
       />
@@ -67,7 +66,7 @@ export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
           disabled: formController.getValues().successScreen !== "CUSTOM",
           placeholder: "https://yourdomain",
           key: formController.key("customUrlError"),
-          ...formController.getInputProps("customUrlError"),
+          ...formController.getInputProps("customUrlError")
         }}
         title={"URL ошибки"}
       />
