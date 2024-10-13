@@ -1,13 +1,14 @@
-import { Button, Flex, Loader, Paper, Text, TextInput } from "@mantine/core";
+import { Button, Flex, Loader, Paper, Text, TextInput, Tooltip } from "@mantine/core";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import React, { useState } from "react";
 import Router from "next/router";
-import { useAddForm } from "@/shared/api/gen/forms/forms.api";
+import { getGetFormsQueryKey, useAddForm } from "@/shared/api/gen/forms/forms.api";
 import { useQueryClient } from "@tanstack/react-query";
+import { handleNotification } from "@/shared/utils";
 
 type CreateModalSidebarProps = {
   open: boolean;
-  setOpen: (it: boolean) => void;
+  setOpen: (it?: boolean) => void;
 };
 const VARIANTS = ["Форму", "Папку"];
 export const CreateModalSidebar = ({
@@ -24,8 +25,9 @@ export const CreateModalSidebar = ({
         { data: { title } },
         {
           onSuccess: async (data) => {
+            handleNotification({message: "Форма создана :)"})
             await queryClient
-              .invalidateQueries({ queryKey: ["forms"] })
+              .invalidateQueries({ queryKey: [getGetFormsQueryKey()] })
               .then(() => {
                 setOpen(false);
                 setTitle("");
@@ -35,7 +37,7 @@ export const CreateModalSidebar = ({
         },
       );
     } catch (error) {
-      console.error(error);
+      handleNotification({mode: "error", message: "Ошибка в создании формы"})
     }
   };
 
@@ -57,7 +59,8 @@ export const CreateModalSidebar = ({
           <Flex direction={"column"} w={"100%"}>
             <Flex gap={10}>
               {VARIANTS.map((it, idx) => (
-                <Paper
+                <Tooltip position={'bottom'} disabled={it !== VARIANTS[1]} label="Пока недоступно">
+                  <Paper
                   key={it}
                   onClick={(e) => {
                     e.preventDefault();
@@ -75,6 +78,7 @@ export const CreateModalSidebar = ({
                 >
                   <Text>{it}</Text>
                 </Paper>
+                </Tooltip>
               ))}
             </Flex>
             <TextInput

@@ -7,5 +7,5 @@ export const defaultNotificationPosition: Omit<
   pos: "fixed",
   right: 20,
   bottom: 20,
-  autoClose: 1500,
+  autoClose: 1.5 * 1000,
 };

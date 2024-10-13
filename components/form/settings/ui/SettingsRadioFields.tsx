@@ -1,5 +1,5 @@
 import { Flex, Group, InputLabel, InputLabelProps, Radio, RadioGroup, RadioProps } from "@mantine/core";
-import { useEffect, useId } from "react";
+import { useId } from "react";
 
 interface SettingsSelectProps {
   title?: string;
@@ -17,9 +17,6 @@ export const SettingsRadioFields = ({
   active,
 }: SettingsSelectProps) => {
   const id = useId();
-  useEffect(() => {
-    console.log(data, active);
-  }, [data, active]);
   return (
     <Flex align={"flex-start"} gap={"1.5rem"} direction={"row"}>
       <InputLabel w={"12rem"} fw={400} {...labelProps} htmlFor={id}>

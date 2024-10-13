@@ -133,7 +133,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
             text-decoration: none;
           }
         `}</style>
-        <Notifications withinPortal />
+        <Notifications />
       </MantineEmotionProvider>
     </MantineProvider>
   );

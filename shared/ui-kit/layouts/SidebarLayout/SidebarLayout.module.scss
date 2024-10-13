@@ -57,9 +57,13 @@
   .bottom_sidebar {
     width: 100%;
     padding: 0.75rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     border-top: 1px solid var(--Gray-Gray-3, #DEE2E6);
 
     .profile_btn {
+      cursor: auto;
       font-family: "Inter", sans-serif;
       font-size: 1.125rem;
       font-style: normal;
