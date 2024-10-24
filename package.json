@@ -16,6 +16,7 @@
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "orval-gen": "orval --config ./orval.config.js",
     "get-swagger-schema": "wget http://localhost:3001/swagger.json",
+    "get-prisma-schema": "wget http://localhost:3001/schema.prisma -P prisma",
     "remove-gen": "rm -rf shared/api/gen shared/api/model",
     "relock": "rm -rf node_modules package-lock.json"
   },
