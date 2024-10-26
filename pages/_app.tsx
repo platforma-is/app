@@ -22,6 +22,8 @@ import { HydrationBoundary, QueryClient, QueryClientProvider } from "@tanstack/r
 import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Notifications } from "@mantine/notifications";
+import { MODES } from "@/shared/constants";
+import ErrorBoundary from "@/components/global/ErrorBoundary";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -72,33 +74,37 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
     },
   });
 
-  return (
-    <MantineProvider stylesTransform={emotionTransform} theme={theme}>
-      <MantineEmotionProvider>
-        <QueryClientProvider client={queryClient}>
-          <HydrationBoundary
-            queryClient={queryClient}
-            state={pageProps.dehydratedState}
-          >
-            <SessionProvider session={pageProps.session}>
-              <DatesProvider
-                settings={
-                  {
-                    // locale: "en-US",
-                    // firstDayOfWeek: 0,
-                    // weekendDays: [0],
-                    // timezone: "UTC",
-                  }
-                }
-              >
-                {getLayout(<Component {...pageProps} />)}
-              </DatesProvider>
-            </SessionProvider>
-          </HydrationBoundary>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+  const isDev = process.env.MODE === MODES.DEV;
 
-        <style jsx global>{`
+  return (
+    <ErrorBoundary>
+
+      <MantineProvider stylesTransform={emotionTransform} theme={theme}>
+        <MantineEmotionProvider>
+          <QueryClientProvider client={queryClient}>
+            <HydrationBoundary
+              queryClient={queryClient}
+              state={pageProps.dehydratedState}
+            >
+              <SessionProvider session={pageProps.session}>
+                <DatesProvider
+                  settings={
+                    {
+                      // locale: "en-US",
+                      // firstDayOfWeek: 0,
+                      // weekendDays: [0],
+                      // timezone: "UTC",
+                    }
+                  }
+                >
+                  {getLayout(<Component {...pageProps} />)}
+                </DatesProvider>
+              </SessionProvider>
+            </HydrationBoundary>
+            {isDev && <ReactQueryDevtools initialIsOpen={false} />}
+          </QueryClientProvider>
+
+          <style jsx global>{`
           html {
             box-sizing: border-box;
           }
@@ -133,9 +139,10 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
             text-decoration: none;
           }
         `}</style>
-        <Notifications />
-      </MantineEmotionProvider>
-    </MantineProvider>
+          <Notifications />
+        </MantineEmotionProvider>
+      </MantineProvider>
+    </ErrorBoundary>
   );
 };
 

@@ -9,10 +9,10 @@
   "license": "MIT",
   "author": "",
   "scripts": {
-    "dev": "next",
+    "start:dev": "next",
     "build": "next build",
-    "start": "next start",
-    "postinstall": "prisma generate",
+    "start:prod": "next start",
+    "prisma:generate": "prisma generate",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "orval-gen": "orval --config ./orval.config.js",
     "get-swagger-schema": "wget http://localhost:3001/swagger.json",

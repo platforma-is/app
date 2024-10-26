@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Flex, Loader, Paper, Text, TextInput, Tooltip } from "@mantine/core";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import React, { useState } from "react";
@@ -25,22 +27,21 @@ export const CreateModalSidebar = ({
         { data: { title } },
         {
           onSuccess: async (data) => {
-            handleNotification({message: "Форма создана :)"})
-            await queryClient
-              .invalidateQueries({ queryKey: [getGetFormsQueryKey()] })
+            await queryClient.invalidateQueries({ queryKey: getGetFormsQueryKey() })
               .then(() => {
                 setOpen(false);
                 setTitle("");
-                Router.push(`/form/${data?.id}`);
+                Router.replace(`/form/${data?.id}`);
               });
+            handleNotification({ message: "Форма создана :)" });
           },
           onError: (err) => {
-            handleNotification({mode: "error", message: err.message})
+            handleNotification({ mode: "error", message: err.message })
           }
         },
       );
     } catch (error) {
-      handleNotification({mode: "error", message: "Ошибка в создании формы"})
+      handleNotification({ mode: "error", message: "Ошибка в создании формы" })
     }
   };
 
@@ -58,29 +59,29 @@ export const CreateModalSidebar = ({
         </Text>
       }
       body={
-        <form onSubmit={() => {submitData();}}>
+        <form onSubmit={(e) => { e.preventDefault(); submitData(); }}>
           <Flex direction={"column"} w={"100%"}>
             <Flex gap={10}>
               {VARIANTS.map((it, idx) => (
                 <Tooltip position={'bottom'} disabled={it !== VARIANTS[1]} label="Пока недоступно">
                   <Paper
-                  key={it}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelectedOption(idx);
-                  }}
-                  disabled={it === VARIANTS[1]}
-                  p={"0.75rem"}
-                  withBorder={idx === selectedOption}
-                  shadow={idx === selectedOption ? "xl" : ""}
-                  sx={{border: idx !== selectedOption ? 'none' : ''}}
-                  radius={"0.5rem"}
-                  h={"fit-content"}
-                  w={"fit-content"}
-                  component={"button"}
-                >
-                  <Text>{it}</Text>
-                </Paper>
+                    key={it}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSelectedOption(idx);
+                    }}
+                    disabled={it === VARIANTS[1]}
+                    p={"0.75rem"}
+                    withBorder={idx === selectedOption}
+                    shadow={idx === selectedOption ? "xl" : ""}
+                    sx={{ border: idx !== selectedOption ? 'none' : '' }}
+                    radius={"0.5rem"}
+                    h={"fit-content"}
+                    w={"fit-content"}
+                    component={"button"}
+                  >
+                    <Text>{it}</Text>
+                  </Paper>
                 </Tooltip>
               ))}
             </Flex>

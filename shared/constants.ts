@@ -9,3 +9,8 @@ export const defaultNotificationPosition: Omit<
   bottom: 20,
   autoClose: 1.5 * 1000,
 };
+
+export const MODES = {
+  PRODUCTION: 'production',
+  DEV: 'dev'
+};

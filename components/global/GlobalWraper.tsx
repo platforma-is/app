@@ -19,7 +19,7 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
   const { data: sessionData, status } = useSession();
 
   const render = () => {
-    if (status === "loading") {
+    if (!sessionData && status === "loading") {
       return (
         <Container size="md" className={classes.inner}>
           <Loader pos={"absolute"} top={"50%"} left={"50%"} />

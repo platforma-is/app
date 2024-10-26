@@ -1,9 +1,19 @@
 import { IconCode, IconMail, IconSettings2 } from "@tabler/icons-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NullableForm } from "@/shared/api/model";
+import { useDisclosure } from "@mantine/hooks";
 
 function useFormItemPage(form: NullableForm) {
   const [activeTab, setActiveTab] = useState<string | null>("integration");
+
+  const [visible, { close }] = useDisclosure(!form);
+
+  useEffect(() => {
+    if (form) {
+      close();
+    }
+  }, [form]);
+
 
   const tabs = [
     {
@@ -31,15 +41,15 @@ function useFormItemPage(form: NullableForm) {
     },
   ];
 
-  const publicLink = `${
-    typeof window !== "undefined" ? window.location.origin : ""
-  }/forms/${form?.id}/responses`;
+  const publicLink = `${typeof window !== "undefined" ? window.location.origin : ""
+    }/forms/${form?.id}/responses`;
 
   return {
     tabs,
     publicLink,
     activeTab,
     setActiveTab,
+    visible
   };
 }
 
