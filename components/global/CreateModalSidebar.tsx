@@ -34,6 +34,9 @@ export const CreateModalSidebar = ({
                 Router.push(`/form/${data?.id}`);
               });
           },
+          onError: (err) => {
+            handleNotification({mode: "error", message: err.message})
+          }
         },
       );
     } catch (error) {
@@ -55,7 +58,7 @@ export const CreateModalSidebar = ({
         </Text>
       }
       body={
-        <form onSubmit={submitData}>
+        <form onSubmit={() => {submitData();}}>
           <Flex direction={"column"} w={"100%"}>
             <Flex gap={10}>
               {VARIANTS.map((it, idx) => (

@@ -1,36 +1,31 @@
-# Installation
+# Platforma.is frontend
 
-Copy `.env.example` to `.env` and fill in the values.
-
-Install dependencies and initialize database:
+### .env 
 
 ```
-npm install
+# MODE 
+MODE=%production|dev%
 
-# [optional] only for local db: docker-compose up -d
+# Oauth
+SECRET=%SECRET%
+NEXTAUTH_URL=%NEXTAUTH_URL%
+AUTH_SUCCESS_CALLBACK_URL=%AUTH_SUCCESS_CALLBACK_URL%
+BACKEND_HOSTNAME=%BACKEND_HOSTNAME%
+BACKEND_PORT=%BACKEND_PORT%
 
-# init database
-npx prisma migrate dev --name init
+GITHUB_ID=%GITHUB_ID%
+GITHUB_SECRET=%GITHUB_SECRET%
+
+VK_ID=%VK_ID%
+VK_CLIENT_ID=%VK_CLIENT_ID%
+VK_CLIENT_SECRET=%VK_CLIENT_SECRET%
+
+YANDEX_CLIENT_ID=%YANDEX_CLIENT_ID%
+YANDEX_CLIENT_SECRET=%YANDEX_CLIENT_SECRET%
 ```
 
-Start the server:
 
-```
-npm run dev
-```
-
-# Work with data
-
-```
-npx prisma studio
-```
-
-# Deploy
-
-https://dev.to/markusmp/step-by-step-guide-deploying-a-nextjs-app-on-a-vps-4iaj
-
-
-# Structure
+### Structure
 
 ```javascript
 /app

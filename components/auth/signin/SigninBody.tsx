@@ -31,6 +31,8 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
     yandex: yandexIcon.src,
   };
 
+  const callbackUrl = process.env.AUTH_SUCCESS_CALLBACK_URL;
+
   return (
     <Flex className={classes.logo_container} direction={"row"}>
       <img
@@ -55,10 +57,12 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
                   className={classes.auth_btn}
                   color={"black"}
                   variant={"outline"}
-                  onClick={() =>
-                    signIn(provider.id, {
-                      callbackUrl: "http://localhost:3000/",
-                    })
+                  onClick={async () => {
+
+                    const sign = signIn(provider.id, {
+                      callbackUrl,
+                    })  
+                  }
                   }
                   key={provider.name}
                   leftSection={<SocialIcon src={icons[provider.id]} />}
