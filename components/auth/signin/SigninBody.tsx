@@ -5,7 +5,7 @@ import githubIcon from "@/public/assets/icons/socials/github.svg";
 import yandexIcon from "@/public/assets/icons/socials/yandex.svg";
 import vkIcon from "@/public/assets/icons/socials/vk.svg";
 import { FC } from "react";
-import { TProvider } from "@/shared/types";
+import { TProvider } from "@/index";
 
 type SigninBodyProps = {
   providers: TProvider;
@@ -61,7 +61,7 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
 
                     const sign = signIn(provider.id, {
                       callbackUrl,
-                    })  
+                    })
                   }
                   }
                   key={provider.name}

@@ -52,7 +52,7 @@ export const useFormSettings = (form: Form) => {
           await queryClient
             .invalidateQueries({ queryKey: [getGetFormsQueryKey()] })
             .then(() => {
-              Router.push("/");
+              Router.replace("/");
             });
         }
       }

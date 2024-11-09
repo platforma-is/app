@@ -23,7 +23,7 @@ import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Notifications } from "@mantine/notifications";
 import { MODES } from "@/shared/constants";
-import ErrorBoundary from "@/components/global/ErrorBoundary";
+import { ErrorBoundary } from "@/components/global/ErrorBoundary";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -47,8 +47,8 @@ const theme = createTheme({
       "#7661FF",
       "#6850FF",
       "#5E44FA",
-      "#5033FF",
-    ],
+      "#5033FF"
+    ]
   },
   primaryColor: "platforma",
   primaryShade: 9,
@@ -57,11 +57,11 @@ const theme = createTheme({
     Tabs: Tabs.extend({
       styles: {
         tab: {
-          fontSize: "20px",
-        },
-      },
-    }),
-  },
+          fontSize: "20px"
+        }
+      }
+    })
+  }
 });
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
@@ -69,18 +69,18 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        gcTime: 1000 * 60 * 60 * 24, // 24 hours
-      },
-    },
+        gcTime: 1000 * 60 * 60 * 24 // 24 hours
+      }
+    }
   });
 
   const isDev = process.env.MODE === MODES.DEV;
 
   return (
-    <ErrorBoundary>
 
-      <MantineProvider stylesTransform={emotionTransform} theme={theme}>
-        <MantineEmotionProvider>
+    <MantineProvider stylesTransform={emotionTransform} theme={theme}>
+      <MantineEmotionProvider>
+        <ErrorBoundary>
           <QueryClientProvider client={queryClient}>
             <HydrationBoundary
               queryClient={queryClient}
@@ -105,44 +105,44 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
           </QueryClientProvider>
 
           <style jsx global>{`
-          html {
-            box-sizing: border-box;
-          }
+            html {
+              box-sizing: border-box;
+            }
 
-          *,
-          *:before,
-          *:after {
-            box-sizing: inherit;
-          }
+            *,
+            *:before,
+            *:after {
+              box-sizing: inherit;
+            }
 
-          body {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            body {
+              margin: 0;
+              padding: 0;
+              font-size: 16px;
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
               Helvetica, Arial, sans-serif, "Apple Color Emoji",
               "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #fff;
-          }
+              background-color: #fff;
+            }
 
-          input,
-          textarea {
-            font-size: 16px;
-          }
+            input,
+            textarea {
+              font-size: 16px;
+            }
 
-          button {
-            cursor: pointer;
-          }
+            button {
+              cursor: pointer;
+            }
 
-          a {
-            color: var(--mantine-primary-color-filled);
-            text-decoration: none;
-          }
-        `}</style>
+            a {
+              color: var(--mantine-primary-color-filled);
+              text-decoration: none;
+            }
+          `}</style>
           <Notifications />
-        </MantineEmotionProvider>
-      </MantineProvider>
-    </ErrorBoundary>
+        </ErrorBoundary>
+      </MantineEmotionProvider>
+    </MantineProvider>
   );
 };
 

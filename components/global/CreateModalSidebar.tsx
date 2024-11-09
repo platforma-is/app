@@ -63,7 +63,7 @@ export const CreateModalSidebar = ({
           <Flex direction={"column"} w={"100%"}>
             <Flex gap={10}>
               {VARIANTS.map((it, idx) => (
-                <Tooltip position={'bottom'} disabled={it !== VARIANTS[1]} label="Пока недоступно">
+                <Tooltip key={it} position={'bottom'} disabled={it !== VARIANTS[1]} label="Пока недоступно">
                   <Paper
                     key={it}
                     onClick={(e) => {

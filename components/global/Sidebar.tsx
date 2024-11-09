@@ -8,6 +8,7 @@ import { IconLogout2, IconMoodSmile } from "@tabler/icons-react";
 import { CreateModalSidebar } from "@/components/global/CreateModalSidebar";
 import Router from "next/router";
 import { useDisclosure } from "@mantine/hooks";
+import { useWindowSize } from "@/shared/hooks/useWindowSize";
 
 interface SibebarProps {
   menuContent?: ReactNode;
@@ -16,9 +17,10 @@ interface SibebarProps {
 export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
   const { data: sessionData, status } = useSession();
   const [opened, { toggle }] = useDisclosure(false);
+  const { height } = useWindowSize();
 
   const onLogoutClick = async () => {
-    await Router.push("/").then(async () => {
+    await Router.replace("/").then(async () => {
       await signOut();
     });
   };
@@ -26,7 +28,6 @@ export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
   const render = () => {
     if (status === "loading") {
       return <></>;
-      // return createPortal(<Loader />, document.body);
     }
 
     if (!sessionData) {
@@ -36,7 +37,7 @@ export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
     if (sessionData) {
       return (
         <SidebarLayout>
-          <Container className={classes.sidebar_content}>
+          <Container sx={{ height }} className={classes.sidebar_content}>
             <h3 className={classes.logo_title}>Формы</h3>
             <Button
               onClick={() => toggle()}

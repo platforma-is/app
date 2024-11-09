@@ -12,14 +12,15 @@ type SidebarMenuItemProps = {
 };
 
 export const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
-  form,
-  isActive,
-  notificationsNumber,
-}) => {
+                                                            form,
+                                                            isActive,
+                                                            notificationsNumber
+                                                          }) => {
+
   return (
     <div
       className={isActive ? clsx(classes.link, classes.active) : classes.link}
-      onClick={() => Router.push("/form/[id]", `/form/${form.id}`)}
+      onClick={() => Router.replace("/form/[id]", `/form/${form.id}`)}
     >
       <div className={classes.title}>{form.title}</div>
       {!!notificationsNumber && (

@@ -27,7 +27,7 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
       );
     } else {
       if (!sessionData) {
-        router.push("/auth/signin");
+        router.replace("/auth/signin");
       }
       if (sessionData) {
         return (

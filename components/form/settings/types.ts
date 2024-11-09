@@ -1,4 +1,4 @@
-import { FormControllerType } from "@/shared/types";
+import { FormControllerType } from "@/index";
 import { TSettings } from "@/shared/api/model";
 
 export interface ISettingsBlock {

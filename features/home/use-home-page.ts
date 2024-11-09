@@ -15,7 +15,7 @@ export function useHomePage() {
 
   useEffect(() => {
     if (status === "success" && isNotEmpty(data)) {
-      router.push(`form/${data[0].id}`);
+      router.replace(`form/${data[0].id}`);
     }
   }, [data, status, router]);
 }

@@ -2,9 +2,7 @@ import Axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { CamelCase } from "type-fest";
 
 
-
-const BACKEND_URL = !!process.env.BACKEND_HOSTNAME && !!process.env.BACKEND_PORT ?
-  `${process.env.BACKEND_HOSTNAME}:${process.env.BACKEND_PORT}` : process.env.NEXTAUTH_URL;
+const BACKEND_URL = 'http://localhost:3001'
 
 export const AXIOS_INSTANCE = Axios.create({
   baseURL: BACKEND_URL,
