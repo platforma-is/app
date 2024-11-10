@@ -16,7 +16,7 @@ import { createTheme, MantineProvider, Tabs } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 
 import relativeTime from "dayjs/plugin/relativeTime";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import { NextPage } from "next";
 import { HydrationBoundary, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
@@ -66,13 +66,13 @@ const theme = createTheme({
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => page);
-  const queryClient = new QueryClient({
+  const [queryClient] = useState(() => new QueryClient({
     defaultOptions: {
       queries: {
         gcTime: 1000 * 60 * 60 * 24 // 24 hours
       }
     }
-  });
+  }));
 
   const isDev = process.env.MODE === MODES.DEV;
 

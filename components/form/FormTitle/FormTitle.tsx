@@ -1,19 +1,11 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
-import {
-  ActionIcon,
-  CopyButton,
-  Flex,
-  rem,
-  TextInput,
-  Tooltip,
-} from "@mantine/core";
+'use client';
+
+import React, { FC, useEffect, useState } from "react";
+import { ActionIcon, CopyButton, Flex, rem, TextInput, Tooltip } from "@mantine/core";
 import { IconCheck, IconCopy } from "@tabler/icons-react";
 import classes from "@/components/form/FormTitle/FormTitle.module.scss";
 import { Form } from "@/shared/api/model";
-import {
-  getGetFormsQueryKey,
-  useUpdateSettings,
-} from "@/shared/api/gen/forms/forms.api";
+import { getGetFormsQueryKey, useUpdateSettings } from "@/shared/api/gen/forms/forms.api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -51,7 +43,7 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
   const [titleValue, setTitleValue] = useState(form.title);
   const queryClient = useQueryClient();
   const updateSettings = useUpdateSettings();
-  const handleUpdateQuery = useCallback((value: string, formId: string) => {
+  const handleUpdateQuery = (value: string, formId: string) => {
     if (value?.length > 0) {
       updateSettings.mutate(
         {
@@ -60,6 +52,7 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
         },
         {
           onSuccess: async () => {
+            console.log('call');
             await queryClient.invalidateQueries({
               queryKey: getGetFormsQueryKey(),
             });
@@ -67,7 +60,7 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
         },
       );
     }
-  }, []);
+  };
 
   const debouncedUpdateQuery = useDebouncedCallback(handleUpdateQuery, 1500);
   const handleChange = (e) => {
