@@ -62,7 +62,6 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
         },
         {
           onSuccess: async () => {
-            console.log("call");
             await queryClient.invalidateQueries({
               queryKey: getGetFormsQueryKey(),
             });

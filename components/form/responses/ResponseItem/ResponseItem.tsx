@@ -20,7 +20,6 @@ export const ResponseItem: FC<ResponseItemProps> = ({
   const createdAt = formatDate(new Date(response.createdAt));
   const [openedModal, { open, close }] = useDisclosure(false);
   const responseData = response?.data;
-  console.log(responseData);
   return (
     <>
       <Table.Tr
