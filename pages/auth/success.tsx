@@ -29,9 +29,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // To avoid an infinite loop!
 
   if (session && !!session.user) {
-      const userCreation = AXIOS_INSTANCE.post('/users/add', session.user);
-      userCreation.then(r => console.log(r)).catch(err => console.error(err)).finally(() => {});
-      // return { redirect: { destination: "/" } };
+    const userCreation = AXIOS_INSTANCE.post("/users/add", session.user);
+    userCreation
+      .then((r) => console.log(r))
+      .catch((err) => console.error(err))
+      .finally(() => {});
+    // return { redirect: { destination: "/" } };
   }
 
   const providers = await getProviders();

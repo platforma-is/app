@@ -34,7 +34,7 @@ export const FormSettingsBody = ({ form }: FormSettingsBodyProps) => {
         loading={isSaveLoading}
         type={"submit"}
         pos={"fixed"}
-        sx={{zIndex: 'auto'}}
+        sx={{ zIndex: "auto" }}
         bottom={"1.5rem"}
         right={"1.5rem"}
       >

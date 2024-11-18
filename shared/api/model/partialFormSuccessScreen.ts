@@ -5,7 +5,7 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { SucessScreen } from './sucessScreen';
+import type { SucessScreen } from "./sucessScreen";
 
 /**
  * @nullable

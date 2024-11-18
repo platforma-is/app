@@ -58,7 +58,7 @@ export const FormTabs = ({
         <IntegrationLayout publicLink={publicLink} />
       </Tabs.Panel>
       <Tabs.Panel key={`responses_panel${form.id}`} value="responses">
-        <Responses responses={responses} />
+        <Responses responses={responses} keys={form.keys} />
       </Tabs.Panel>
       <Tabs.Panel key={`settings_panel${form.id}`} value="settings">
         <FormSettingsLayout body={<FormSettingsBody form={form} />} />

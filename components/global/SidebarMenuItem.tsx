@@ -11,11 +11,9 @@ type SidebarMenuItemProps = {
 };
 
 export const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
-                                                            form,
-                                                            isActive,
-                                                            notificationsNumber
-                                                          }) => {
-
+  form,
+  isActive,
+}) => {
   return (
     <div
       className={isActive ? clsx(classes.link, classes.active) : classes.link}

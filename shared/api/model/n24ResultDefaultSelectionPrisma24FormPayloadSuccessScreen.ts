@@ -10,5 +10,5 @@ import type { SucessScreen } from "./sucessScreen";
 /**
  * @nullable
  */
-export type PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen =
+export type N24ResultDefaultSelectionPrisma24FormPayloadSuccessScreen =
   SucessScreen | null;

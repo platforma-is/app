@@ -5,6 +5,6 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId } from './partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId';
+import type { PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId } from "./partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId";
 
 export type TSettings = PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId;

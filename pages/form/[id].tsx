@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { GetServerSideProps } from "next";
@@ -10,7 +10,10 @@ import { ApplicationLayout } from "@/shared/ui-kit/layouts/ApplicationLayout";
 import { Sidebar } from "@/components/global/Sidebar";
 import { SidebarMenu } from "@/components/global/SidebarMenu";
 import { LoadingOverlay } from "@mantine/core";
-import { useGetFormById, useGetResponses } from "@/shared/api/gen/forms/forms.api";
+import {
+  useGetFormById,
+  useGetResponses,
+} from "@/shared/api/gen/forms/forms.api";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
@@ -23,13 +26,12 @@ const Form: React.FC<{
 }> = ({ id }) => {
   const { data: form } = useGetFormById(id ?? "");
   const { data: responses } = useGetResponses(id ?? "");
-  const { tabs, publicLink, activeTab, setActiveTab, visible } = useFormItemPage(
-    form || null,
-  );
+  const { tabs, publicLink, activeTab, setActiveTab, visible } =
+    useFormItemPage(form || null);
 
   return (
     <GlobalWrapper sidebar={<Sidebar menuContent={<SidebarMenu />} />}>
-      {form &&
+      {form && (
         <ApplicationLayout
           title={<FormTitle publicLink={publicLink} form={form} />}
         >
@@ -42,14 +44,13 @@ const Form: React.FC<{
             setActiveTab={setActiveTab}
           />
         </ApplicationLayout>
-      }
+      )}
 
       <LoadingOverlay
         visible={visible}
         zIndex={1000}
         overlayProps={{ radius: "sm", blur: 2 }}
       />
-
     </GlobalWrapper>
   );
 };

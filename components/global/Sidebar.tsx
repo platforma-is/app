@@ -62,10 +62,7 @@ export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
               <IconLogout2 cursor={"pointer"} onClick={onLogoutClick} />
             </Tooltip>
           </Container>
-          <CreateModalSidebar
-            open={opened}
-            setOpen={() => toggle()}
-          />
+          <CreateModalSidebar open={opened} setOpen={() => toggle()} />
         </SidebarLayout>
       );
     }

@@ -7,10 +7,10 @@
 [-] Добавить стили для скролл-баров
 [-] Привязать бэйджи уведомлений к реальным уведомлениям об ответах
 
-### .env 
+### .env
 
 ```
-# MODE 
+# MODE
 MODE=%production|dev%
 
 # Oauth
@@ -30,7 +30,6 @@ VK_CLIENT_SECRET=%VK_CLIENT_SECRET%
 YANDEX_CLIENT_ID=%YANDEX_CLIENT_ID%
 YANDEX_CLIENT_SECRET=%YANDEX_CLIENT_SECRET%
 ```
-
 
 ### Structure
 
@@ -61,7 +60,6 @@ YANDEX_CLIENT_SECRET=%YANDEX_CLIENT_SECRET%
 (npm run lint или плагин ide)
 ```
 
-
 # Table
 
 ```js
@@ -75,11 +73,13 @@ const rows = [{one: '1'}, {one: '2'}, {one: '3'}]
 # Кодген
 
 парсим схему командой
+
 ```
 npm run get-swagger-schema
 ```
 
 убираем из схемы все цифры со знаком % (реплейс по регулярке)
+
 ```
 %[0-9]*
 ```

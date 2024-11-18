@@ -5,7 +5,7 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { PartialFormSuccessScreen } from './partialFormSuccessScreen';
+import type { PartialFormSuccessScreen } from "./partialFormSuccessScreen";
 
 /**
  * Make all properties in T optional
@@ -23,6 +23,7 @@ export interface PartialForm {
   /** @nullable */
   folder?: string | null;
   id?: string;
+  keys?: string[];
   spamProtected?: boolean;
   /** @nullable */
   successScreen?: PartialFormSuccessScreen;

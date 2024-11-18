@@ -11,4 +11,6 @@
 Matches a JSON object.
 This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from.
  */
-export interface JsonObject { [key: string]: unknown }
+export interface JsonObject {
+  [key: string]: unknown;
+}

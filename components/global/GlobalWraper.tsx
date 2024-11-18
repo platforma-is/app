@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
 import { useSession } from "next-auth/react";
 import { Container, Loader } from "@mantine/core";
 import { GlobalLayout } from "@/shared/ui-kit/layouts/GlobalLayout/GlobalLayout";
@@ -32,7 +32,11 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
       if (sessionData) {
         return (
           <Container p={0} className={classes.inner}>
-            {children}
+            <Suspense
+              fallback={<Loader pos={"absolute"} top={"50%"} left={"50%"} />}
+            >
+              {children}
+            </Suspense>
           </Container>
         );
       }

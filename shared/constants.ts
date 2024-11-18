@@ -11,6 +11,6 @@ export const defaultNotificationPosition: Omit<
 };
 
 export const MODES = {
-  PRODUCTION: 'production',
-  DEV: 'dev'
+  PRODUCTION: "production",
+  DEV: "dev",
 };

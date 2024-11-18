@@ -7,6 +7,6 @@
  */
 
 export enum SucessScreen {
-  STANDART='STANDART',
-  CUSTOM='CUSTOM'
+  STANDART = "STANDART",
+  CUSTOM = "CUSTOM",
 }

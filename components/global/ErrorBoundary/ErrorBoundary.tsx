@@ -33,12 +33,15 @@ class ErrorBoundary extends React.Component {
           align={"center"}
           justify={"center"}
         >
-          <Image className={classes.logo} width={150} height={150} src={"/assets/icons/platforma.svg"} alt={"logo"} />
+          <Image
+            className={classes.logo}
+            width={150}
+            height={150}
+            src={"/assets/icons/platforma.svg"}
+            alt={"logo"}
+          />
           <h2>Произошла неизвестная ошибка :(</h2>
-          <Button
-            mt={20}
-            onClick={() => this.setState({ hasError: false })}
-          >
+          <Button mt={20} onClick={() => this.setState({ hasError: false })}>
             Попробовать заново?
           </Button>
         </Flex>

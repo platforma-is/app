@@ -4,10 +4,11 @@ import { ResponseItem } from "@/components/form/responses/ResponseItem/ResponseI
 import { Response } from "@/shared/api/model";
 
 type ResponsesProps = {
+  keys: string[];
   responses: Response[];
 };
 
-export const Responses: FC<ResponsesProps> = ({ responses }) => {
+export const Responses: FC<ResponsesProps> = ({ responses, keys }) => {
   return responses.length > 0 ? (
     <Paper radius={"md"} mt={"1.5rem"}>
       <Table
@@ -20,24 +21,23 @@ export const Responses: FC<ResponsesProps> = ({ responses }) => {
       >
         <Table.Thead>
           <Table.Tr>
-            {Object.keys(responses?.at(0)?.data ?? {}).map((key) => (
+            {keys.map((key) => (
               <Table.Th key={key}>
                 <Text color={"#A6A7AB"} size={"0.75rem"}>
                   {key}
                 </Text>
               </Table.Th>
             ))}
-            <Table.Th pl={"1rem"}>
+            <Table.Th key={"createdAt"} pl={"1rem"}>
               <Text color={"#A6A7AB"} size={"0.75rem"}>
                 Дата и время
               </Text>
             </Table.Th>
-            <Table.Th />
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
           {responses?.map((response) => (
-            <ResponseItem key={response.id} response={response} />
+            <ResponseItem keys={keys} key={response.id} response={response} />
           ))}
         </Table.Tbody>
       </Table>

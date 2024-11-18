@@ -18,7 +18,8 @@
     "get-swagger-schema": "wget http://localhost:3001/swagger.json",
     "get-prisma-schema": "wget http://localhost:3001/schema.prisma -P prisma",
     "remove-gen": "rm -rf shared/api/gen shared/api/model",
-    "relock": "rm -rf node_modules package-lock.json"
+    "relock": "rm -rf node_modules package-lock.json",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
     "@emotion/cache": "^11.13.1",
@@ -81,6 +82,7 @@
     "postcss": "^8.4.31",
     "postcss-preset-mantine": "^1.9.0",
     "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.3.3",
     "prisma": "5.4.2",
     "ts-node": "10.9.1",
     "typescript": "^5.2.2"

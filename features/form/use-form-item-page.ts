@@ -14,7 +14,6 @@ function useFormItemPage(form: NullableForm) {
     }
   }, [form]);
 
-
   const tabs = [
     {
       name: "integration",
@@ -41,15 +40,16 @@ function useFormItemPage(form: NullableForm) {
     },
   ];
 
-  const publicLink = `${typeof window !== "undefined" ? window.location.origin : ""
-    }/forms/${form?.id}/responses`;
+  const publicLink = `${
+    typeof window !== "undefined" ? window.location.origin : ""
+  }/forms/${form?.id}/responses`;
 
   return {
     tabs,
     publicLink,
     activeTab,
     setActiveTab,
-    visible
+    visible,
   };
 }
 

@@ -41,9 +41,7 @@ export const SidebarMenu: FC<SidebarMenuProps> = () => {
       );
     } else {
       return (
-        <ScrollArea
-          style={{ height }}
-          w={"100%"}>
+        <ScrollArea style={{ height }} w={"100%"}>
           <Flex w={"100%"} direction={"column"}>
             {forms?.map((form, index) => {
               const isActive = locationFormId ? form.id === params.id : false;
@@ -61,5 +59,9 @@ export const SidebarMenu: FC<SidebarMenuProps> = () => {
       );
     }
   };
-  return (<Flex ref={ref} w={"100%"} h={"100%"}>{render()}</Flex>);
+  return (
+    <Flex ref={ref} w={"100%"} h={"100%"}>
+      {render()}
+    </Flex>
+  );
 };

@@ -1,10 +1,21 @@
-'use client';
+"use client";
 
-import { Button, Flex, Loader, Paper, Text, TextInput, Tooltip } from "@mantine/core";
+import {
+  Button,
+  Flex,
+  Loader,
+  Paper,
+  Text,
+  TextInput,
+  Tooltip,
+} from "@mantine/core";
 import { ModalLayout } from "@/shared/ui-kit/layouts/ModalLayout";
 import React, { useState } from "react";
 import Router from "next/router";
-import { getGetFormsQueryKey, useAddForm } from "@/shared/api/gen/forms/forms.api";
+import {
+  getGetFormsQueryKey,
+  useAddForm,
+} from "@/shared/api/gen/forms/forms.api";
 import { useQueryClient } from "@tanstack/react-query";
 import { handleNotification } from "@/shared/utils";
 
@@ -27,7 +38,8 @@ export const CreateModalSidebar = ({
         { data: { title } },
         {
           onSuccess: async (data) => {
-            await queryClient.invalidateQueries({ queryKey: getGetFormsQueryKey() })
+            await queryClient
+              .invalidateQueries({ queryKey: getGetFormsQueryKey() })
               .then(() => {
                 setOpen(false);
                 setTitle("");
@@ -36,12 +48,12 @@ export const CreateModalSidebar = ({
             handleNotification({ message: "Форма создана :)" });
           },
           onError: (err) => {
-            handleNotification({ mode: "error", message: err.message })
-          }
+            handleNotification({ mode: "error", message: err.message });
+          },
         },
       );
     } catch (error) {
-      handleNotification({ mode: "error", message: "Ошибка в создании формы" })
+      handleNotification({ mode: "error", message: "Ошибка в создании формы" });
     }
   };
 
@@ -59,11 +71,21 @@ export const CreateModalSidebar = ({
         </Text>
       }
       body={
-        <form onSubmit={(e) => { e.preventDefault(); submitData(); }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitData();
+          }}
+        >
           <Flex direction={"column"} w={"100%"}>
             <Flex gap={10}>
               {VARIANTS.map((it, idx) => (
-                <Tooltip key={it} position={'bottom'} disabled={it !== VARIANTS[1]} label="Пока недоступно">
+                <Tooltip
+                  key={it}
+                  position={"bottom"}
+                  disabled={it !== VARIANTS[1]}
+                  label="Пока недоступно"
+                >
                   <Paper
                     key={it}
                     onClick={(e) => {
@@ -74,7 +96,7 @@ export const CreateModalSidebar = ({
                     p={"0.75rem"}
                     withBorder={idx === selectedOption}
                     shadow={idx === selectedOption ? "xl" : ""}
-                    sx={{ border: idx !== selectedOption ? 'none' : '' }}
+                    sx={{ border: idx !== selectedOption ? "none" : "" }}
                     radius={"0.5rem"}
                     h={"fit-content"}
                     w={"fit-content"}

@@ -57,12 +57,10 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
                   className={classes.auth_btn}
                   color={"black"}
                   variant={"outline"}
-                  onClick={async () => {
-
-                    const sign = signIn(provider.id, {
+                  onClick={async () =>
+                    await signIn(provider.id, {
                       callbackUrl,
                     })
-                  }
                   }
                   key={provider.name}
                   leftSection={<SocialIcon src={icons[provider.id]} />}

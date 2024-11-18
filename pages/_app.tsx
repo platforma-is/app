@@ -18,7 +18,11 @@ import { DatesProvider } from "@mantine/dates";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { ReactElement, ReactNode, useState } from "react";
 import { NextPage } from "next";
-import { HydrationBoundary, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  HydrationBoundary,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Notifications } from "@mantine/notifications";
@@ -47,8 +51,8 @@ const theme = createTheme({
       "#7661FF",
       "#6850FF",
       "#5E44FA",
-      "#5033FF"
-    ]
+      "#5033FF",
+    ],
   },
   primaryColor: "platforma",
   primaryShade: 9,
@@ -57,27 +61,29 @@ const theme = createTheme({
     Tabs: Tabs.extend({
       styles: {
         tab: {
-          fontSize: "20px"
-        }
-      }
-    })
-  }
+          fontSize: "20px",
+        },
+      },
+    }),
+  },
 });
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => page);
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        gcTime: 1000 * 60 * 60 * 24 // 24 hours
-      }
-    }
-  }));
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            gcTime: 1000 * 60 * 60 * 24, // 24 hours
+          },
+        },
+      }),
+  );
 
   const isDev = process.env.MODE === MODES.DEV;
 
   return (
-
     <MantineProvider stylesTransform={emotionTransform} theme={theme}>
       <MantineEmotionProvider>
         <ErrorBoundary>
@@ -120,8 +126,8 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
               padding: 0;
               font-size: 16px;
               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-              Helvetica, Arial, sans-serif, "Apple Color Emoji",
-              "Segoe UI Emoji", "Segoe UI Symbol";
+                Helvetica, Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol";
               background-color: #fff;
             }
 

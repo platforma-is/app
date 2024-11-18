@@ -1,11 +1,21 @@
-'use client';
+"use client";
 
 import React, { FC, useEffect, useState } from "react";
-import { ActionIcon, CopyButton, Flex, rem, TextInput, Tooltip } from "@mantine/core";
+import {
+  ActionIcon,
+  CopyButton,
+  Flex,
+  rem,
+  TextInput,
+  Tooltip,
+} from "@mantine/core";
 import { IconCheck, IconCopy } from "@tabler/icons-react";
 import classes from "@/components/form/FormTitle/FormTitle.module.scss";
 import { Form } from "@/shared/api/model";
-import { getGetFormsQueryKey, useUpdateSettings } from "@/shared/api/gen/forms/forms.api";
+import {
+  getGetFormsQueryKey,
+  useUpdateSettings,
+} from "@/shared/api/gen/forms/forms.api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -52,7 +62,7 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
         },
         {
           onSuccess: async () => {
-            console.log('call');
+            console.log("call");
             await queryClient.invalidateQueries({
               queryKey: getGetFormsQueryKey(),
             });

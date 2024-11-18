@@ -7,7 +7,7 @@
  */
 import type { JsonValue } from "./jsonValue";
 
-export interface ResultDefaultSelectionPrismaResponsePayload {
+export interface N24ResultDefaultSelectionPrisma24ResponsePayload {
   createdAt: string;
   data: JsonValue;
   formId: string;

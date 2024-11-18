@@ -5,9 +5,9 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { ResultDefaultSelectionPrismaFormPayloadSuccessScreen } from "./resultDefaultSelectionPrismaFormPayloadSuccessScreen";
+import type { N24ResultDefaultSelectionPrisma24FormPayloadSuccessScreen } from "./n24ResultDefaultSelectionPrisma24FormPayloadSuccessScreen";
 
-export interface ResultDefaultSelectionPrismaFormPayload {
+export interface N24ResultDefaultSelectionPrisma24FormPayload {
   active: boolean;
   authorId: string;
   createdAt: string;
@@ -23,7 +23,7 @@ export interface ResultDefaultSelectionPrismaFormPayload {
   keys: string[];
   spamProtected: boolean;
   /** @nullable */
-  successScreen: ResultDefaultSelectionPrismaFormPayloadSuccessScreen;
+  successScreen: N24ResultDefaultSelectionPrisma24FormPayloadSuccessScreen;
   title: string;
   updatedAt: string;
 }

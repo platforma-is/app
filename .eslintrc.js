@@ -43,40 +43,6 @@ module.exports = {
         ],
       },
     ],
-
-    // "import/no-restricted-paths": [
-    //   "error",
-    //   {
-    //     zones: [
-    //       // separate ui and logic
-    //       {
-    //         from: "./features",
-    //         target: "./shared",
-    //         message: "В shared нельзя импортировать модули из features",
-    //       },
-    //       {
-    //         from: "./components",
-    //         target: "./shared",
-    //         message: "В shared нельзя импортировать модули из components",
-    //       },
-    //       {
-    //         from: "./components",
-    //         target: "./features",
-    //         message: "В features нельзя импортировать модули из components",
-    //       },
-    //       {
-    //         from: "./pages",
-    //         target: "./components",
-    //         message: "В components нельзя импортировать модули из pages",
-    //       },
-    //       // {
-    //       //   from: "./app",
-    //       //   target: "./pages",
-    //       //   message: "В pages нельзя импортировать модули из app",
-    //       // },
-    //     ],
-    //   },
-    // ],
     "prettier/prettier": ["error", { endOfLine: "auto" }],
   },
 };

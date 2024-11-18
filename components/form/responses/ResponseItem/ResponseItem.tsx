@@ -7,14 +7,20 @@ import { ModalResponse } from "@/components/form/responses/ModalResponse";
 import { Response } from "@/shared/api/model";
 
 type ResponseItemProps = {
+  keys: string[];
   response: Response;
   trProps?: TableTrProps;
 };
 
-export const ResponseItem: FC<ResponseItemProps> = ({ response, trProps }) => {
+export const ResponseItem: FC<ResponseItemProps> = ({
+  response,
+  keys,
+  trProps,
+}) => {
   const createdAt = formatDate(new Date(response.createdAt));
   const [openedModal, { open, close }] = useDisclosure(false);
   const responseData = response?.data;
+  console.log(responseData);
   return (
     <>
       <Table.Tr
@@ -24,16 +30,23 @@ export const ResponseItem: FC<ResponseItemProps> = ({ response, trProps }) => {
         key={response.id}
       >
         {responseData &&
-          Object.keys(responseData).map((key) => (
+          keys.map((key) => (
             <Table.Td key={key}>
-              <Text size={"0.875rem"} key={key}>
-                {responseData[key].length > 40
-                  ? responseData[key].substring(0, 40) + "..."
-                  : responseData[key]}
-              </Text>
+              {responseData[key] ? (
+                <Text size={"0.875rem"} key={key}>
+                  {responseData[key]?.length > 40
+                    ? responseData[key]?.substring(0, 40) + "..."
+                    : responseData[key]}
+                </Text>
+              ) : (
+                <Text size={"0.875rem"} key={key}>
+                  -
+                </Text>
+              )}
             </Table.Td>
           ))}
         <Table.Td
+          key={"createdAt"}
           pl={"1rem"}
           style={{ verticalAlign: "baseline", width: "200px" }}
         >
@@ -41,7 +54,6 @@ export const ResponseItem: FC<ResponseItemProps> = ({ response, trProps }) => {
             {createdAt}
           </Text>
         </Table.Td>
-        <Table.Td></Table.Td>
       </Table.Tr>
 
       <ModalResponse

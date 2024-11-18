@@ -6,6 +6,7 @@ interface HandleNotificationProps {
   message: string;
   title?: string;
 }
+
 export const handleNotification = ({
   mode = "success",
   message,

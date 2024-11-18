@@ -7,7 +7,7 @@ import {
   Paper,
   Text,
   TextInput,
-  TextInputProps
+  TextInputProps,
 } from "@mantine/core";
 import { useEffect, useId, useState } from "react";
 
@@ -28,7 +28,7 @@ export const SettingsMultipleSelect = ({
 }: SettingsMultipleSelectProps) => {
   const id = useId();
   const [items, setItems] = useState(selected);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const handleAddItem = (it) => {
     setItems((prev) => [...prev, it]);
     setInputValue(() => "");
@@ -39,7 +39,7 @@ export const SettingsMultipleSelect = ({
   };
 
   useEffect(() => {
-    setItems(selected)
+    setItems(selected);
   }, [selected]);
 
   useEffect(() => {

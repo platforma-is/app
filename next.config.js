@@ -1,8 +1,8 @@
 // const { withSuperjson } = require("next-superjson");
 
 module.exports = {
-    output: "standalone",
-  };
+  output: "standalone",
+};
 
 // module.exports = withSuperjson()({
 //     output: 'standalone'

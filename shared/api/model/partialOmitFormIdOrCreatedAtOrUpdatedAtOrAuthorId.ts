@@ -5,7 +5,7 @@
  * Platforma Backend Package
  * OpenAPI spec version: 1.0.0
  */
-import type { PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen } from './partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen';
+import type { PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen } from "./partialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen";
 
 /**
  * Make all properties in T optional
@@ -20,6 +20,7 @@ export interface PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorId {
   emailNotificationMails?: string[];
   /** @nullable */
   folder?: string | null;
+  keys?: string[];
   spamProtected?: boolean;
   /** @nullable */
   successScreen?: PartialOmitFormIdOrCreatedAtOrUpdatedAtOrAuthorIdSuccessScreen;

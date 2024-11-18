@@ -6,7 +6,7 @@ import {
   getGetSettingsQueryKey,
   useDeleteForm,
   useGetSettings,
-  useUpdateSettings
+  useUpdateSettings,
 } from "@/shared/api/gen/forms/forms.api";
 import Router from "next/router";
 import { useForm } from "@mantine/form";
@@ -20,22 +20,30 @@ export const useFormSettings = (form: Form) => {
   const queryClient = useQueryClient();
   const deleteFormMutation = useDeleteForm();
   const updateSettings = useUpdateSettings();
-  const { data: settingsData, isSuccess, isPending } = useGetSettings(form.id);
+  const {
+    data: settingsData,
+    isSuccess,
+    isLoading,
+    isFetched,
+  } = useGetSettings(form.id);
 
-  const [visible, { toggle }] = useDisclosure(isPending);
+  const [visible, { close }] = useDisclosure(isLoading);
 
   const formController = useForm<Partial<TSettings>>({
     mode: "uncontrolled",
     initialValues: {
-      ...settingsData
-    }
+      ...settingsData,
+    },
   });
 
   useEffect(() => {
-    if (!isPending) {
-      toggle();
+    if (isFetched) {
+      close();
     }
-  }, [isPending]);
+    return () => {
+      close();
+    };
+  }, [isFetched, form.id]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -54,8 +62,8 @@ export const useFormSettings = (form: Form) => {
             .then(() => {
               Router.replace("/");
             });
-        }
-      }
+        },
+      },
     );
   };
 
@@ -63,23 +71,28 @@ export const useFormSettings = (form: Form) => {
     updateSettings.mutate(
       {
         formId: form.id,
-        data: values
+        data: values,
       },
       {
         onSuccess: async () => {
-          await queryClient.invalidateQueries({ queryKey: getGetFormByIdQueryKey(form.id) });
-          await queryClient.invalidateQueries({ queryKey: getGetSettingsQueryKey(form.id) });
-          await queryClient.invalidateQueries({ queryKey: getGetFormsQueryKey() })
+          await queryClient.invalidateQueries({
+            queryKey: getGetFormByIdQueryKey(form.id),
+          });
+          await queryClient.invalidateQueries({
+            queryKey: getGetSettingsQueryKey(form.id),
+          });
+          await queryClient
+            .invalidateQueries({ queryKey: getGetFormsQueryKey() })
             .then(() =>
               handleNotification({
-                message: "Настройки вашей формы успешно обновлены!"
-              })
+                message: "Настройки вашей формы успешно обновлены!",
+              }),
             );
         },
         onError: () => {
           handleNotification({ mode: "error", message: "Произошла ошибка" });
-        }
-      }
+        },
+      },
     );
   };
 
@@ -89,6 +102,6 @@ export const useFormSettings = (form: Form) => {
     isDeleteLoading: deleteFormMutation.isPending,
     isSaveLoading: updateSettings.isPending,
     formController,
-    visible
+    visible,
   };
 };
