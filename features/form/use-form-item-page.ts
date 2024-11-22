@@ -42,7 +42,7 @@ function useFormItemPage(form: NullableForm) {
 
   const publicLink = `${
     typeof window !== "undefined" ? window.location.origin : ""
-  }/forms/${form?.id}/responses`;
+  }/backend-api/forms/${form?.id}/responses`;
 
   return {
     tabs,
