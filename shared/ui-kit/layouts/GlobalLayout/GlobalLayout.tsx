@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { Container, ContainerProps } from "@mantine/core";
 import clsx from "clsx";
 import classes from "./GlobalLayout.module.scss";
+import Head from "next/head";
 
 type GlobalLayoutProps = {
   children?: ReactNode;
@@ -16,6 +17,9 @@ export const GlobalLayout: React.FC<GlobalLayoutProps> = ({
 }) => {
   return (
     <div className={classes.global}>
+      <Head>
+        <link rel="icon" href="/assets/icons/platforma.svg" />
+      </Head>
       {sidebar}
       <Container
         {...containerProps}
