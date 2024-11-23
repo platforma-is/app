@@ -24,6 +24,33 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.YANDEX_CLIENT_SECRET ?? "",
     }),
   ],
+  callbacks: {
+    async signIn(params) {
+      console.info("signIn: ", params);
+
+      const existingUser = await prisma.user.findUnique({
+        where: {
+          email: params.profile?.email,
+        },
+      });
+
+      if (existingUser == null) {
+        const user = await prisma.user.create({
+          data: {
+            name: params.profile?.name,
+            email: params.profile?.email,
+            image: params.profile?.image,
+          },
+        });
+
+        params.user = user;
+      } else {
+        params.user = existingUser;
+      }
+
+      return true;
+    },
+  },
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60,
