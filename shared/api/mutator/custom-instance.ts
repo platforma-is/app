@@ -1,7 +1,9 @@
 import Axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { CamelCase } from "type-fest";
 
-const BACKEND_URL = "http://localhost:3001";
+const BACKEND_URL = "https://platforma.is/backend-api/";
+
+// const BACKEND_URL = process.env.BACKEND_URL;
 
 export const AXIOS_INSTANCE = Axios.create({
   baseURL: BACKEND_URL,

@@ -10,6 +10,7 @@
   "author": "",
   "scripts": {
     "start:dev": "next",
+    "start:daemon": "pm2 start",
     "build": "next build",
     "start:prod": "next start",
     "prisma:generate": "prisma generate",

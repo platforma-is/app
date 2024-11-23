@@ -109,42 +109,6 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
             </HydrationBoundary>
             {isDev && <ReactQueryDevtools initialIsOpen={false} />}
           </QueryClientProvider>
-
-          <style jsx global>{`
-            html {
-              box-sizing: border-box;
-            }
-
-            *,
-            *:before,
-            *:after {
-              box-sizing: inherit;
-            }
-
-            body {
-              margin: 0;
-              padding: 0;
-              font-size: 16px;
-              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                Helvetica, Arial, sans-serif, "Apple Color Emoji",
-                "Segoe UI Emoji", "Segoe UI Symbol";
-              background-color: #fff;
-            }
-
-            input,
-            textarea {
-              font-size: 16px;
-            }
-
-            button {
-              cursor: pointer;
-            }
-
-            a {
-              color: var(--mantine-primary-color-filled);
-              text-decoration: none;
-            }
-          `}</style>
           <Notifications />
         </ErrorBoundary>
       </MantineEmotionProvider>
