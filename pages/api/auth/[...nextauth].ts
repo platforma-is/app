@@ -25,6 +25,12 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    jwt({ token, trigger, session }) {
+      if (trigger === "signIn" || trigger === "signUp") {
+        console.log("JWT: ", token, trigger, session);
+      }
+      return token;
+    },
     async signIn(params) {
       console.info("signIn: ", params);
 
