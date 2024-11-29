@@ -50,6 +50,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   forms         Form[]
+  phone         String?   @unique
 
   @@map(name: "users")
 }

@@ -1,0 +1,53 @@
+
+
+on:
+  workflow_dispatch:
+    inputs:
+    environment:
+      description: 'Environment'
+      required: true
+      default: 'prod'
+      type: choice
+      options:
+      # - test
+      - prod
+
+jobs:
+  build-test:
+    if: ${{ inputs.environment }} == 'test'
+    name: Build Test
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4.1.7
+    - name: Creating env file
+      run: |
+        touch .env
+        echo "${{ secrets.ENV_TEST }}" > .env
+        cat .env
+    - name: Runing in dev mode 
+      run: npm run dev:test
+  build-prod:
+    if: ${{ inputs.environment }} == 'prod'
+    name: Build Productive
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4.1.7
+    - name: Creating env file
+      run: |
+        touch .env
+        echo "${{ secrets.ENV_PROD }}" > .env
+        cat .env
+    - name: Building image
+      run: npm run build
+  run-prod:
+    if: ${{ inputs.environment }} == 'prod'
+    name: Run
+    needs: build-prod
+    runs-on: self-hosted
+    steps:
+    - name: Running container
+      run: pm2 start --env prod
