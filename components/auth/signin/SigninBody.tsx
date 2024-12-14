@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import githubIcon from "@/public/assets/icons/socials/github.svg";
 import yandexIcon from "@/public/assets/icons/socials/yandex.svg";
 import vkIcon from "@/public/assets/icons/socials/vk.svg";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { TProvider } from "@/index";
 
 type SigninBodyProps = {
@@ -30,9 +30,7 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
     vk: vkIcon.src,
     yandex: yandexIcon.src,
   };
-
-  const callbackUrl = process.env.AUTH_SUCCESS_CALLBACK_URL;
-
+  console.log(providers)
   return (
     <Flex className={classes.logo_container} direction={"row"}>
       <img
@@ -59,7 +57,7 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
                   variant={"outline"}
                   onClick={async () =>
                     await signIn(provider.id, {
-                      callbackUrl,
+                      callbackUrl: provider.callbackUrl,
                     })
                   }
                   key={provider.name}

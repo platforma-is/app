@@ -5,11 +5,13 @@ import VkProvider from "next-auth/providers/vk";
 import YandexProvider from "next-auth/providers/yandex";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import { Account } from "@prisma/client";
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;
 
 export const options: NextAuthOptions = {
+  debug: true,
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID ?? "",
@@ -26,34 +28,93 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     jwt({ token, trigger, session }) {
-      if (trigger === "signIn" || trigger === "signUp") {
-        console.log("JWT: ", token, trigger, session);
-      }
-      return token;
+      console.log('jwt: ', token, trigger, session)
+      if (trigger === "update") token.name = session.user.name
+      return token
     },
     async signIn(params) {
-      console.info("signIn: ", params);
+      const email = params.profile?.email || params.account?.email || params.user?.email;
+      const name = params.profile?.name || params.profile?.real_name || params.user?.name;
+      const image = params.profile?.image || params.user?.image;
 
-      const existingUser = await prisma.user.findUnique({
-        where: {
-          email: params.profile?.email,
-        },
-      });
+      let existingUser;
+
+      try {
+        existingUser = await prisma.user.findFirst({
+          where: {
+            OR: [
+              { email, phone: params.profile?.phone },
+              { email }
+            ]
+          },
+        });
+      } catch (e) {
+        existingUser = null
+      }
 
       if (existingUser == null) {
         const user = await prisma.user.create({
           data: {
-            name: params.profile?.name,
-            email: params.profile?.email,
-            image: params.profile?.image,
+            name,
+            email,
+            image,
+            phone: params.profile?.phone,
           },
         });
 
+        if (params.account?.provider === 'vk') {
+          delete params.account.email;
+          delete params.account.user_id;
+        }
+
+        const newAccount = await prisma.account.create({
+          data: {
+            ...params.account as any,
+            user: {
+              connect: {
+                email,
+              }
+            }
+          }
+        })
+
         params.user = user;
       } else {
+        let userAccount;
+        try {
+          userAccount = await prisma.account.findFirst({
+            where: {
+              userId: existingUser?.id,
+              provider: params.account?.provider
+            }
+          });
+        } catch (e) {
+          userAccount = null;
+        }
+
+        if (userAccount === null) {
+          try {
+            if (params.account?.provider === 'vk') {
+              delete params.account.email;
+              delete params.account.user_id;
+            }
+
+            const newAccount = await prisma.account.create({
+              data: {
+                ...params.account as any,
+                user: {
+                  connect: {
+                    email
+                  }
+                }
+              }
+            })
+          } catch (e) {
+            console.log('Error creating account: ', e)
+          }
+        }
         params.user = existingUser;
       }
-
       return true;
     },
   },

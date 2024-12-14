@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { SidebarLayout } from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout";
-import { Button, Container, Tooltip } from "@mantine/core";
+import { Button, Container, Tooltip, Avatar } from "@mantine/core";
 import classes from "@/shared/ui-kit/layouts/SidebarLayout/SidebarLayout.module.scss";
 import { IconLogout2, IconMoodSmile } from "@tabler/icons-react";
 import { CreateModalSidebar } from "@/components/global/CreateModalSidebar";
@@ -49,12 +49,17 @@ export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
             </Button>
             {menuContent}
           </Container>
+
           <Container className={classes.bottom_sidebar}>
             <Button
               className={classes.profile_btn}
               color={"black"}
               variant={"transparent"}
-              leftSection={<IconMoodSmile />}
+              leftSection={
+                sessionData.user?.image
+                  ? <Avatar radius={'xl'} size='sm' src={sessionData.user?.image} alt={'avatar'} />
+                  : <IconMoodSmile />
+              }
             >
               {sessionData.user?.name}
             </Button>

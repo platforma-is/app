@@ -50,7 +50,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   forms         Form[]
-  phone         String?   @unique
+  phone         String?   @default("")
 
   @@map(name: "users")
 }
