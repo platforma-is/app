@@ -53,10 +53,13 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
             copyLabel="Скопировать код"
             copiedLabel="Готово!"
             highlightOnClient={true}
-            fz={18}
+            fz={"lg"}
             mb="xl"
             pt="lg"
             style={{ borderRadius: '0.25rem' }}
+            styles={{
+              code: { fontSize: '18px' }
+            }}
           />
 
         }
@@ -73,7 +76,9 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
             copiedLabel="Готово!"
             mb="xl"
             pt="lg"
-            fz={18}
+            styles={{
+              code: { fontSize: '18px' }
+            }}
             style={{ borderRadius: '0.25rem' }}
           />
         }
