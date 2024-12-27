@@ -31,13 +31,14 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
       }
       if (sessionData) {
         return (
-          <Container p={0} className={classes.inner}>
+          <div
+            className={classes.inner}>
             <Suspense
               fallback={<Loader pos={"absolute"} top={"50%"} left={"50%"} />}
             >
               {children}
             </Suspense>
-          </Container>
+          </div>
         );
       }
     }

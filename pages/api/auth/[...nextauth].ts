@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { NextApiHandler } from "next";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
@@ -5,7 +7,6 @@ import VkProvider from "next-auth/providers/vk";
 import YandexProvider from "next-auth/providers/yandex";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
-import { Account } from "@prisma/client";
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;
@@ -28,13 +29,15 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     jwt({ token, trigger, session }) {
-      console.log('jwt: ', token, trigger, session)
-      if (trigger === "update") token.name = session.user.name
-      return token
+      console.log("jwt: ", token, trigger, session);
+      if (trigger === "update") token.name = session.user.name;
+      return token;
     },
     async signIn(params) {
-      const email = params.profile?.email || params.account?.email || params.user?.email;
-      const name = params.profile?.name || params.profile?.real_name || params.user?.name;
+      const email =
+        params.profile?.email || params.account?.email || params.user?.email;
+      const name =
+        params.profile?.name || params.profile?.real_name || params.user?.name;
       const image = params.profile?.image || params.user?.image;
 
       let existingUser;
@@ -42,14 +45,11 @@ export const options: NextAuthOptions = {
       try {
         existingUser = await prisma.user.findFirst({
           where: {
-            OR: [
-              { email, phone: params.profile?.phone },
-              { email }
-            ]
+            OR: [{ email, phone: params.profile?.phone }, { email }],
           },
         });
       } catch (e) {
-        existingUser = null
+        existingUser = null;
       }
 
       if (existingUser == null) {
@@ -62,21 +62,21 @@ export const options: NextAuthOptions = {
           },
         });
 
-        if (params.account?.provider === 'vk') {
+        if (params.account?.provider === "vk") {
           delete params.account.email;
           delete params.account.user_id;
         }
 
-        const newAccount = await prisma.account.create({
+        await prisma.account.create({
           data: {
-            ...params.account as any,
+            ...(params.account as any),
             user: {
               connect: {
                 email,
-              }
-            }
-          }
-        })
+              },
+            },
+          },
+        });
 
         params.user = user;
       } else {
@@ -85,8 +85,8 @@ export const options: NextAuthOptions = {
           userAccount = await prisma.account.findFirst({
             where: {
               userId: existingUser?.id,
-              provider: params.account?.provider
-            }
+              provider: params.account?.provider,
+            },
           });
         } catch (e) {
           userAccount = null;
@@ -94,23 +94,23 @@ export const options: NextAuthOptions = {
 
         if (userAccount === null) {
           try {
-            if (params.account?.provider === 'vk') {
+            if (params.account?.provider === "vk") {
               delete params.account.email;
               delete params.account.user_id;
             }
 
-            const newAccount = await prisma.account.create({
+            await prisma.account.create({
               data: {
-                ...params.account as any,
+                ...(params.account as any),
                 user: {
                   connect: {
-                    email
-                  }
-                }
-              }
-            })
+                    email,
+                  },
+                },
+              },
+            });
           } catch (e) {
-            console.log('Error creating account: ', e)
+            console.log("Error creating account: ", e);
           }
         }
         params.user = existingUser;

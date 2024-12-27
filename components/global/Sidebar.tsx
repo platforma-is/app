@@ -56,9 +56,16 @@ export const Sidebar: React.FC<SibebarProps> = ({ menuContent }) => {
               color={"black"}
               variant={"transparent"}
               leftSection={
-                sessionData.user?.image
-                  ? <Avatar radius={'xl'} size='sm' src={sessionData.user?.image} alt={'avatar'} />
-                  : <IconMoodSmile />
+                sessionData.user?.image ? (
+                  <Avatar
+                    radius={"xl"}
+                    size="sm"
+                    src={sessionData.user?.image}
+                    alt={"avatar"}
+                  />
+                ) : (
+                  <IconMoodSmile />
+                )
               }
             >
               {sessionData.user?.name}

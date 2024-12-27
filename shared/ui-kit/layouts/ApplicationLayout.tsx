@@ -12,9 +12,9 @@ export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
   children,
 }) => {
   return (
-    <Container w={"100%"} p={0}>
+    <>
       <div className={classes.page_title}>{title}</div>
       {children}
-    </Container>
+    </>
   );
 };

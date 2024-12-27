@@ -6,13 +6,14 @@ import { AppProps } from "next/app";
 import "@/app/core.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import '@mantine/code-highlight/styles.css';
 
 // other css files are required only if
 // you are using components from the corresponding package
 // import '@mantine/dropzone/styles.css';
 // import '@mantine/code-highlight/styles.css';
 // ...
-import { createTheme, MantineProvider, Tabs } from "@mantine/core";
+import { createTheme, MantineProvider, Tabs, Code } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -64,7 +65,7 @@ const theme = createTheme({
           fontSize: "20px",
         },
       },
-    }),
+    })
   },
 });
 

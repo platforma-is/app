@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import githubIcon from "@/public/assets/icons/socials/github.svg";
 import yandexIcon from "@/public/assets/icons/socials/yandex.svg";
 import vkIcon from "@/public/assets/icons/socials/vk.svg";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { TProvider } from "@/index";
 
 type SigninBodyProps = {
@@ -30,7 +30,7 @@ export const SigninBody = ({ providers }: SigninBodyProps) => {
     vk: vkIcon.src,
     yandex: yandexIcon.src,
   };
-  console.log(providers)
+  console.log(providers);
   return (
     <Flex className={classes.logo_container} direction={"row"}>
       <img

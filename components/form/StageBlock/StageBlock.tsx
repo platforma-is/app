@@ -16,7 +16,7 @@ export const StageBlock: FC<StageBlockType> = ({
   content,
 }) => {
   return (
-    <Container style={{ borderRadius: rem(12) }} mb="md" w="100%" p="sm">
+    <Container style={{ borderRadius: rem(12) }} mb="md" w="100%" p="sm" className={classes.container}>
       <Flex
         mih={50}
         gap="12px"
@@ -52,9 +52,7 @@ export const StageBlock: FC<StageBlockType> = ({
           ) : null}
         </Flex>
       </Flex>
-      <div className={classes.content}>
-        <div className={classes.content}>{content ? content : null}</div>
-      </div>
+      <div className={classes.content}>{content ? content : null}</div>
     </Container>
   );
 };

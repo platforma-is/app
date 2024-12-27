@@ -10,10 +10,12 @@
 ### .env
 
 ```
-# MODE
+# Mode
+
 MODE=%production|dev%
 
 # Oauth
+
 SECRET=%SECRET%
 NEXTAUTH_URL=%NEXTAUTH_URL%
 AUTH_SUCCESS_CALLBACK_URL=%AUTH_SUCCESS_CALLBACK_URL%
@@ -29,7 +31,26 @@ VK_CLIENT_SECRET=%VK_CLIENT_SECRET%
 
 YANDEX_CLIENT_ID=%YANDEX_CLIENT_ID%
 YANDEX_CLIENT_SECRET=%YANDEX_CLIENT_SECRET%
+
+# Others
+
+DATABASE_URL=%DATABASE_URL%
+
+SENTRY_DSN=%SENTRY_DSN%
+
+NEXT_PUBLIC_API=${BACKEND_HOSTNAME}
+NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
 ```
+
+### Deployment
+
+*Build*
+
+```docker build -t platforma-frontend .```
+
+*Run*
+
+```docker run -p 3000:3000 platforma-frontend:latest```
 
 ### Structure
 
