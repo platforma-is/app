@@ -20,6 +20,13 @@
     url("../public/assets/fonts/circe-rounded_medium.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("../public/assets/fonts/InterVariable.woff2");
+  src:
+    url("../public/assets/fonts/InterVariable.woff2") format("woff2");
+}
+
 /* @font-face {
     font-family: "PP Pangram Sans Rounded";
     src: url('../public/assets/fonts/261bd41f743f968436b6709532d4343e.eot');

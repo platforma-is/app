@@ -57,7 +57,7 @@ const theme = createTheme({
   },
   primaryColor: "platforma",
   primaryShade: 9,
-  fontFamily: "Circe Rounded Medium, sans-serif",
+  fontFamily: "Inter",
   components: {
     Tabs: Tabs.extend({
       styles: {
