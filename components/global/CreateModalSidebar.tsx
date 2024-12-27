@@ -50,7 +50,7 @@ export const CreateModalSidebar = ({
           onError: (err) => {
             handleNotification({ mode: "error", message: err.message });
           },
-        },
+        }
       );
     } catch (error) {
       handleNotification({ mode: "error", message: "Ошибка в создании формы" });

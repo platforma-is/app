@@ -21,7 +21,7 @@ export const SettingsSwitch = ({
   const id = useId();
 
   return (
-    <Flex align={"center"} gap={"1.5rem"} direction={"row"} my={'0.6rem'}>
+    <Flex align={"center"} gap={"1.5rem"} direction={"row"} my={"0.6rem"}>
       <InputLabel w={"12rem"} fw={400} fz="lg" {...labelProps} htmlFor={id}>
         {title}
       </InputLabel>

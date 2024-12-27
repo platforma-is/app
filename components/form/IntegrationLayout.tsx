@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Card, Code, Text, rem, Container } from "@mantine/core";
-import { CodeHighlight } from '@mantine/code-highlight'
+import { Card, Text, rem, Container } from "@mantine/core";
+import { CodeHighlight } from "@mantine/code-highlight";
 import { StageBlock } from "@/components/form/StageBlock/StageBlock";
 
 type IntegrationLayoutProps = {
@@ -46,7 +46,6 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
         title="Создайте на сайте форму"
         description="В атрибуте action укажите специальную ссылку-токен:"
         content={
-
           <CodeHighlight
             code={htmlFormCode}
             language="xml"
@@ -56,12 +55,11 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
             fz={"lg"}
             mb="xl"
             pt="lg"
-            style={{ borderRadius: '0.25rem' }}
+            style={{ borderRadius: "0.25rem" }}
             styles={{
-              code: { fontSize: '18px' }
+              code: { fontSize: "18px" },
             }}
           />
-
         }
       />
       <StageBlock
@@ -77,9 +75,9 @@ export const IntegrationLayout: FC<IntegrationLayoutProps> = (props) => {
             mb="xl"
             pt="lg"
             styles={{
-              code: { fontSize: '18px' }
+              code: { fontSize: "18px" },
             }}
-            style={{ borderRadius: '0.25rem' }}
+            style={{ borderRadius: "0.25rem" }}
           />
         }
       />

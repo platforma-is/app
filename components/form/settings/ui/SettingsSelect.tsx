@@ -31,7 +31,7 @@ export const SettingsSelect = ({
         data={selectProps?.data}
         fz="lg"
         size={"lg"}
-        w={'26rem'}
+        w={"26rem"}
       />
     </Flex>
   );

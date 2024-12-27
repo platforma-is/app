@@ -27,12 +27,11 @@ export const SettingsRadioFields = ({
   const id = useId();
   return (
     <Flex align={"flex-start"} gap={"1.5rem"} direction={"row"}>
-
       <InputLabel w={"12rem"} fw={400} {...labelProps} fz={"lg"} htmlFor={id}>
         {title}
       </InputLabel>
       <RadioGroup>
-        <Group style={{ flexDirection: "column", display: "flex", gap: '0px' }}>
+        <Group style={{ flexDirection: "column", display: "flex", gap: "0px" }}>
           {data?.map((radioItem, idx) => (
             <Radio
               defaultChecked={active === radioItem.value}

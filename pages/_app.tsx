@@ -6,14 +6,20 @@ import { AppProps } from "next/app";
 import "@/app/core.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import '@mantine/code-highlight/styles.css';
+import "@mantine/code-highlight/styles.css";
 
 // other css files are required only if
 // you are using components from the corresponding package
 // import '@mantine/dropzone/styles.css';
 // import '@mantine/code-highlight/styles.css';
 // ...
-import { createTheme, MantineProvider, Tabs, Switch, Radio } from "@mantine/core";
+import {
+  createTheme,
+  MantineProvider,
+  Tabs,
+  Switch,
+  Radio,
+} from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -69,17 +75,17 @@ const theme = createTheme({
     Switch: Switch.extend({
       styles: {
         track: {
-          cursor: 'pointer'
-        }
-      }
+          cursor: "pointer",
+        },
+      },
     }),
     Radio: Radio.extend({
       styles: {
         inner: {
-          cursor: 'pointer'
-        }
-      }
-    })
+          cursor: "pointer",
+        },
+      },
+    }),
   },
 });
 
@@ -93,7 +99,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
             gcTime: 1000 * 60 * 60 * 24, // 24 hours
           },
         },
-      }),
+      })
   );
 
   const isDev = process.env.MODE === MODES.DEV;

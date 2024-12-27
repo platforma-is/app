@@ -31,8 +31,7 @@ export const GlobalWrapper: React.FC<GlobalWrapperProps> = ({
       }
       if (sessionData) {
         return (
-          <div
-            className={classes.inner}>
+          <div className={classes.inner}>
             <Suspense
               fallback={<Loader pos={"absolute"} top={"50%"} left={"50%"} />}
             >

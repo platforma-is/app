@@ -16,7 +16,13 @@ export const StageBlock: FC<StageBlockType> = ({
   content,
 }) => {
   return (
-    <Container style={{ borderRadius: rem(12) }} mb="md" w="100%" p="sm" className={classes.container}>
+    <Container
+      style={{ borderRadius: rem(12) }}
+      mb="md"
+      w="100%"
+      p="sm"
+      className={classes.container}
+    >
       <Flex
         mih={50}
         gap="12px"

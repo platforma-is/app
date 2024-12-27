@@ -24,7 +24,7 @@ export const SettingsMultipleSelect = ({
   labelProps,
   inputProps,
   selected = [],
-  changeCallback = () => { },
+  changeCallback = () => {},
 }: SettingsMultipleSelectProps) => {
   const id = useId();
   const [items, setItems] = useState(selected);
@@ -48,7 +48,14 @@ export const SettingsMultipleSelect = ({
 
   return (
     <Flex align={"flex-start"} gap={"1.5rem"} direction={"row"}>
-      <InputLabel mt={"1rem"} w={"12rem"} fz={'lg'} fw={400} {...labelProps} htmlFor={id}>
+      <InputLabel
+        mt={"1rem"}
+        w={"12rem"}
+        fz={"lg"}
+        fw={400}
+        {...labelProps}
+        htmlFor={id}
+      >
         {title}
       </InputLabel>
       <Flex direction={"column"}>
@@ -62,11 +69,11 @@ export const SettingsMultipleSelect = ({
           <TextInput
             w={"calc(100% - 8rem)"}
             type={"email"}
-            size={'lg'}
+            size={"lg"}
             {...inputProps}
             id={id}
             value={inputValue}
-            styles={{ input: { padding: '0 0.5rem 0 0.5rem' } }}
+            styles={{ input: { padding: "0 0.5rem 0 0.5rem" } }}
             onChange={(e) => setInputValue(e.target.value)}
             variant={"unstyled"}
             rightSectionWidth={"auto"}

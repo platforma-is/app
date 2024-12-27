@@ -66,7 +66,7 @@ const FormTitle: FC<FormTitleProps> = ({ form, publicLink }) => {
               queryKey: getGetFormsQueryKey(),
             });
           },
-        },
+        }
       );
     }
   };

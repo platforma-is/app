@@ -50,7 +50,7 @@ export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
           onChange: (e) => {
             formController.setFieldValue(
               "successScreen",
-              e.target.value as SucessScreen,
+              e.target.value as SucessScreen
             );
           },
         }}
