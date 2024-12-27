@@ -13,7 +13,7 @@ import '@mantine/code-highlight/styles.css';
 // import '@mantine/dropzone/styles.css';
 // import '@mantine/code-highlight/styles.css';
 // ...
-import { createTheme, MantineProvider, Tabs, Code } from "@mantine/core";
+import { createTheme, MantineProvider, Tabs, Switch, Radio } from "@mantine/core";
 import { DatesProvider } from "@mantine/dates";
 
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -65,6 +65,20 @@ const theme = createTheme({
           fontSize: "20px",
         },
       },
+    }),
+    Switch: Switch.extend({
+      styles: {
+        track: {
+          cursor: 'pointer'
+        }
+      }
+    }),
+    Radio: Radio.extend({
+      styles: {
+        inner: {
+          cursor: 'pointer'
+        }
+      }
     })
   },
 });

@@ -34,6 +34,7 @@ export const FormSettingsBody = ({ form }: FormSettingsBodyProps) => {
         loading={isSaveLoading}
         type={"submit"}
         pos={"fixed"}
+        size={"lg"}
         sx={{ zIndex: "auto" }}
         bottom={"1.5rem"}
         right={"1.5rem"}
@@ -46,7 +47,8 @@ export const FormSettingsBody = ({ form }: FormSettingsBodyProps) => {
         onClick={() => deleteAction()}
         leftSection={<IconTrash />}
         fw={400}
-        px={"1rem"}
+        fz={"lg"}
+        size={"lg"}
         w={"fit-content"}
         variant={"light"}
         color={"red"}

@@ -36,6 +36,7 @@ export const FormTabs = ({
             key={it.name}
             value={it?.name}
             color={"#5033FF"}
+            size={"lg"}
             leftSection={
               <it.ico
                 width={"1.25rem"}
@@ -45,7 +46,8 @@ export const FormTabs = ({
             }
           >
             <Text
-              size={"1rem"}
+              // size={"1rem"}
+              fz={"lg"}
               fw={"400"}
               color={activeTab === it.name ? "#5033FF" : "black"}
             >

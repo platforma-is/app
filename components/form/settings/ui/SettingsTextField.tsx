@@ -21,10 +21,10 @@ export const SettingsTextField = ({
   const id = useId();
   return (
     <Flex align={"center"} gap={"1.5rem"} direction={"row"}>
-      <InputLabel w={"12rem"} fw={400} {...labelProps} htmlFor={id}>
+      <InputLabel w={"12rem"} fw={400} fz="lg" {...labelProps} htmlFor={id}>
         {title}
       </InputLabel>
-      <TextInput {...inputProps} w={"23rem"} id={id} />
+      <TextInput {...inputProps} fz="lg" size={"lg"} w={"26rem"} id={id} />
     </Flex>
   );
 };

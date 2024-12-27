@@ -22,13 +22,16 @@ export const SettingsSelect = ({
   const id = useId();
   return (
     <Flex align={"center"} gap={"1.5rem"} direction={"row"}>
-      <InputLabel w={"12rem"} fw={400} {...labelProps} htmlFor={id}>
+      <InputLabel fz="lg" w={"12rem"} fw={400} {...labelProps} htmlFor={id}>
         {title}
       </InputLabel>
       <Select
         {...selectProps}
         placeholder={selectProps?.placeholder}
         data={selectProps?.data}
+        fz="lg"
+        size={"lg"}
+        w={'26rem'}
       />
     </Flex>
   );

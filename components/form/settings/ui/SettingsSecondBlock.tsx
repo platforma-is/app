@@ -9,7 +9,7 @@ import { SucessScreen } from "@/shared/api/model";
 export const SettingSecondBlock = ({ formController }: ISettingsBlock) => {
   return (
     <Flex direction={"column"} rowGap={"1rem"}>
-      <Text fw={600} lh={"1.25rem"}>
+      <Text fw={600} fz={"lg"} lh={"1.25rem"} mb={16}>
         Уведомления на электронную почту
       </Text>
       <SettingsSwitch
